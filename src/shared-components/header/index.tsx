@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem, Menu, Divider, Badge } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useRouter } from 'next/router';
 
 import {
   ForestOutlined as ForestOutlinedIcon,
@@ -37,9 +38,10 @@ export default function Component({}) {
     setAnchorEl(event.currentTarget);
   };
 
+  const router = useRouter();
   const handleClose = (url: string) => {
     setAnchorEl(null);
-    // navigate(url, { replace: true });
+    router.push(url);
   };
 
   return (
