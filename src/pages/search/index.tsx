@@ -17,6 +17,7 @@ export default function Component() {
 
   const doSearch = (query: string) => {
     console.log(query);
+    router.push(`/search/${query}`);
   };
 
   useEffect(() => {
@@ -48,7 +49,7 @@ function searchByQuery(query: string) {
       const data = _.range(1, max).map((i: number) => {
         return {
           url: `https://${query}.com`,
-          snippet: `snippet ${query}`,
+          snippet: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
           name: `name ${i}`,
         };
       });

@@ -6,12 +6,24 @@ const DivSearchList = styled.div`
   padding-top: 50px;
 `;
 
+const DivUrl = styled.div`
+  color: teal;
+`;
+
+const DivName = styled.div`
+  font-size: larger;
+  text-transform: capitalize;
+  color: blue;
+`;
+
+const DivSnippet = styled.div``;
+
 interface SearchListProps {
   totalEstimatedMatches: number;
   values: Array<any>;
 }
 
-const pageSize = 10;
+const pageSize = 15;
 
 export default function Component({
   totalEstimatedMatches,
@@ -29,17 +41,17 @@ export default function Component({
       <Stack spacing={2}>
         {data.map(({ url, snippet, name }, index) => (
           <div key={`index_${index}`}>
-            <div>
+            <DivName>
               <a href={url} target="_blank" rel="noreferrer">
                 {name}
               </a>
-            </div>
-            <div>
+            </DivName>
+            <DivUrl>
               <a href={url} target="_blank" rel="noreferrer">
                 {url}
               </a>
-            </div>
-            <div>{snippet}</div>
+            </DivUrl>
+            <DivSnippet>{snippet}</DivSnippet>
           </div>
         ))}
       </Stack>

@@ -4,10 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 
+
 import * as Images from "../images";
 
-const LogoImage = styled(Image)`
-  max-width: 60px;
+const DivContainer = styled.div`
+  margin-top: 100px;
 `;
 
 interface SearchProps {
@@ -19,20 +20,27 @@ export default function Component(props: SearchProps) {
   const [query, setQuery] = useState(props.query);
 
   return (
-    <Stack direction="row" spacing={2}>
-      <LogoImage src={Images.LogoImage} alt="logo" />
-      <FormControl size="small" variant="outlined">
-        <OutlinedInput
-          value={query}
-          onChange={(ev) => {
-            setQuery(ev.target.value);
-          }}
-          onKeyDown={(ev) => {
-            if (ev.key === "Enter") props.doSearch(query);
-          }}
-          endAdornment={<SearchIcon />}
+    <DivContainer>
+      <Stack direction="row" spacing={2}>
+        <Image
+          src={Images.LogoImage}
+          alt="logo"
+          width={"60px"}
+          height={"50px"}
         />
-      </FormControl>
-    </Stack>
+        <FormControl size="small" variant="outlined">
+          <OutlinedInput
+            value={query}
+            onChange={(ev) => {
+              setQuery(ev.target.value);
+            }}
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") props.doSearch(query);
+            }}
+            endAdornment={<SearchIcon />}
+          />
+        </FormControl>
+      </Stack>
+    </DivContainer>
   );
 }
