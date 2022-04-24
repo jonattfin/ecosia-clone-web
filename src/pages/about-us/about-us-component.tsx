@@ -12,13 +12,11 @@ const GreyGrid = styled(Grid)`
 `;
 
 export default function Component() {
-  const commonProps = { language: {}, styles: {} };
-
   return (
     <Grid container>
       {/* section */}
       <AliceBlueGrid item xs={12} xl={12}>
-        <Components.BannerComponent {...commonProps} />
+        <Components.BannerComponent />
       </AliceBlueGrid>
       {/* section */}
 
@@ -27,7 +25,7 @@ export default function Component() {
         &nbsp;
       </GreyGrid>
       <GreyGrid item xs={12} xl={4}>
-        <Components.SocialBusinessComponent {...commonProps} />
+        <Components.SocialBusinessComponent />
       </GreyGrid>
       <GreyGrid item xl={4}>
         &nbsp;
@@ -39,7 +37,7 @@ export default function Component() {
         &nbsp;
       </Grid>
       <Grid item xs={12} xl={4}>
-        <Components.MeetTheTeamComponent {...commonProps} />
+        <Components.MeetTheTeamComponent />
       </Grid>
       <Grid item xl={4}>
         &nbsp;
@@ -51,7 +49,7 @@ export default function Component() {
         &nbsp;
       </GreyGrid>
       <GreyGrid item xs={12} xl={4}>
-        <Components.HireComponent {...commonProps} />
+        <Components.HireComponent />
       </GreyGrid>
       <GreyGrid item xl={4}>
         &nbsp;
@@ -63,7 +61,7 @@ export default function Component() {
         &nbsp;
       </Grid>
       <Grid item xs={12} xl={4}>
-        <Components.ContactUsComponent {...commonProps} />
+        <Components.ContactUsComponent />
       </Grid>
       <Grid item xl={4}>
         &nbsp;

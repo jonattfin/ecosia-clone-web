@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { interval, tap } from "rxjs";
+import { useRouter } from "next/router";
 
 import HomeComponent from "./home-component";
 
@@ -7,7 +8,10 @@ export default function Component() {
   const initialValue = 146000000;
   const [counter, setCounter] = useState(initialValue);
 
-  const onSearch = (q: string) => {};
+  const router = useRouter();
+  const onSearch = (q: string) => {
+    router.push(`/search/${q}`);
+  };
 
   useEffect(() => {
     const subscription = interval(5000)

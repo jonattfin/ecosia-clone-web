@@ -1,0 +1,58 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import _ from "lodash";
+
+import SearchComponent, { SearchProps } from "./search-component";
+
+export default function Component() {
+  const router = useRouter();
+  const { pid } = router.query;
+
+  const [resultsObject, setResultsObject] = useState({
+    totalEstimatedMatches: 0,
+    values: [],
+  });
+
+  const [progress, setProgress] = useState(false);
+
+  const doSearch = (query: string) => {
+    console.log(query);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setProgress(true);
+      const data = await searchByQuery(pid);
+      setResultsObject({ values: data, totalEstimatedMatches: data.length });
+      setProgress(false);
+    };
+
+    fetchData();
+  }, [pid]);
+
+  const props: SearchProps = {
+    query: (pid || "").toString(),
+    resultsObject,
+    doSearch,
+    progress,
+  };
+
+  return <SearchComponent {...props} />;
+}
+
+function searchByQuery(query: string) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const max = _.random(50, 1000);
+
+      const data = _.range(1, max).map((i: number) => {
+        return {
+          url: `https://${query}.com`,
+          snippet: `snippet ${query}`,
+          name: `name ${i}`,
+        };
+      });
+      resolve(data);
+    }, 1000);
+  });
+}
