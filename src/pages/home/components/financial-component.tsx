@@ -50,8 +50,8 @@ export default function Component({}) {
         </Grid>
         <Grid item xs={12} xl={12}>
           <DivLinkWrapper>
-            <Link href="#" data-test="explore-reports">
-              <a>
+            <Link href="#">
+              <a data-test="explore-reports">
                 Explore our financial reports{" "}
                 <ChevronRightIcon fontSize="small" />
               </a>

@@ -52,8 +52,8 @@ export default function Component({ counter }: MapComponentProps) {
       </Grid>
       <Grid item xs={12} xl={12}>
         <DivLinkWrapper>
-          <Link href="#" data-test="discover-projects">
-            <a>
+          <Link href="#">
+            <a data-test="discover-projects">
               Discover our projects <ChevronRightIcon fontSize="small" />
             </a>
           </Link>
