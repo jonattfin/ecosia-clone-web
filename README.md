@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jonattfin_ecosia-clone&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone)
+
 ## Getting Started
 
 First, run the development server:
@@ -17,6 +19,17 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Other opinionated decisions
+
+- pages are split by "features", and all the components / images / styles stay within that feature folder "page" for better coupling.
+- pages are loaded in a lazy fashion "by demand" to minimize the loading time.
+- the components are split by the "smart/not smart" rule, and usually per page there's only one smart component which does the api calls, all the others just render what they receive as props.
+- Storybook is used to render components "out of the box" and to build them in isolation. Also those components are snapshot tested.
+- For the integration tests we're using cypress.js with cucumber.js and the features/scenarios are written in Gerkin.
+- The style & icons are based on material ui and based on styled components.
+
+
 
 ## Learn More
 
