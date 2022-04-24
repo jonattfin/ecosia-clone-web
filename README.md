@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jonattfin_ecosia-clone&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=jonattfin_ecosia-clone2)](https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone2)
 
 ## Getting Started
 
