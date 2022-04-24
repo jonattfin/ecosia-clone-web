@@ -22,7 +22,7 @@ const DivLinkWrapper = styled.div`
   padding-right: 20px;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} xl={12}>

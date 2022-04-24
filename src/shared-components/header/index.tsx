@@ -31,7 +31,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Component({}) {
+export default function Component() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (event: any) => {

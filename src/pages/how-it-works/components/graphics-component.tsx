@@ -29,7 +29,7 @@ const AboveTitleExtra = styled(AboveTitle)`
   text-align: center;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <div>
       <Grid container spacing={2}>

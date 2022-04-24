@@ -12,7 +12,7 @@ const DivContainer = styled.div`
   background-color: aliceblue;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <DivContainer>
       <Subtitle data-test="join-us-title">

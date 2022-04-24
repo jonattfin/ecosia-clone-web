@@ -15,7 +15,7 @@ const CountryTextDiv = styled.div`
   padding-top: 2%;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} xl={12}>

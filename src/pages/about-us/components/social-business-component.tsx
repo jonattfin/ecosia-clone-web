@@ -34,7 +34,7 @@ const DivContent = styled.div`
   text-align: center;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <DivParentContainer>
       <AboveTitle>

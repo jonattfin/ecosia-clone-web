@@ -20,7 +20,7 @@ const ExtraSubtitle = styled(Subtitle)`
   text-align: center;
 `;
 
-export default function Component({}) {
+export default function Component() {
   const [play, setPlay] = useState(false);
 
   return (

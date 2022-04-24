@@ -29,7 +29,7 @@ const DivTextContent = styled.div`
   font-size: larger;
 `;
 
-export default function Component({}) {
+export default function Component() {
   return (
     <DivContainer>
       <Grid container spacing={2}>
