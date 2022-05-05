@@ -1,66 +1,51 @@
 import { Grid } from "@mui/material";
-import styled from "@emotion/styled";
 import Image from "next/image";
 
 import * as Images from "./images";
-import { AboveTitle } from "./styled-components";
-
-const SpecialImage = styled(Image)`
-  max-width: 150px;
-  padding: 20px;
-`;
-
-const DivContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 40vh;
-`;
-
-const DivChildContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DivImageContainer = styled.div`
-  text-align: center;
-`;
-
-const DivContentContainer = styled.div`
-  padding: 20px;
-`;
+import styles from "../how-it-works.module.scss";
 
 export default function Component() {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} xl={12}>
-        <DivContainer>
-          <AboveTitle>How it works</AboveTitle>
-          <DivChildContainer>
-            <DivImageContainer>
-              <SpecialImage src={Images.AdsImage} alt="tdlr"></SpecialImage>
-              <DivContentContainer>
-                Search ads generate income for Ecosia.
-              </DivContentContainer>
-            </DivImageContainer>
-            <DivImageContainer>
-              <SpecialImage src={Images.EcosiaImage} alt="tdlr"></SpecialImage>
-              <DivContentContainer>
-                You search the web with Ecosia.
-              </DivContentContainer>
-            </DivImageContainer>
-            <DivImageContainer>
-              <SpecialImage src={Images.IncomeImage} alt="tdlr"></SpecialImage>
-              <DivContentContainer>
-                Ecosia uses this income to plant trees.
-              </DivContentContainer>
-            </DivImageContainer>
-          </DivChildContainer>
-        </DivContainer>
+    <section className={styles["how-it-works-section"]}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} xl={12}>
+          <div className={styles["parent-container"]}>
+            <div className={styles["main-title"]}>How it works</div>
+            <div className={styles["child-container"]}>
+              <div className={styles["image--centered"]}>
+                <Image
+                  className={styles["image"]}
+                  src={Images.AdsImage}
+                  alt="tdlr"
+                ></Image>
+                <div className={styles["content"]}>
+                  Search ads generate income for Ecosia.
+                </div>
+              </div>
+              <div className={styles["image--centered"]}>
+                <Image
+                  className={styles["image"]}
+                  src={Images.EcosiaImage}
+                  alt="tdlr"
+                ></Image>
+                <div className={styles["content"]}>
+                  You search the web with Ecosia.
+                </div>
+              </div>
+              <div className={styles["image--centered"]}>
+                <Image
+                  className={styles["image"]}
+                  src={Images.IncomeImage}
+                  alt="tdlr"
+                ></Image>
+                <div className={styles["content"]}>
+                  Ecosia uses this income to plant trees.
+                </div>
+              </div>
+            </div>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </section>
   );
 }
