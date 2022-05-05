@@ -1,67 +1,52 @@
 import { Grid } from "@mui/material";
-import styled from "@emotion/styled";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 
-import { AboveTitle, TitleKick } from "./styled-components";
-
-const ItemTitle = styled.div`
-  font-size: x-large;
-  padding-left: 20px;
-  border-left: 5px solid teal;
-`;
-
-const ItemText = styled.div`
-  padding-left: 20px;
-  border-left: 5px solid teal;
-`;
-
-const DivLinkWrapper = styled.div`
-  text-align: right;
-  padding-right: 20px;
-`;
+import styles from "./home.module.scss";
 
 interface MapComponentProps {
   counter: number;
-};
+}
 
 export default function Component({ counter }: MapComponentProps) {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} xl={12}>
-        <AboveTitle data-test="map-title">
-          Trees planted by ecosia users
-        </AboveTitle>
-        <TitleKick>{counter}</TitleKick>
+    <section className={styles["map-section"]}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} xl={12}>
+          <div className={styles["main-title"]} data-test="map-title">
+            Trees planted by ecosia users
+          </div>
+          <div className={styles["main-subtitle--kick"]}>{counter}</div>
+        </Grid>
+        <Grid item xs={12} xl={3}>
+          <div className={styles["title"]}>15 Million</div>
+          <div className={styles["content"]}>People using Ecosia</div>
+        </Grid>
+        <Grid item xs={12} xl={3}>
+          <div className={styles["title"]}>500+</div>
+          <div className={styles["content"]}>Native species</div>
+        </Grid>
+        <Grid item xs={12} xl={3}>
+          <div className={styles["title"]}>30+</div>
+          <div className={styles["content"]}>Countries</div>
+        </Grid>
+        <Grid item xs={12} xl={3}>
+          <div className={styles["title"]}>60+</div>
+          <div className={styles["content"]}>Active projects</div>
+        </Grid>
+        <Grid item xs={12} xl={12}>
+          <div className={styles["link-container"]}>
+            <Link href="#">
+              <a data-test="discover-projects">
+                Discover our projects <ChevronRightIcon fontSize="small" />
+              </a>
+            </Link>
+          </div>
+        </Grid>
+        <Grid item xs={12} xl={12}>
+          &nbsp;
+        </Grid>
       </Grid>
-      <Grid item xs={12} xl={3}>
-        <ItemTitle>15 Million</ItemTitle>
-        <ItemText>People using Ecosia</ItemText>
-      </Grid>
-      <Grid item xs={12} xl={3}>
-        <ItemTitle>500+</ItemTitle>
-        <ItemText>Native species</ItemText>
-      </Grid>
-      <Grid item xs={12} xl={3}>
-        <ItemTitle>30+</ItemTitle>
-        <ItemText>Countries</ItemText>
-      </Grid>
-      <Grid item xs={12} xl={3}>
-        <ItemTitle>60+</ItemTitle>
-        <ItemText>Active projects</ItemText>
-      </Grid>
-      <Grid item xs={12} xl={12}>
-        <DivLinkWrapper>
-          <Link href="#">
-            <a data-test="discover-projects">
-              Discover our projects <ChevronRightIcon fontSize="small" />
-            </a>
-          </Link>
-        </DivLinkWrapper>
-      </Grid>
-      <Grid item xs={12} xl={12}>
-        &nbsp;
-      </Grid>
-    </Grid>
+    </section>
   );
 }

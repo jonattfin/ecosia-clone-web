@@ -1,64 +1,39 @@
 import { Grid } from "@mui/material";
-import styled from "@emotion/styled";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 
-// import PieComponent from "./pie";
-import { AboveTitle, Subtitle } from "./styled-components";
-
-const PieContainer = styled.div`
-  height: 20vh;
-`;
-
-const DivContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-`;
-
-const DivLinkWrapper = styled.div`
-  text-align: right;
-  padding-top: 10px;
-  padding-right: 20px;
-`;
-
-const DivTextContent = styled.div`
-  padding-top: 20px;
-  font-size: larger;
-`;
+import styles from "./home.module.scss";
 
 export default function Component() {
   return (
-    <DivContainer>
+    <section className={styles["financial-section"]}>
       <Grid container spacing={2}>
         <Grid item xs={6} xl={6}>
-          <AboveTitle data-test="reports-title">
+          <div className={styles["main-title"]} data-test="reports-title">
             Monthly financial reports
-          </AboveTitle>
-          <Subtitle>Our revenue in January 2022 </Subtitle>
-          <DivTextContent>
+          </div>
+          <div className={styles["main-subtitle"]}>
+            Our revenue in January 2022
+          </div>
+          <div className={styles["content"]}>
             Our monthly reports show how much ad revenue we made from your
             searches, how we spent it, and how many trees this helped us plant.
-          </DivTextContent>
+          </div>
         </Grid>
         <Grid item xs={6} xl={6}>
-          <PieContainer>
-            {/* <PieComponent /> */}
-          </PieContainer>
+          {/* <PieContainer><PieComponent /></PieContainer> */}
         </Grid>
         <Grid item xs={12} xl={12}>
-          <DivLinkWrapper>
+          <div className={styles["link-container"]}>
             <Link href="#">
               <a data-test="explore-reports">
                 Explore our financial reports{" "}
                 <ChevronRightIcon fontSize="small" />
               </a>
             </Link>
-          </DivLinkWrapper>
+          </div>
         </Grid>
       </Grid>
-    </DivContainer>
+    </section>
   );
 }
