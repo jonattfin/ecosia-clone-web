@@ -1,22 +1,7 @@
 import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
-import styled from "@emotion/styled";
 
-const DivSearchList = styled.div`
-  padding-top: 50px;
-`;
-
-const DivUrl = styled.div`
-  color: teal;
-`;
-
-const DivName = styled.div`
-  font-size: larger;
-  text-transform: capitalize;
-  color: blue;
-`;
-
-const DivSnippet = styled.div``;
+import styles from "../search.module.scss";
 
 interface SearchListProps {
   totalEstimatedMatches: number;
@@ -37,21 +22,21 @@ export default function Component({
   const handleChange = (ev: any, value: number) => setPage(value);
 
   return (
-    <DivSearchList>
+    <section className={styles["search-list-section"]}>
       <Stack spacing={2}>
         {data.map(({ url, snippet, name }, index) => (
           <div key={`index_${index}`}>
-            <DivName>
+            <div className={styles["name"]}>
               <a href={url} target="_blank" rel="noreferrer">
                 {name}
               </a>
-            </DivName>
-            <DivUrl>
+            </div>
+            <div className={styles["url"]}>
               <a href={url} target="_blank" rel="noreferrer">
                 {url}
               </a>
-            </DivUrl>
-            <DivSnippet>{snippet}</DivSnippet>
+            </div>
+            <div>{snippet}</div>
           </div>
         ))}
       </Stack>
@@ -65,7 +50,7 @@ export default function Component({
           onChange={handleChange}
         />
       </div>
-    </DivSearchList>
+    </section>
   );
 }
 

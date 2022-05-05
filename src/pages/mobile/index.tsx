@@ -1,13 +1,12 @@
 import { Fragment } from "react";
 
 import * as Components from "./components";
+import styles from "./mobile.module.scss";
 
 export default function Component() {
   return (
-    <Fragment>
-      <section>
-        <Components.BannerComponent />
-      </section>
-    </Fragment>
+    <section className={styles["mobile-section"]}>
+      <Components.BannerComponent />
+    </section>
   );
 }

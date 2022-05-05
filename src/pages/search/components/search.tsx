@@ -2,14 +2,9 @@ import { FormControl, OutlinedInput, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useState } from "react";
 import Image from "next/image";
-import styled from "@emotion/styled";
-
 
 import * as Images from "../images";
-
-const DivContainer = styled.div`
-  margin-top: 100px;
-`;
+import styles from "../search.module.scss";
 
 interface SearchProps {
   query: string;
@@ -20,7 +15,7 @@ export default function Component(props: SearchProps) {
   const [query, setQuery] = useState(props.query);
 
   return (
-    <DivContainer>
+    <section className={styles["search-section"]}>
       <Stack direction="row" spacing={2}>
         <Image
           src={Images.LogoImage}
@@ -41,6 +36,6 @@ export default function Component(props: SearchProps) {
           />
         </FormControl>
       </Stack>
-    </DivContainer>
+    </section>
   );
 }
