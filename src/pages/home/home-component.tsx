@@ -1,11 +1,7 @@
 import { Grid } from "@mui/material";
-import styled from "@emotion/styled";
 
 import * as Components from "./components";
-
-const AliceBlueGrid = styled(Grid)`
-  background-color: aliceblue;
-`;
+import styles from "./home.module.scss";
 
 interface HomeComponentProps {
   counter: number;
@@ -14,71 +10,73 @@ interface HomeComponentProps {
 
 export default function Component({ counter, onSearch }: HomeComponentProps) {
   return (
-    <Grid container>
-      {/* Search section */}
-      <Grid item xl={4}>
-        &nbsp;
-      </Grid>
-      <Grid item xs={12} xl={4}>
-        <Components.SearchComponent {...{ counter, onSearch }} />
-      </Grid>
-      <Grid item xl={4}>
-        &nbsp;
-      </Grid>
-      {/* Search section */}
+    <section className={styles["home-section"]}>
+      <Grid container>
+        {/* Search section */}
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        <Grid item xs={12} xl={4}>
+          <Components.SearchComponent {...{ counter, onSearch }} />
+        </Grid>
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        {/* Search section */}
 
-      {/* Countries section */}
-      <AliceBlueGrid item xl={4}>
-        &nbsp;
-      </AliceBlueGrid>
-      <AliceBlueGrid item xs={12} xl={4}>
-        <Components.CountriesComponent />
-      </AliceBlueGrid>
-      <AliceBlueGrid item xl={4}>
-        &nbsp;
-      </AliceBlueGrid>
-      {/* Countries section */}
+        {/* Countries section */}
+        <Grid className={styles["alice-blue"]} item xl={4}>
+          &nbsp;
+        </Grid>
+        <Grid className={styles["alice-blue"]} item xs={12} xl={4}>
+          <Components.CountriesComponent />
+        </Grid>
+        <Grid className={styles["alice-blue"]} item xl={4}>
+          &nbsp;
+        </Grid>
+        {/* Countries section */}
 
-      {/* Map section */}
-      <Grid item xl={4}>
-        &nbsp;
-      </Grid>
-      <Grid item xs={12} xl={4}>
-        <Components.MapComponent {...{ counter }} />
-      </Grid>
-      <Grid item xl={4}>
-        &nbsp;
-      </Grid>
-      {/* Map section  */}
+        {/* Map section */}
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        <Grid item xs={12} xl={4}>
+          <Components.MapComponent {...{ counter }} />
+        </Grid>
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        {/* Map section  */}
 
-      {/* Financial section */}
-      <AliceBlueGrid item xl={4}>
-        &nbsp;
-      </AliceBlueGrid>
-      <AliceBlueGrid item xl={4}>
-        <Components.FinancialComponent />
-      </AliceBlueGrid>
-      <AliceBlueGrid item xl={4}>
-        &nbsp;
-      </AliceBlueGrid>
-      {/* Financial section */}
+        {/* Financial section */}
+        <Grid className={styles["alice-blue"]} item xl={4}>
+          &nbsp;
+        </Grid>
+        <Grid className={styles["alice-blue"]} item xl={4}>
+          <Components.FinancialComponent />
+        </Grid>
+        <Grid className={styles["alice-blue"]} item xl={4}>
+          &nbsp;
+        </Grid>
+        {/* Financial section */}
 
-      {/* Why choose us section */}
-      <Grid item xl={4}>
-        &nbsp;
+        {/* Why choose us section */}
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        <Grid item xl={4}>
+          <Components.WhyChooseUsComponent />
+        </Grid>
+        <Grid item xl={4}>
+          &nbsp;
+        </Grid>
+        {/* Why choose us section */}
+        <Grid item xs={12} xl={12}>
+          <section>
+            <Components.JoinUsComponent />
+          </section>
+        </Grid>
       </Grid>
-      <Grid item xl={4}>
-        <Components.WhyChooseUsComponent />
-      </Grid>
-      <Grid item xl={4}>
-        &nbsp;
-      </Grid>
-      {/* Why choose us section */}
-      <Grid item xs={12} xl={12}>
-        <section>
-          <Components.JoinUsComponent />
-        </section>
-      </Grid>
-    </Grid>
+    </section>
   );
 }

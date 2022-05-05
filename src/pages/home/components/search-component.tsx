@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import * as Images from "./images";
-import styles from "./home.module.scss";
+import styles from "../home.module.scss";
 
 interface SearchComponentProps {
   onSearch: (query: string) => void;

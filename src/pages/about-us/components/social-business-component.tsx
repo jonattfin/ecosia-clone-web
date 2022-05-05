@@ -1,58 +1,26 @@
-import styled from "@emotion/styled";
-
-import { AboveTitle } from "./styled-components";
-
-const DivParentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const DivChildContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 30vh;
-`;
-
-const DivTitle = styled.div`
-  text-transform: uppercase;
-  padding: 15px 0;
-  text-align: center;
-`;
-
-const DivLine = styled.div`
-  border: 3px solid #aab74f;
-  margin: 10px 50px;
-`;
-
-const DivSubtitle = styled.div`
-  text-align: center;
-`;
-
-const DivContent = styled.div`
-  text-align: center;
-`;
+import styles from "../about-us.module.scss";
 
 export default function Component() {
   return (
-    <DivParentContainer>
-      <AboveTitle>
-        Ecosia is a social business founded in 2009 after a trip around the
-        world
-      </AboveTitle>
-      <DivChildContainer>
-        {getTimePeriods().map((period, index) => (
-          <div key={`period_${index}`}>
-            <DivTitle>{period.time}</DivTitle>
-            <DivSubtitle>{period.title}</DivSubtitle>
-            <DivLine />
-            <DivContent>{period.content}</DivContent>
-          </div>
-        ))}
-      </DivChildContainer>
-      <div>&nbsp;</div>
-    </DivParentContainer>
+    <section className={styles["social-business-section"]}>
+      <div className={styles["social-business-parent"]}>
+        <div className={styles["main-title"]}>
+          Ecosia is a social business founded in 2009 after a trip around the
+          world
+        </div>
+        <div className={styles["social-business-child"]}>
+          {getTimePeriods().map((period, index) => (
+            <div key={`period_${index}`}>
+              <div className={styles["title"]}>{period.time}</div>
+              <div className={styles["center"]}>{period.title}</div>
+              <div className={styles["line"]} />
+              <div className={styles["center"]}>{period.content}</div>
+            </div>
+          ))}
+        </div>
+        <div/>
+      </div>
+    </section>
   );
 }
 

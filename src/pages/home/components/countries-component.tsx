@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Image from "next/image";
 
 import * as Images from "./images";
-import styles from "./home.module.scss";
+import styles from "../home.module.scss";
 
 export default function Component() {
   return (

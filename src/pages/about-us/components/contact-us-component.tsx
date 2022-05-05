@@ -1,62 +1,49 @@
 import { TextField, Button, MenuItem, Grid } from "@mui/material";
-import styled from "@emotion/styled";
 
-import { AboveTitle, Subtitle } from "./styled-components";
-
-const DivParentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const DivChildContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-
-  @media (max-height: 1080px) {
-    height: 50vh;
-  }
-`;
-
-const TextFieldExtra = styled(TextField)`
-  width: 25vw;
-  margin: 5px;
-`;
+import styles from "../about-us.module.scss";
 
 export default function Component() {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} xl={12}>
-        <DivParentContainer>
-          <AboveTitle>Contact us</AboveTitle>
-          <Subtitle>
-            For questions about Ecosia check our FAQ first. <br />
-            If you don't see what you are looking for, drop us a line!
-          </Subtitle>
-          <DivChildContainer>
-            <TextFieldExtra
-              variant="outlined"
-              label="Message"
-              multiline
-              rows={5}
-            ></TextFieldExtra>
-            <TextFieldExtra variant="outlined" label="E-mail" />
-            <TextFieldExtra variant="outlined" label="Subject" select>
-              {getFilterOptions().map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextFieldExtra>
-            <Button variant="contained">Send</Button>
-          </DivChildContainer>
-        </DivParentContainer>
+    <section className={styles["contact-us-section"]}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} xl={12}>
+          <div className={styles["parent-container"]}>
+            <div className={styles["main-title"]}>Contact us</div>
+            <div className={styles["main-subtitle"]}>
+              For questions about Ecosia check our FAQ first. <br />
+              If you don't see what you are looking for, drop us a line!
+            </div>
+            <div className={styles["child-container"]}>
+              <TextField
+                className={styles["extra-field"]}
+                variant="outlined"
+                label="Message"
+                multiline
+                rows={5}
+              ></TextField>
+              <TextField
+                className={styles["extra-field"]}
+                variant="outlined"
+                label="E-mail"
+              />
+              <TextField
+                className={styles["extra-field"]}
+                variant="outlined"
+                label="Subject"
+                select
+              >
+                {getFilterOptions().map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <Button variant="contained">Send</Button>
+            </div>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </section>
   );
 }
 

@@ -22,6 +22,12 @@ $alice-blue-color: aliceblue;
   padding-right: 20px;
 }
 
+.home-section {
+  .alice-blue {
+    background-color: $alice-blue-color;
+  }
+}
+
 .search-section {
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 
-import styles from "./home.module.scss";
+import styles from "../home.module.scss";
 
 interface MapComponentProps {
   counter: number;
