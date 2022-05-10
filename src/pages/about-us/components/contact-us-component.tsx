@@ -11,7 +11,7 @@ export default function Component() {
             <div className={styles["main-title"]}>Contact us</div>
             <div className={styles["main-subtitle"]}>
               For questions about Ecosia check our FAQ first. <br />
-              If you don't see what you are looking for, drop us a line!
+              If you don&apos;t see what you are looking for, drop us a line!
             </div>
             <div className={styles["child-container"]}>
               <TextField
@@ -35,7 +35,7 @@ export default function Component() {
                 {getFilterOptions().map((option) => (
                   <MenuItem key={option} value={option}>
                     {option}
-                  </MenuItem>
+                </MenuItem>
                 ))}
               </TextField>
               <Button variant="contained">Send</Button>

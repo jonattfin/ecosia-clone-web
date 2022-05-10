@@ -1,7 +1,7 @@
 import HowItWorksPage from ".";
 import * as Components from "./components";
 
-export default () => <div></div>;
+// export default () => <div></div>;
 
 export const BrandsComponent = () => {
   const props = {};

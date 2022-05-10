@@ -1,7 +1,7 @@
 import AboutUsComponent from './about-us-component';
 import * as Components from './components';
 
-export default () => <div></div>
+// export default () => <div></div>
 
 export const BannerComponent = () => {
   return <Components.BannerComponent />

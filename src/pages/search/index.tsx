@@ -45,7 +45,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
     fetchData();
 
     incrementTreeCount();
-  }, [pid]);
+  }, [pid, incrementTreeCount]);
 
   const props: SearchProps = {
     query: (pid || "").toString(),

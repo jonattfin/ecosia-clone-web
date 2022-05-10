@@ -9,7 +9,7 @@ export default function Component() {
         <Grid item xs={12} xl={12}>
           <div className={styles["banner-container"]}>
             <div className={styles["main-title"]} data-test="banner-title">
-              We believe in everyone's power to do good
+            We believe in everyone&apos;s power to do good
             </div>
             <div>&nbsp;</div>
             <div>

@@ -15,7 +15,7 @@ export default function Component() {
               <>
                 <div className={styles["main-title"]}>Step inside!</div>
                 <div className={styles["main-subtitle"]}>
-                  Meet the humans who make Ecosia and learn what it's like to
+                  Meet the humans who make Ecosia and learn what it&apos;s like to
                   work here.
                 </div>
                 <div>
