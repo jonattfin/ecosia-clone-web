@@ -2,6 +2,7 @@ import { FormControl, OutlinedInput, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import * as Images from "../images";
 import styles from "../search.module.scss";
@@ -17,12 +18,16 @@ export default function Component(props: SearchProps) {
   return (
     <section className={styles["search-section"]}>
       <Stack direction="row" spacing={2}>
-        <Image
-          src={Images.LogoImage}
-          alt="logo"
-          width={"60px"}
-          height={"50px"}
-        />
+        <Link href="/">
+          <a>
+            <Image
+              src={Images.LogoImage}
+              alt="logo"
+              width={"60px"}
+              height={"50px"}
+            />
+          </a>
+        </Link>
         <FormControl size="small" variant="outlined">
           <OutlinedInput
             value={query}

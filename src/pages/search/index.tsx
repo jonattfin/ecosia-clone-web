@@ -4,11 +4,26 @@ import _ from "lodash";
 
 import SearchComponent, { SearchProps } from "./search-component";
 
-export default function Component() {
+interface IndexSearchProps {
+  incrementTreeCount: () => void;
+}
+
+interface ResultsState {
+  totalEstimatedMatches: number;
+  values: ResultQuery[];
+}
+
+interface ResultQuery {
+  url: string;
+  snippet: string;
+  name: string;
+}
+
+export default function Component({ incrementTreeCount }: IndexSearchProps) {
   const router = useRouter();
   const { pid } = router.query;
 
-  const [resultsObject, setResultsObject] = useState({
+  const [resultsObject, setResultsObject] = useState<ResultsState>({
     totalEstimatedMatches: 0,
     values: [],
   });
@@ -27,8 +42,9 @@ export default function Component() {
       setResultsObject({ values: data, totalEstimatedMatches: data.length });
       setProgress(false);
     };
-
     fetchData();
+
+    incrementTreeCount();
   }, [pid]);
 
   const props: SearchProps = {
@@ -41,7 +57,9 @@ export default function Component() {
   return <SearchComponent {...props} />;
 }
 
-function searchByQuery(query: string) {
+function searchByQuery(
+  query: string | string[] | undefined
+): Promise<ResultQuery[]> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const max = _.random(50, 1000);

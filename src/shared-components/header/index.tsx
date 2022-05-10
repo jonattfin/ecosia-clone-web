@@ -7,7 +7,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem, Menu, Divider, Badge } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useRouter } from 'next/router';
+
+import { useRouter } from "next/router";
+
+import { TreesContext } from "../../context";
 
 import {
   ForestOutlined as ForestOutlinedIcon,
@@ -44,6 +47,8 @@ export default function Component() {
     router.push(url);
   };
 
+  const numberOfTrees = useContext(TreesContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
@@ -55,7 +60,7 @@ export default function Component() {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton size="large" aria-label="" color="inherit">
-                <Badge badgeContent={99} color="success">
+                <Badge badgeContent={numberOfTrees} color="success">
                   <ForestOutlinedIcon color="info" />
                 </Badge>
               </IconButton>
