@@ -36,7 +36,7 @@ export default function Component({ counter }: MapComponentProps) {
         </Grid>
         <Grid item xs={12} xl={12}>
           <div className={styles["link-container"]}>
-            <Link href="#">
+            <Link href="/projects">
               <a data-test="discover-projects">
                 Discover our projects <ChevronRightIcon fontSize="small" />
               </a>
