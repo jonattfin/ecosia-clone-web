@@ -1,6 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import Image from "next/image";
 
+import * as Images from "./images";
 import styles from "../how-it-works.module.scss";
 
 export default function Component() {
@@ -11,8 +12,9 @@ export default function Component() {
           <div className={styles["container"]}>
             <div>
               <Image
-                src="https://infopages-prod-cdn.ecosia.org/assets/images/what/transperancy-blue-img-8408403664.svg"
+                src={Images.ReportsImage}
                 alt="transparency"
+                width={100} height={100}
               />
             </div>
             <div className={styles["main-title"]}>
