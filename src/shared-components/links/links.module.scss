@@ -1,0 +1,22 @@
+.links {
+    margin: 25px 0;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 15vh;
+    }
+
+    .image-wrapper {
+        width: 10vw;
+        max-width: 150px;
+    }
+
+    .title {
+        font-size: medium;
+        text-transform: uppercase;
+        padding-bottom: 20px;
+    }
+}
