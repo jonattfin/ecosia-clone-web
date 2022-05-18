@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import _ from "lodash";
 
 import ProjectsComponent from "./projects-component";
-import { IProject, INews, IReport } from "./types";
+import { IProject, INews, IReport } from "../../../shared/types";
 
 export default function Component() {
   const [projects, setProjects] = useState<IProject[]>([]);
