@@ -1,3 +1,3 @@
-import ProjectsPage from '../src/pages/projects';
+import ProjectsPage from '../src/client/pages/projects';
 
 export default ProjectsPage;

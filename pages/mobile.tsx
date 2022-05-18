@@ -1,3 +1,3 @@
-import MobilePage from '../src/pages/mobile';
+import MobilePage from '../src/client/pages/mobile';
 
 export default MobilePage;
