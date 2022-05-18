@@ -9,7 +9,10 @@ const reportRepository = new ReportRepository();
 import { sequelize } from "./schema";
 
 (async () => {
+  // create the schema
   await sequelize.sync();
+
+  // seed the data
   await newsRepository.seed();
   await projectRepository.seed();
   await reportRepository.seed();
