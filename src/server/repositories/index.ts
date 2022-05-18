@@ -2,6 +2,21 @@ import NewsRepository from "./news-repository";
 import ProjectRepository from "./project-repository";
 import ReportRepository from "./report-repository";
 
-export const newsRepository = new NewsRepository();
-export const projectRepository = new ProjectRepository();
-export const reportRepository = new ReportRepository();
+const newsRepository = new NewsRepository();
+const projectRepository = new ProjectRepository();
+const reportRepository = new ReportRepository();
+
+import { sequelize } from "./schema";
+
+(async () => {
+  await sequelize.sync();
+  await newsRepository.seed();
+  await projectRepository.seed();
+  await reportRepository.seed();
+})();
+
+export default {
+  newsRepository,
+  projectRepository,
+  reportRepository,
+};

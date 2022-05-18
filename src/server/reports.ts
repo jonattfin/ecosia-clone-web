@@ -1,21 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { IReport } from "../shared/types";
-import { reportRepository } from "./repositories";
+import repos from "./repositories";
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IReport[]>
+  res: NextApiResponse<any[]>
 ) {
   const { method } = req;
 
   switch (method) {
     case "GET":
-      res.status(200).json(reportRepository.get());
+      var reports = await repos.reportRepository.get();
+      res.status(200).json(reports);
       break;
     case "POST":
-      res.status(200).json(reportRepository.get());
+      // TODO
       break;
     default:
       res.setHeader("Allow", ["GET", "POST"]);

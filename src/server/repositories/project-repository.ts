@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
+import { Model } from "sequelize";
 
-import { IProject } from "../../shared/types";
+import { Projects } from "./schema";
 
 export default class ProjectRepository {
-  get(): IProject[] {
+  async seed() {
     const projects = _.range(0, 5).map((i) => {
-      var project: IProject = {
+      var project = {
         id: uuidv4(),
         name: "Your projects in Thailand",
         country: "Thailand",
@@ -18,6 +19,10 @@ export default class ProjectRepository {
       return project;
     });
 
-    return projects;
+    await Projects.bulkCreate(projects);
+  }
+
+  async get(): Promise<Model<any, any>[]> {
+    return await Projects.findAll();
   }
 }

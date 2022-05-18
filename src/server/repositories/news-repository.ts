@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
+import { Model } from "sequelize";
 
-import { INews } from "../../shared/types";
+import { News } from "./schema";
 
 export default class NewsRepository {
-  get(): INews[] {
+  async seed() {
     var news = _.range(0, 5).map((i) => {
-      var newsItem: INews = {
+      var item = {
         id: uuidv4(),
         name: "Your news in Thailand",
         image:
@@ -14,8 +15,13 @@ export default class NewsRepository {
         desc: "In Thailand, we are supporting rubber farmers to transform their monocultures into sustainable agroforestry rubber farms.",
       };
 
-      return newsItem;
+      return item;
     });
-    return news;
+
+    await News.bulkCreate(news);
+  }
+
+  async get(): Promise<Model<any, any>[]> {
+    return await News.findAll();
   }
 }

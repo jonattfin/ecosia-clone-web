@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
+import { Model } from "sequelize";
 
-import { IReport } from "../../shared/types";
+import { Reports } from "./schema";
 
 export default class ReportRepository {
-  get(): IReport[] {
+  async seed() {
     const reports = _.range(0, 5).map((i) => {
-      var report: IReport = {
+      var report = {
         id: uuidv4(),
         name: "Your reports in Thailand",
         country: "Thailand",
@@ -17,6 +18,11 @@ export default class ReportRepository {
 
       return report;
     });
-    return reports;
+
+    await Reports.bulkCreate(reports);
+  }
+
+  async get(): Promise<Model<any, any>[]> {
+    return await Reports.findAll();
   }
 }
