@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
-import { Model } from "sequelize";
 
 import { Reports } from "./schema";
+import { IReport } from "../../shared/types";
 
 export default class ReportRepository {
   async seed() {
@@ -22,7 +22,7 @@ export default class ReportRepository {
     await Reports.bulkCreate(reports);
   }
 
-  async get(): Promise<Model<any, any>[]> {
-    return await Reports.findAll();
+  async get(): Promise<IReport[]> {
+    return (await Reports.findAll()).map((r) => r.toJSON<IReport>());
   }
 }

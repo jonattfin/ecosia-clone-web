@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
-import { Model } from "sequelize";
 
 import { Projects } from "./schema";
+import { IProject } from "../../shared/types";
 
 export default class ProjectRepository {
   async seed() {
@@ -22,7 +22,7 @@ export default class ProjectRepository {
     await Projects.bulkCreate(projects);
   }
 
-  async get(): Promise<Model<any, any>[]> {
-    return await Projects.findAll();
+  async get(): Promise<IProject[]> {
+    return (await Projects.findAll()).map((p) => p.toJSON<IProject>());
   }
 }

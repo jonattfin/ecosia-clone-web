@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
-import { Model } from "sequelize";
 
 import { News } from "./schema";
+import { INews } from "../../shared/types";
 
 export default class NewsRepository {
   async seed() {
@@ -21,7 +21,8 @@ export default class NewsRepository {
     await News.bulkCreate(news);
   }
 
-  async get(): Promise<Model<any, any>[]> {
-    return await News.findAll();
+  async get(): Promise<INews[]> {
+    const news = (await News.findAll()).map((o) => o.toJSON<INews>());
+    return news;
   }
 }
