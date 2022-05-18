@@ -3,10 +3,10 @@ import { Grid } from "@mui/material";
 import React, { Fragment } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 import { IProjectsProps } from "./types";
-import styles from "./projects.module.scss";
+import styles from "./blog.module.scss";
 
 export default function Component(props: IProjectsProps) {
   const [value, setValue] = React.useState(0);
@@ -18,7 +18,7 @@ export default function Component(props: IProjectsProps) {
   const { projects, news, reports } = props;
 
   return (
-    <div className={styles.projects}>
+    <div className={styles.blog}>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={4}>
           &nbsp;
@@ -37,7 +37,12 @@ export default function Component(props: IProjectsProps) {
             </Tabs>
           </div>
 
-          <TabPanel index={1} value={value}>
+          <TabPanel
+            index={0}
+            value={value}
+            isLoading={projects.isLoading}
+            isError={projects.isError}
+          >
             <div className={styles["projects-description"]}>
               Tree planting At Ecosia, we plant trees where they're needed most.
               Browse through our tree-planting portfolio to learn where the
@@ -45,7 +50,7 @@ export default function Component(props: IProjectsProps) {
               much more!
             </div>
             <div className={styles["projects-container"]}>
-              {projects.map((project) => (
+              {projects.data.map((project) => (
                 <div className={styles.container} key={project.id}>
                   <img
                     className={styles["image-wrapper"]}
@@ -59,9 +64,14 @@ export default function Component(props: IProjectsProps) {
             </div>
           </TabPanel>
 
-          <TabPanel index={2} value={value}>
+          <TabPanel
+            index={1}
+            value={value}
+            isLoading={news.isLoading}
+            isError={news.isError}
+          >
             <div className={styles["news-container"]}>
-              {news.map((n) => (
+              {news.data.map((n) => (
                 <div className={styles.container} key={n.id}>
                   <img className={styles["image-wrapper"]} src={n.image}></img>
                   <p>{n.name}</p>
@@ -71,9 +81,14 @@ export default function Component(props: IProjectsProps) {
             </div>
           </TabPanel>
 
-          <TabPanel index={0} value={value}>
+          <TabPanel
+            index={2}
+            value={value}
+            isLoading={reports.isLoading}
+            isError={reports.isError}
+          >
             <div className={styles["reports-container"]}>
-              {reports.map((report) => (
+              {reports.data.map((report) => (
                 <div className={styles.container} key={report.id}>
                   <img
                     className={styles["image-wrapper"]}
@@ -99,11 +114,21 @@ interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  isLoading: boolean;
+  isError: any;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index } = props;
+  const { children, value, index, isLoading, isError } = props;
   if (value !== index) return <Fragment />;
+
+  if (isLoading) {
+    return <LinearProgress />;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return <div>{children}</div>;
 }
