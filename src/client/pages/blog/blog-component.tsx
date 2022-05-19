@@ -4,12 +4,21 @@ import React, { Fragment } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import LinearProgress from "@mui/material/LinearProgress";
+import Image from "next/image";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import Link from "next/link";
 
 import { IProjectsProps } from "./types";
 import styles from "./blog.module.scss";
+import * as Images from "./components/images";
+import { IProject } from "../../../shared/types";
+
 
 export default function Component(props: IProjectsProps) {
   const [value, setValue] = React.useState(0);
+  const [shownId, setShownId] = React.useState<string>();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -24,6 +33,13 @@ export default function Component(props: IProjectsProps) {
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={4}>
+          <div className={styles["logo-header"]}>
+            <div className={styles["logo-image"]}>
+              <Image src={Images.LogoImage} />
+            </div>
+            <h1 className={styles["blog-title"]}>Blog</h1>
+          </div>
+
           <div className={styles["projects-header"]}>
             <Tabs
               value={value}
@@ -51,15 +67,24 @@ export default function Component(props: IProjectsProps) {
             </div>
             <div className={styles["projects-container"]}>
               {projects.data.map((project) => (
-                <div className={styles.container} key={project.id}>
-                  <img
-                    className={styles["image-wrapper"]}
-                    src={project.image}
-                  ></img>
-                  <p>{project.name}</p>
-                  <p>{project.country}</p>
-                  <p>{project.desc}</p>
-                </div>
+                <Link href={`/projects/${project.id}`} key={project.id}>
+                  <div
+                    className={styles.container}
+                    onMouseEnter={() => setShownId(project.id)}
+                    onMouseLeave={() => setShownId(undefined)}
+                  >
+                    <img
+                      className={styles["image-wrapper"]}
+                      src={project.image}
+                    ></img>
+                    <div className={styles["title-container"]}>
+                      <p className={styles.title}>{project.scope}</p>
+                      {shownId === project.id && showMediaLinks(project)}
+                    </div>
+                    <p className={styles.subtitle}>{project.name}</p>
+                    <p>{project.desc}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           </TabPanel>
@@ -131,4 +156,25 @@ function TabPanel(props: TabPanelProps) {
   }
 
   return <div>{children}</div>;
+}
+
+function showMediaLinks(project: IProject) {
+  return (
+    <div>
+      <a
+        target="_blank"
+        href={`https://twitter.com/intent/tweet?text=${project.name}`}
+      >
+        <TwitterIcon color="primary" />
+      </a>
+
+      <a target="_blank" href="https://www.facebook.com">
+        <FacebookIcon color="primary" />
+      </a>
+
+      <a target="_blank" href="https://pinterest.com/">
+        <PinterestIcon color="primary" />
+      </a>
+    </div>
+  );
 }

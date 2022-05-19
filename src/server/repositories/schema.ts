@@ -18,7 +18,7 @@ export const Projects = sequelize.define("Projects", {
     primaryKey: true,
   },
   name: DataTypes.STRING,
-  country: DataTypes.STRING,
+  scope: DataTypes.STRING,
   image: DataTypes.STRING,
   desc: DataTypes.STRING,
 });

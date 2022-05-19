@@ -1,7 +1,7 @@
 export interface IProject {
   id: string;
   name: string;
-  country: string;
+  scope: string;
   image: string;
   desc: string;
 }
