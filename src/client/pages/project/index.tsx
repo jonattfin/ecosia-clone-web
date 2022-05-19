@@ -31,20 +31,14 @@ export default () => {
               <Grid container justifyContent="center" alignItems="center">
                 <Grid item xs={12} xl={4}>
                   <p>trees planted</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>hectares restored</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>since</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
                   <p className={styles.teal}>9000</p>
                 </Grid>
                 <Grid item xs={12} xl={4}>
+                  <p>hectares restored</p>
                   <p className={styles.orange}>updating</p>
                 </Grid>
                 <Grid item xs={12} xl={4}>
+                  <p>since</p>
                   <p className={styles.green}>2001</p>
                 </Grid>
                 <Grid item xs={12} xl={12}>
