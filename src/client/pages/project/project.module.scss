@@ -1,0 +1,26 @@
+.project {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+    text-align: center;
+
+    .teal {
+      background-color: teal;
+      padding: 10px 0px;
+    }
+
+    .orange {
+      background-color: orange;
+      padding: 10px 0px;
+    }
+
+    .green {
+      background-color: green;
+      padding: 10px 0px;
+    }
+  }
+}

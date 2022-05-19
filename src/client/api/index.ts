@@ -22,6 +22,16 @@ class Api {
     };
   }
 
+  // getProjectById(projectId: string): IApiProjects {
+  //   const { data, error } = useSWR(`/api/projects/${projectId}`, fetcher);
+
+  //   return {
+  //     data: data || [],
+  //     isLoading: !error && !data,
+  //     isError: error,
+  //   };
+  // } 
+
   getReports(): IApiReports {
     const { data, error } = useSWR(`/api/reports`, fetcher);
 

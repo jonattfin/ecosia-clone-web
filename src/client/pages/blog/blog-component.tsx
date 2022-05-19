@@ -15,7 +15,6 @@ import styles from "./blog.module.scss";
 import * as Images from "./components/images";
 import { IProject } from "../../../shared/types";
 
-
 export default function Component(props: IProjectsProps) {
   const [value, setValue] = React.useState(0);
   const [shownId, setShownId] = React.useState<string>();
@@ -67,23 +66,26 @@ export default function Component(props: IProjectsProps) {
             </div>
             <div className={styles["projects-container"]}>
               {projects.data.map((project) => (
-                <Link href={`/projects/${project.id}`} key={project.id}>
-                  <div
-                    className={styles.container}
-                    onMouseEnter={() => setShownId(project.id)}
-                    onMouseLeave={() => setShownId(undefined)}
-                  >
-                    <img
-                      className={styles["image-wrapper"]}
-                      src={project.image}
-                    ></img>
-                    <div className={styles["title-container"]}>
-                      <p className={styles.title}>{project.scope}</p>
-                      {shownId === project.id && showMediaLinks(project)}
+                <Link href={`/project/${project.id}`}>
+                  <a>
+                    <div
+                      className={styles.container}
+                      key={project.id}
+                      onMouseEnter={() => setShownId(project.id)}
+                      onMouseLeave={() => setShownId(undefined)}
+                    >
+                      <img
+                        className={styles["image-wrapper"]}
+                        src={project.image}
+                      ></img>
+                      <div className={styles["title-container"]}>
+                        <p className={styles.title}>{project.scope}</p>
+                        {shownId === project.id && showMediaLinks(project)}
+                      </div>
+                      <p className={styles.subtitle}>{project.name}</p>
+                      <p>{project.desc}</p>
                     </div>
-                    <p className={styles.subtitle}>{project.name}</p>
-                    <p>{project.desc}</p>
-                  </div>
+                  </a>
                 </Link>
               ))}
             </div>
