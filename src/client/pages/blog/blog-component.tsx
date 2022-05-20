@@ -9,6 +9,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import Link from "next/link";
+import Button from "@mui/material/Button";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 import { IProjectsProps } from "./types";
 import styles from "./blog.module.scss";
@@ -58,37 +60,51 @@ export default function Component(props: IProjectsProps) {
             isLoading={projects.isLoading}
             isError={projects.isError}
           >
-            <div className={styles["projects-description"]}>
-              Tree planting At Ecosia, we plant trees where they're needed most.
-              Browse through our tree-planting portfolio to learn where the
-              trees stand, which species we plant, and what their impact is. And
-              much more!
-            </div>
-            <div className={styles["projects-container"]}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} xl={12}>
+                <div className={styles["projects-description"]}>
+                  Tree planting At Ecosia, we plant trees where they're needed
+                  most. Browse through our tree-planting portfolio to learn
+                  where the trees stand, which species we plant, and what their
+                  impact is. And much more!
+                </div>
+              </Grid>
               {projects.data.map((project) => (
-                <Link href={`/project/${project.id}`}>
-                  <a>
-                    <div
-                      className={styles.container}
-                      key={project.id}
-                      onMouseEnter={() => setShownId(project.id)}
-                      onMouseLeave={() => setShownId(undefined)}
-                    >
-                      <img
-                        className={styles["image-wrapper"]}
-                        src={project.image}
-                      ></img>
-                      <div className={styles["title-container"]}>
-                        <p className={styles.title}>{project.scope}</p>
-                        {shownId === project.id && showMediaLinks(project)}
-                      </div>
-                      <p className={styles.subtitle}>{project.name}</p>
-                      <p>{project.desc}</p>
+                <Grid
+                  item
+                  xs={12}
+                  lg={6}
+                  xl={4}
+                  key={project.id}
+                  onMouseEnter={() => setShownId(project.id)}
+                  onMouseLeave={() => setShownId(undefined)}
+                >
+                  <div className={styles.container}>
+                    <img
+                      className={styles["image-wrapper"]}
+                      src={project.image}
+                    ></img>
+                    <div className={styles["title-container"]}>
+                      <p className={styles.title}>{project.scope}</p>
+                      {shownId === project.id && showMediaLinks(project)}
                     </div>
-                  </a>
-                </Link>
+                    <p className={styles.subtitle}>{project.name}</p>
+                    <p>{project.desc}</p>
+                    <Link href={`/project/${project.id}`}>
+                      <a>
+                        <Button
+                          size="small"
+                          color="secondary"
+                          endIcon={<NavigateNextIcon />}
+                        >
+                          View
+                        </Button>
+                      </a>
+                    </Link>
+                  </div>
+                </Grid>
               ))}
-            </div>
+            </Grid>
           </TabPanel>
 
           <TabPanel

@@ -1,17 +1,17 @@
 import { useRouter } from "next/router";
 import LinearProgress from "@mui/material/LinearProgress";
 import { Grid } from "@mui/material";
-
-import api from "../../api";
-import styles from "./project.module.scss";
 import Image from "next/image";
+import React from "react";
+
+// import api from "../../api";
+
+import * as Images from "./images";
+import styles from "./project.module.scss";
 
 export default () => {
   const router = useRouter();
   const { pid } = router.query;
-
-  // const projects = api.getProjects();
-  // const project = projects.data.filter((p) => p.id === pid)[0] || {};
 
   const project = {
     image:
@@ -53,32 +53,9 @@ export default () => {
                   </p>
                 </Grid>
                 <Grid item xs={12} xl={6}>
-                  &nbsp;
+                  <Image src={Images.CountryMapImage}></Image>
                 </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Partners</p>
-                  <p>Prince of Songkhla University/Einhorn</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Planting method</p>
-                  <p>Nursery, intercropping</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Planting season</p>
-                  <p>August to January</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Main threats</p>
-                  <p>Monoculture rubber plantations</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Wildlife protected </p>
-                  <p>updating</p>
-                </Grid>
-                <Grid item xs={12} xl={4}>
-                  <p>Challenges </p>
-                  <p>global demand for rubber at competetitive prices</p>
-                </Grid>
+                {showExtraInfo()}
               </Grid>
             </div>
           </Content>
@@ -95,6 +72,53 @@ interface ContentProps {
   children?: React.ReactNode;
   isLoading: boolean;
   isError: any;
+}
+
+function showExtraInfo() {
+  const extraItems = [
+    {
+      image: Images.PartnersImage,
+      title: "Partners",
+      subtitle: "Prince of Songkhla University/Einhorn",
+    },
+    {
+      image: Images.PlantingMethodImage,
+      title: "Planting method",
+      subtitle: "Nursery, intercropping",
+    },
+    {
+      image: Images.PlantingSeasonImage,
+      title: "Planting season",
+      subtitle: "August to January",
+    },
+    {
+      image: Images.MainThreatsImage,
+      title: "Main threats",
+      subtitle: "Monoculture rubber plantations",
+    },
+    {
+      image: Images.WildlifeProtectedImage,
+      title: "Wildlife protected",
+      subtitle: "updating...",
+    },
+    {
+      image: Images.ChallengesImage,
+      title: "Challenges",
+      subtitle: "global demand for rubber at competetitive prices",
+    },
+  ];
+
+  return (
+    <React.Fragment>
+      {extraItems.map((item, index) => (
+        <Grid item xs={12} xl={4} key={`extra-item-${index}`}>
+          <Image src={item.image}></Image>
+          <p>{item.title}</p>
+          <p>{item.subtitle}</p>
+        </Grid>
+      ))}
+    </React.Fragment>
+  );
 }
 
 function Content(props: ContentProps) {
