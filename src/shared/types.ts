@@ -6,6 +6,15 @@ export interface IProject {
   desc: string;
 }
 
+export interface IProjectDetails {
+  id: string;
+  name: string;
+  scope: string;
+  image: string;
+  desc: string;
+  tags: any[];
+}
+
 export interface INews {
   id: string;
   name: string;
@@ -23,6 +32,12 @@ export interface IReport {
 
 export interface IApiProjects {
   data: IProject[],
+  isLoading: boolean,
+  isError: any
+}
+
+export interface IApiProject {
+  data: IProjectDetails,
   isLoading: boolean,
   isError: any
 }

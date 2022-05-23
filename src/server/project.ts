@@ -11,21 +11,28 @@ export default async function handler(
 
   switch (method) {
     case "GET":
-      return await getProjects();
-    case "POST":
-      return await createProject();
+      return await getById();
+    case "PUT":
+      return await update();
+    case "DELETE":
+      return await deleteById();
     default:
       res.setHeader("Allow", ["GET", "POST"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 
-  async function getProjects() {
-    var projects = await repos.projectRepository.get();
+  async function getById() {
+    var projects = await repos.projectRepository.getById(req.query.id);
     return res.status(200).json(projects);
   }
 
-  async function createProject() {
-    await repos.projectRepository.create(req.body);
+  async function update() {
+    await repos.projectRepository.update(req.query.id, req.body);
+    return res.status(200).json({});
+  }
+
+  async function deleteById() {
+    await repos.projectRepository.delete(req.query.id);
     return res.status(200).json({});
   }
 }

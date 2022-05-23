@@ -4,7 +4,7 @@ import HomeComponent from "./home-component";
 
 import * as Components from "./components";
 
-// export default () => <div></div>;
+export default () => <div></div>;
 
 export const PieComponent = () => {
   return (

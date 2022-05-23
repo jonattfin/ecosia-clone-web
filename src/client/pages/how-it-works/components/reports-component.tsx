@@ -4,18 +4,21 @@ import Image from "next/image";
 import * as Images from "./images";
 import styles from "../how-it-works.module.scss";
 
-export default function Component() {
+export default function Component({ showImages = true }) {
   return (
     <section className={styles["reports-section"]}>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <div className={styles["container"]}>
             <div>
-              <Image
-                src={Images.ReportsImage}
-                alt="transparency"
-                width={100} height={100}
-              />
+              {showImages && (
+                <Image
+                  src={Images.ReportsImage}
+                  alt="transparency"
+                  width={100}
+                  height={100}
+                />
+              )}
             </div>
             <div className={styles["main-title"]}>
               We know trust has to be earned

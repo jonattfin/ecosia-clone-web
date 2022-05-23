@@ -4,7 +4,7 @@ import Image from "next/image";
 import * as Images from "./images";
 import styles from "../how-it-works.module.scss";
 
-export default function Component() {
+export default function Component({ showImages = true }) {
   return (
     <section className={styles["how-it-works-section"]}>
       <Grid container spacing={2}>
@@ -13,31 +13,37 @@ export default function Component() {
             <div className={styles["main-title"]}>How it works</div>
             <div className={styles["child-container"]}>
               <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
-                  src={Images.AdsImage}
-                  alt="tdlr"
-                ></Image>
+                {showImages && (
+                  <Image
+                    className={styles["image"]}
+                    src={Images.AdsImage}
+                    alt="tdlr"
+                  ></Image>
+                )}
                 <div className={styles["content"]}>
                   Search ads generate income for Ecosia.
                 </div>
               </div>
               <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
-                  src={Images.EcosiaImage}
-                  alt="tdlr"
-                ></Image>
+                {showImages && (
+                  <Image
+                    className={styles["image"]}
+                    src={Images.EcosiaImage}
+                    alt="tdlr"
+                  ></Image>
+                )}
                 <div className={styles["content"]}>
                   You search the web with Ecosia.
                 </div>
               </div>
               <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
-                  src={Images.IncomeImage}
-                  alt="tdlr"
-                ></Image>
+                {showImages && (
+                  <Image
+                    className={styles["image"]}
+                    src={Images.IncomeImage}
+                    alt="tdlr"
+                  ></Image>
+                )}
                 <div className={styles["content"]}>
                   Ecosia uses this income to plant trees.
                 </div>

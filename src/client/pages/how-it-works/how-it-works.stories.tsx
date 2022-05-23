@@ -1,10 +1,10 @@
 import HowItWorksPage from ".";
 import * as Components from "./components";
 
-// export default () => <div></div>;
+export default () => <div></div>;
 
 export const BrandsComponent = () => {
-  const props = {};
+  const props = { showImages: false };
   return <Components.BrandsComponent {...props} />;
 };
 
@@ -14,7 +14,7 @@ export const GraphicsComponent = () => {
 };
 
 export const HowItWorksComponent = () => {
-  const props = {};
+  const props = { showImages: false };
   return <Components.HowItWorksComponent {...props} />;
 };
 
@@ -24,7 +24,7 @@ export const PlantTreesComponent = () => {
 };
 
 export const ReportsComponent = () => {
-  const props = {};
+  const props = { showImages: false };
   return <Components.ReportsComponent {...props} />;
 };
 
