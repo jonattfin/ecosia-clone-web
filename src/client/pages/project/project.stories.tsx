@@ -16,7 +16,7 @@ function getProject() {
     id: "id",
     name: "name",
     desc: "desc",
-    image: "image",
+    image: "https://blog.ecosia.org/content/images/size/w1200/2021/08/Thailand_header.png",
     scope: "scope",
     tags: getTags(),
   };

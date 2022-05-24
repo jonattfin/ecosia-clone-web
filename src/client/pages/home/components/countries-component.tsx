@@ -1,10 +1,13 @@
 import { Grid } from "@mui/material";
-import Image from "next/image";
+import { Image } from "../../../shared-components";
 
 import * as Images from "./images";
 import styles from "../home.module.scss";
 
 export default function Component() {
+  const imageProps = { width: 300, height: 0 };
+  imageProps.height = imageProps.width * 0.7;
+
   return (
     <section className={styles["countries-section"]}>
       <Grid container spacing={2}>
@@ -20,7 +23,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={4}>
-          <Image src={Images.BrazilImage} alt="brazil" />
+          <Image src={Images.BrazilImage} alt="brazil" {...imageProps} />
           <div className={styles.name}>Brazil</div>
           <div className={styles.text}>
             Your trees in Brazil protect thousands of endangered plants and
@@ -28,7 +31,11 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={4}>
-          <Image src={Images.BurkinaFasoImage} alt="burkina faso" />
+          <Image
+            src={Images.BurkinaFasoImage}
+            alt="burkina faso"
+            {...imageProps}
+          />
           <div className={styles.name}>Burkina Faso</div>
           <div className={styles.text}>
             By planting trees in Burkina Faso, you restore desertified land to
@@ -36,7 +43,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={4}>
-          <Image src={Images.IndonesiaImage} alt="indonesia" />
+          <Image src={Images.IndonesiaImage} alt="indonesia" {...imageProps} />
           <div className={styles.name}>Indonesia</div>
           <div className={styles.text}>
             In Indonesia, your searches bring back forests on former palm oil

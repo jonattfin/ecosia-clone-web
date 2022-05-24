@@ -1,24 +1,24 @@
 import { Button, Grid } from "@mui/material";
-import Image from "next/image";
 
+import { Image } from "../../../shared-components";
 import * as Images from "./images";
 import styles from "../how-it-works.module.scss";
 
-export default function Component({ showImages = true }) {
+export default function Component() {
+  const imageProps = { width: 100, height: 0 };
+  imageProps.height = imageProps.width * 1;
+
   return (
     <section className={styles["reports-section"]}>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <div className={styles["container"]}>
             <div>
-              {showImages && (
-                <Image
-                  src={Images.ReportsImage}
-                  alt="transparency"
-                  width={100}
-                  height={100}
-                />
-              )}
+              <Image
+                src={Images.ReportsImage}
+                alt="transparency"
+                {...imageProps}
+              />
             </div>
             <div className={styles["main-title"]}>
               We know trust has to be earned

@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { useRouter } from "next/router";
 
-import { TreesContext } from "../../../context";
+import { TreesContext } from "../../providers/context";
 
 import {
   ForestOutlined as ForestOutlinedIcon,

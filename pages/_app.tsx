@@ -3,7 +3,7 @@ import { Container } from "@mui/material";
 import { Fragment, useState } from "react";
 
 import * as SharedComponents from "../src/client/shared-components";
-import { TreesContext } from "../src/context";
+import { TreesContext } from "../src/client/providers/context";
 
 import "../styles/globals.css";
 

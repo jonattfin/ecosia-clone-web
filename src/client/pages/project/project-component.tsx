@@ -1,10 +1,9 @@
 import React from "react";
-import Image from "next/image";
-
 import { Grid } from "@mui/material";
 
 import { IProjectDetails } from "../../../shared/types";
 
+import { Image } from "../../shared-components";
 import * as Images from "./images";
 import styles from "./project.module.scss";
 
@@ -13,6 +12,9 @@ interface ProjectComponentProps {
 }
 
 export default ({ project }: ProjectComponentProps) => {
+  const imageProps = { width: 100, height: 0 };
+  imageProps.height = imageProps.width * 0.5;
+
   return (
     <div className={styles.project}>
       <Grid container spacing={2}>
@@ -47,9 +49,9 @@ export default ({ project }: ProjectComponentProps) => {
                 </p>
               </Grid>
               <Grid item xs={12} xl={6}>
-                <Image src={Images.CountryMapImage}></Image>
+                <Image src={Images.CountryMapImage} {...imageProps}></Image>
               </Grid>
-              {showExtraInfo(project.tags)}
+              {showTags(project.tags)}
             </Grid>
           </div>
         </Grid>
@@ -61,14 +63,17 @@ export default ({ project }: ProjectComponentProps) => {
   );
 };
 
-function showExtraInfo(extraItems: any[]) {
+function showTags(tags: any[]) {
+  const imageProps = { width: 100, height: 0 };
+  imageProps.height = imageProps.width * 0.5;
+
   return (
     <React.Fragment>
-      {extraItems.map((item, index) => (
-        <Grid item xs={12} xl={4} key={`extra-item-${index}`}>
-          <Image src={item.image}></Image>
-          <p>{item.title}</p>
-          <p>{item.subtitle}</p>
+      {tags.map((tag, index) => (
+        <Grid item xs={12} xl={4} key={`tag-${index}`}>
+          <Image src={tag.image} {...imageProps}></Image>
+          <p>{tag.title}</p>
+          <p>{tag.subtitle}</p>
         </Grid>
       ))}
     </React.Fragment>

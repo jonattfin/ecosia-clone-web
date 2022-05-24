@@ -4,7 +4,7 @@ import * as Components from "./components";
 export default () => <div></div>;
 
 export const BrandsComponent = () => {
-  const props = { showImages: false };
+  const props = { };
   return <Components.BrandsComponent {...props} />;
 };
 
@@ -14,7 +14,7 @@ export const GraphicsComponent = () => {
 };
 
 export const HowItWorksComponent = () => {
-  const props = { showImages: false };
+  const props = { };
   return <Components.HowItWorksComponent {...props} />;
 };
 
@@ -24,7 +24,7 @@ export const PlantTreesComponent = () => {
 };
 
 export const ReportsComponent = () => {
-  const props = { showImages: false };
+  const props = { };
   return <Components.ReportsComponent {...props} />;
 };
 

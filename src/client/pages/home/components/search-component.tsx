@@ -1,7 +1,7 @@
 import { FormControl, OutlinedInput } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useState } from "react";
-import Image from "next/image";
+import { Image } from '../../../shared-components';
 
 import * as Images from "./images";
 import styles from "../home.module.scss";
@@ -13,6 +13,10 @@ interface SearchComponentProps {
 
 export default function Component({ onSearch, counter }: SearchComponentProps) {
   const [query, setQuery] = useState("");
+
+  const imageProps = { width: 200, height: 0 };
+  imageProps.height = imageProps.width * 0.7;
+
   return (
     <section className={styles["search-section"]}>
       <div>
@@ -20,6 +24,7 @@ export default function Component({ onSearch, counter }: SearchComponentProps) {
           className={styles["logo-image"]}
           src={Images.LogoImage}
           alt="logo"
+          {...imageProps}
         />
       </div>
       <div>

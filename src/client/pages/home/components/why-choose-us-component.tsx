@@ -1,12 +1,15 @@
 import { Grid } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
-import Image from "next/image";
 
+import { Image } from "../../../shared-components";
 import * as Images from "./images";
 import styles from "../home.module.scss";
 
 export default function Component() {
+  const imageProps = { width: 150, height: 0 };
+  imageProps.height = imageProps.width * 0.5;
+
   return (
     <section className={styles["why-choose-us-section"]}>
       <Grid container spacing={2}>
@@ -17,7 +20,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={1}>
-          <Image src={Images.ProfitsImage} alt="profits" />
+          <Image src={Images.ProfitsImage} alt="profits" {...imageProps} />
         </Grid>
         <Grid item xs={12} xl={5}>
           <div className={styles["item-container"]}>
@@ -31,7 +34,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={1}>
-          <Image src={Images.PrivacyImage} alt="privacy" />
+          <Image src={Images.PrivacyImage} alt="privacy" {...imageProps} />
         </Grid>
         <Grid item xs={12} xl={5}>
           <div className={styles["item-container"]}>
@@ -45,7 +48,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={1}>
-          <Image src={Images.WorldImage} alt="world" />
+          <Image src={Images.WorldImage} alt="world" {...imageProps} />
         </Grid>
         <Grid item xs={12} xl={5}>
           <div className={styles["item-container"]}>
@@ -59,7 +62,7 @@ export default function Component() {
           </div>
         </Grid>
         <Grid item xs={12} xl={1}>
-          <Image src={Images.CoinImage} alt="coin" />
+          <Image src={Images.CoinImage} alt="coin" {...imageProps} />
         </Grid>
         <Grid item xs={12} xl={5}>
           <div className={styles["item-container"]}>
