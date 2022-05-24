@@ -12,16 +12,15 @@ interface ProjectComponentProps {
 }
 
 export default ({ project }: ProjectComponentProps) => {
-  const imageProps = { width: 100, height: 0 };
-  imageProps.height = imageProps.width * 0.5;
+  const imageProps = { width: 374 / 2, height: 684 / 2 };
 
   return (
     <div className={styles.project}>
       <Grid container spacing={2}>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={6}>
           <div className={styles.container}>
             <img src={project.image}></img>
             <Grid container justifyContent="center" alignItems="center">
@@ -55,7 +54,7 @@ export default ({ project }: ProjectComponentProps) => {
             </Grid>
           </div>
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
       </Grid>

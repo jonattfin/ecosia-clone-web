@@ -30,10 +30,10 @@ export default function Component(props: IProjectsProps) {
   return (
     <div className={styles.blog}>
       <Grid container spacing={2}>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={6}>
           <div className={styles["logo-header"]}>
             <div className={styles["logo-image"]}>
               <Image src={Images.LogoImage} />
@@ -145,7 +145,7 @@ export default function Component(props: IProjectsProps) {
             </div>
           </TabPanel>
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
       </Grid>

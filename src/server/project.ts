@@ -5,7 +5,7 @@ import repos from "./repositories";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any[] | {}>
+  res: NextApiResponse<any[] | any>
 ) {
   const { method } = req;
 
@@ -22,8 +22,8 @@ export default async function handler(
   }
 
   async function getById() {
-    var projects = await repos.projectRepository.getById(req.query.id);
-    return res.status(200).json(projects);
+    var project = await repos.projectRepository.getById(req.query.id);
+    return res.status(200).json(project);
   }
 
   async function update() {

@@ -7,13 +7,13 @@ export default function Component() {
   return (
     <section className={styles["how-it-works-section"]}>
       <Grid container>
-        <Grid className={styles["alice-blue"]} item xl={4}>
+        <Grid className={styles["alice-blue"]} item xl={3}>
           &nbsp;
         </Grid>
-        <Grid className={styles["alice-blue"]} item xs={12} xl={4}>
+        <Grid className={styles["alice-blue"]} item xs={12} xl={6}>
           <Components.PlantTreesComponent />
         </Grid>
-        <Grid className={styles["alice-blue"]} item xl={4}>
+        <Grid className={styles["alice-blue"]} item xl={3}>
           &nbsp;
         </Grid>
 
@@ -24,37 +24,37 @@ export default function Component() {
         {/* Brands section */}
 
         {/* How it works section */}
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={6}>
           <Components.HowItWorksComponent />
         </Grid>
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
         {/* How it works section */}
 
         {/* Graphics section */}
-        <Grid className={styles["alice-blue"]} item xl={4}>
+        <Grid className={styles["alice-blue"]} item xl={3}>
           &nbsp;
         </Grid>
-        <Grid className={styles["alice-blue"]} item xs={12} xl={4}>
+        <Grid className={styles["alice-blue"]} item xs={12} xl={6}>
           <Components.GraphicsComponent />
         </Grid>
-        <Grid className={styles["alice-blue"]} item xl={4}>
+        <Grid className={styles["alice-blue"]} item xl={3}>
           &nbsp;
         </Grid>
         {/* Graphics section */}
 
         {/* Reports section */}
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={6}>
           <Components.ReportsComponent />
         </Grid>
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
         {/* Reports section */}

@@ -8,7 +8,7 @@ import styles from "../home.module.scss";
 
 export default function Component() {
   const imageProps = { width: 150, height: 0 };
-  imageProps.height = imageProps.width * 0.5;
+  imageProps.height = imageProps.width * 0.6;
 
   return (
     <section className={styles["why-choose-us-section"]}>
@@ -19,10 +19,10 @@ export default function Component() {
             We put people and planet before profit
           </div>
         </Grid>
-        <Grid item xs={12} xl={1}>
+        <Grid item md={12} xl={2}>
           <Image src={Images.ProfitsImage} alt="profits" {...imageProps} />
         </Grid>
-        <Grid item xs={12} xl={5}>
+        <Grid item md={12} xl={4}>
           <div className={styles["item-container"]}>
             <div className={styles["item-title"]}>
               We’re a not-for-profit business
@@ -33,10 +33,10 @@ export default function Component() {
             </div>
           </div>
         </Grid>
-        <Grid item xs={12} xl={1}>
+        <Grid item md={12} xl={2}>
           <Image src={Images.PrivacyImage} alt="privacy" {...imageProps} />
         </Grid>
-        <Grid item xs={12} xl={5}>
+        <Grid item md={12} xl={4}>
           <div className={styles["item-container"]}>
             <div className={styles["item-title"]}>
               Ecosia is powered by 200% renewable energy
@@ -47,10 +47,10 @@ export default function Component() {
             </div>
           </div>
         </Grid>
-        <Grid item xs={12} xl={1}>
+        <Grid item md={12} xl={2}>
           <Image src={Images.WorldImage} alt="world" {...imageProps} />
         </Grid>
-        <Grid item xs={12} xl={5}>
+        <Grid item md={12} xl={4}>
           <div className={styles["item-container"]}>
             <div className={styles["item-title"]}>
               We always put your privacy first
@@ -61,10 +61,10 @@ export default function Component() {
             </div>
           </div>
         </Grid>
-        <Grid item xs={12} xl={1}>
+        <Grid item md={12} xl={2}>
           <Image src={Images.CoinImage} alt="coin" {...imageProps} />
         </Grid>
-        <Grid item xs={12} xl={5}>
+        <Grid item md={12} xl={4}>
           <div className={styles["item-container"]}>
             <div className={styles["item-title"]}>
               We are transparent about everything we do

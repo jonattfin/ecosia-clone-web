@@ -14,37 +14,37 @@ export default function Component() {
         {/* section */}
 
         {/* section */}
-        <Grid className={styles["grey"]} item xl={4}>
+        <Grid className={styles["grey"]} item xl={3}>
           &nbsp;
         </Grid>
-        <Grid className={styles["grey"]} item xs={12} xl={4}>
+        <Grid className={styles["grey"]} item xs={12} xl={6}>
           <Components.SocialBusinessComponent />
         </Grid>
-        <Grid className={styles["grey"]} item xl={4}>
+        <Grid className={styles["grey"]} item xl={3}>
           &nbsp;
         </Grid>
         {/* section */}
 
         {/* section */}
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
-        <Grid item xs={12} xl={4}>
+        <Grid item xs={12} xl={6}>
           <Components.MeetTheTeamComponent />
         </Grid>
-        <Grid item xl={4}>
+        <Grid item xl={3}>
           &nbsp;
         </Grid>
         {/* section */}
 
         {/* section */}
-        <Grid className={styles["grey"]} item xl={4}>
+        <Grid className={styles["grey"]} item xl={3}>
           &nbsp;
         </Grid>
-        <Grid className={styles["grey"]} item xs={12} xl={4}>
+        <Grid className={styles["grey"]} item xs={12} xl={6}>
           <Components.HireComponent />
         </Grid>
-        <Grid className={styles["grey"]} item xl={4}>
+        <Grid className={styles["grey"]} item xl={3}>
           &nbsp;
         </Grid>
         {/* section */}

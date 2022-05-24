@@ -48,15 +48,12 @@ export default class ProjectRepository {
     return (await Projects.findAll()).map((p) => p.toJSON<IProject>());
   }
 
-  async getById(projectId: string | string[]): Promise<any> {
-    // return (
-    //   await Projects.findOne({ where: { id: projectId } })
-    // )?.toJSON<IProjectDetails>();
-
-    const firstProject = projects[0];
-
-    const project: IProjectDetails = { ...firstProject, tags: [] };
-    return project;
+  async getById(
+    projectId: string | string[]
+  ): Promise<IProjectDetails | undefined> {
+    return (
+      await Projects.findOne({ where: { id: projectId } })
+    )?.toJSON<IProjectDetails>();
   }
 
   async create(project: IProject) {

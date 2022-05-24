@@ -1,10 +1,11 @@
 import BlogComponent from "./blog-component";
-import api from "../../api";
+import { projectApi } from "../../api";
+import { IApiNews, IApiReports } from "../../../shared/types";
 
 export default function Component() {
-  const projects = api.getProjects();
-  const news = api.getNews();
-  const reports = api.getReports();
+  const projects = projectApi.getProjects();
+  const news: IApiNews = { data: [], isLoading: false, isError: false };
+  const reports: IApiReports = { data: [], isLoading: false, isError: false };
 
   return <BlogComponent {...{ projects, news, reports }}></BlogComponent>;
 }
