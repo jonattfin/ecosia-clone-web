@@ -17,6 +17,12 @@ export default function Index({ project }: ProjectProps) {
     alt: "something special",
   };
 
+  const imageProps2 = {
+    width: 1024,
+    height: 640,
+    alt: "something special",
+  };
+
   return (
     <div className={styles.project}>
       <Grid container spacing={2}>
@@ -25,7 +31,7 @@ export default function Index({ project }: ProjectProps) {
         </Grid>
         <Grid item xs={12} xl={6}>
           <div className={styles.container}>
-            <Image src={project.image} alt="something special"></Image>
+            <Image src={project.image} {...imageProps2}></Image>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>

@@ -1,7 +1,7 @@
 // import * as nextImage from "next/image";
 import React from "react";
 
-import { ImageOptimisationProvider } from "../src/client/providers/image-provider";
+import { ImageOptimisationProvider } from "../src/providers/image-provider";
 
 // Object.defineProperty(nextImage, 'default', {
 //   configurable: true,
