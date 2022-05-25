@@ -1,3 +1,4 @@
-import BlogPage from '../src/client/pages/blog';
+import BlogPage from "../src/pages/blog";
+export { getServerSideProps } from "../src/pages/blog";
 
 export default BlogPage;

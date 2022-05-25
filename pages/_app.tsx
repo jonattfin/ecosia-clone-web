@@ -2,8 +2,8 @@ import type { AppProps } from "next/app";
 import { Container } from "@mui/material";
 import { Fragment, useState } from "react";
 
-import * as SharedComponents from "../src/client/shared-components";
-import { TreesContext } from "../src/client/providers/context";
+import * as SharedComponents from "../src/shared-components";
+import { TreesContext } from "../src/providers/context";
 
 import "../styles/globals.css";
 
