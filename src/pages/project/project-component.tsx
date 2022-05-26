@@ -83,18 +83,33 @@ export default function Index({ project, tags }: ProjectProps) {
 }
 
 function showTags(tags: any[]) {
-  const imageProps = { width: 100, height: 0, alt: "something special" };
-  imageProps.height = imageProps.width * 0.5;
-
   return (
     <React.Fragment>
       {tags.map((tag, index) => (
         <Grid item xs={12} xl={4} key={`tag-${index}`}>
-          {tag.image && <Image src={tag.image} {...imageProps}></Image>}
+          {renderImage(tag.title)}
           <p>{tag.title}</p>
           <p>{tag.subtitle}</p>
         </Grid>
       ))}
     </React.Fragment>
   );
+
+  function renderImage(title: string) {
+    const images = [
+      { slug: "Partners", img: Images.PartnersImage },
+      { slug: "Planting method", img: Images.PlantingMethodImage },
+      { slug: "Planting season", img: Images.PlantingSeasonImage },
+      { slug: "Main threats", img: Images.MainThreatsImage },
+      { slug: "Wildlife protected", img: Images.WildlifeProtectedImage },
+      { slug: "Challenges", img: Images.ChallengesImage },
+    ].filter((x) => x.slug.toLowerCase().includes(title));
+
+    if (images.length > 0) {
+      const imageProps = { width: 100, height: 0, alt: "something special" };
+      imageProps.height = imageProps.width * 0.5;
+
+      return <Image src={images[0].img} {...imageProps}></Image>;
+    }
+  }
 }
