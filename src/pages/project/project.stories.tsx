@@ -5,13 +5,13 @@ export default function Index() {
 }
 
 export const ProjectPage = () => {
-  return <ProjectComponent project={getProject()} />;
+  return <ProjectComponent {...getProjectAndTags()} />;
 };
 ProjectPage.parameters = {
   storyshots: { disable: true },
 };
 
-function getProject() {
+function getProjectAndTags() {
   const project: any = {
     id: "id",
     name: "name",
@@ -19,7 +19,6 @@ function getProject() {
     image:
       "https://blog.ecosia.org/content/images/size/w1200/2021/08/Thailand_header.png",
     scope: "scope",
-    tags: [],
   };
-  return project;
+  return { project, tags: [] };
 }

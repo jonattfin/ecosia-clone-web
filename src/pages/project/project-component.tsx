@@ -1,27 +1,28 @@
 import React from "react";
 import { Grid } from "@mui/material";
+import { Project, Tag } from "@prisma/client";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 import { Image } from "../../shared-components";
 import * as Images from "./images";
 import styles from "./project.module.scss";
-import { Project } from "@prisma/client";
+import Link from "next/link";
 
 interface ProjectProps {
   project: Project;
+  tags: Tag[];
 }
 
-export default function Index({ project }: ProjectProps) {
+export default function Index({ project, tags }: ProjectProps) {
   const imageProps = {
     width: 374 / 2,
     height: 684 / 2,
     alt: "something special",
   };
 
-  const imageProps2 = {
-    width: 1024,
-    height: 640,
-    alt: "something special",
-  };
+  const logoimageProps = { width: 150, height: 0, alt: "something special" };
+  logoimageProps.height = imageProps.width * 0.5;
 
   return (
     <div className={styles.project}>
@@ -30,8 +31,23 @@ export default function Index({ project }: ProjectProps) {
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
+          <div className={styles["logo-header"]}>
+            <div className={styles["logo-image"]}>
+              <Image src={Images.LogoImage} {...logoimageProps} />
+            </div>
+            <h1 className={styles["blog-title"]}>Blog</h1>
+          </div>
+
+          <div className={styles["projects-header"]}>
+            <Breadcrumbs aria-label="breadcrumb">
+              <Link href="/">Home</Link>
+              <Link href="/blog">Projects</Link>
+              <Typography color="textPrimary">{project.name}</Typography>
+            </Breadcrumbs>
+          </div>
+
           <div className={styles.container}>
-            <Image src={project.image} {...imageProps2}></Image>
+            <img src={project.image}></img>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>
@@ -54,7 +70,7 @@ export default function Index({ project }: ProjectProps) {
               <Grid item xs={12} xl={6}>
                 <Image src={Images.CountryMapImage} {...imageProps}></Image>
               </Grid>
-              {/* {showTags(project.tags)} */}
+              {showTags(tags)}
             </Grid>
           </div>
         </Grid>
@@ -74,7 +90,7 @@ function showTags(tags: any[]) {
     <React.Fragment>
       {tags.map((tag, index) => (
         <Grid item xs={12} xl={4} key={`tag-${index}`}>
-          <Image src={tag.image} {...imageProps}></Image>
+          {tag.image && <Image src={tag.image} {...imageProps}></Image>}
           <p>{tag.title}</p>
           <p>{tag.subtitle}</p>
         </Grid>

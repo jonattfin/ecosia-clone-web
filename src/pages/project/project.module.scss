@@ -1,4 +1,26 @@
 .project {
+  padding: 100px 0px;
+
+  .projects-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-header {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+
+    .logo-image {
+      max-width: 100px;
+    }
+
+    .blog-title {
+      color: teal;
+      text-transform: uppercase;
+    }
+  }
+
   .container {
     display: flex;
     justify-content: center;
@@ -6,6 +28,7 @@
     flex-direction: column;
     // height: 100vh;
 
+    padding: 50px 0px;
     text-align: center;
 
     .teal {

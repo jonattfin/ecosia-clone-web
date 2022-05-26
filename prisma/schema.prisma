@@ -16,4 +16,14 @@ model Project {
   scope String
   image String
   desc  String
+  tags  Tag[]
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  image     String
+  title     String
+  subtitle  String
+  Project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
 }

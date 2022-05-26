@@ -7,15 +7,18 @@ export async function getServerSideProps(context: any) {
   const { id } = params;
 
   const prismaClient = new PrismaClient();
+
   const project = await prismaClient.project.findUnique({ where: { id } });
+  const tags = await prismaClient.tag.findMany({ where: { projectId: id } });
 
   return {
     props: {
       project,
+      tags,
     },
   };
 }
 
-export default function Index({ project }: any) {
-  return <ProjectComponent project={project} />;
+export default function Index({ project, tags }: any) {
+  return <ProjectComponent project={project} tags={tags} />;
 }

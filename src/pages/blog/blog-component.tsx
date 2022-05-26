@@ -27,6 +27,9 @@ export default function Component({ projects }: BlogProps) {
     setValue(newValue);
   };
 
+  const imageProps = { width: 150, height: 0, alt: "something special" };
+  imageProps.height = imageProps.width * 0.5;
+
   return (
     <div className={styles.blog}>
       <Grid container spacing={2}>
@@ -36,7 +39,7 @@ export default function Component({ projects }: BlogProps) {
         <Grid item xs={12} xl={6}>
           <div className={styles["logo-header"]}>
             <div className={styles["logo-image"]}>
-              <Image src={Images.LogoImage} alt="something special"/>
+              <Image src={Images.LogoImage} {...imageProps}/>
             </div>
             <h1 className={styles["blog-title"]}>Blog</h1>
           </div>
@@ -75,14 +78,13 @@ export default function Component({ projects }: BlogProps) {
                   onMouseLeave={() => setShownId(undefined)}
                 >
                   <div className={styles.container}>
-                    <Image
+                    <img
                       className={styles["image-wrapper"]}
                       src={project.image}
-                      alt="something special"
-                    ></Image>
+                    ></img>
                     <div className={styles["title-container"]}>
                       <p className={styles.title}>{project.scope}</p>
-                      {/* {shownId === project.id && showMediaLinks(project)} */}
+                      {shownId === project.id && showMediaLinks(project)}
                     </div>
                     <p className={styles.subtitle}>{project.name}</p>
                     <p>{project.desc}</p>
@@ -132,23 +134,24 @@ function TabPanel(props: TabPanelProps) {
   return <div>{children}</div>;
 }
 
-// function showMediaLinks(project: Pro) {
-//   return (
-//     <div>
-//       <a
-//         target="_blank"
-//         href={`https://twitter.com/intent/tweet?text=${project.name}`}
-//       >
-//         <TwitterIcon color="primary" />
-//       </a>
+function showMediaLinks(project: Project) {
+  return (
+    <div>
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href={`https://twitter.com/intent/tweet?text=${project.name}`}
+      >
+        <TwitterIcon color="primary" />
+      </a>
 
-//       <a target="_blank" href="https://www.facebook.com">
-//         <FacebookIcon color="primary" />
-//       </a>
+      <a target="_blank" href="https://www.facebook.com" rel="noreferrer">
+        <FacebookIcon color="primary" />
+      </a>
 
-//       <a target="_blank" href="https://pinterest.com/">
-//         <PinterestIcon color="primary" />
-//       </a>
-//     </div>
-//   );
-// }
+      <a target="_blank" href="https://pinterest.com/" rel="noreferrer">
+        <PinterestIcon color="primary" />
+      </a>
+    </div>
+  );
+}
