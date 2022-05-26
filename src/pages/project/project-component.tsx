@@ -103,7 +103,7 @@ function showTags(tags: any[]) {
       { slug: "Main threats", img: Images.MainThreatsImage },
       { slug: "Wildlife protected", img: Images.WildlifeProtectedImage },
       { slug: "Challenges", img: Images.ChallengesImage },
-    ].filter((x) => x.slug.toLowerCase().includes(title));
+    ].filter((x) => x.slug.toLowerCase().includes(title.toLowerCase()));
 
     if (images.length > 0) {
       const imageProps = { width: 100, height: 0, alt: "something special" };
