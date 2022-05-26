@@ -38,14 +38,14 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   useEffect(() => {
     const fetchData = async () => {
       setProgress(true);
-      const data = await searchByQuery(pid);
+      const data = await searchByQueryAsync(pid);
       setResultsObject({ values: data, totalEstimatedMatches: data.length });
       setProgress(false);
     };
     fetchData();
 
     incrementTreeCount();
-  }, [pid, incrementTreeCount]);
+  }, [pid]);
 
   const props: SearchProps = {
     query: (pid || "").toString(),
@@ -57,7 +57,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   return <SearchComponent {...props} />;
 }
 
-function searchByQuery(
+function searchByQueryAsync(
   query: string | string[] | undefined
 ): Promise<ResultQuery[]> {
   return new Promise((resolve, reject) => {
@@ -71,7 +71,8 @@ function searchByQuery(
           name: `name ${i}`,
         };
       });
+      debugger;
       resolve(data);
-    }, 1000);
+    }, 500);
   });
 }

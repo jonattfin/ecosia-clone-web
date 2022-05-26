@@ -106,8 +106,7 @@ function showTags(tags: any[]) {
     ].filter((x) => x.slug.toLowerCase().includes(title.toLowerCase()));
 
     if (images.length > 0) {
-      const imageProps = { width: 100, height: 0, alt: "something special" };
-      imageProps.height = imageProps.width * 0.5;
+      const imageProps = { width: 172, height: 161, alt: "something special" };
 
       return <Image src={images[0].img} {...imageProps}></Image>;
     }
