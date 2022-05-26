@@ -12,7 +12,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://fsxdscghsdnzch:38401dff779bc60e24017a1677a12541e4c42f85ecf424833b120c2b078a3e62@ec2-34-230-153-41.compute-1.amazonaws.com:5432/d3ju61mi9r3p57"
+  url      = env("DATABASE_URL")
 }
 
 model Project {
