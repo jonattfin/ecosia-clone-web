@@ -1981,9 +1981,9 @@
     d3-scale-chromatic "^2.0.0"
     lodash "^4.17.21"
 
-"@nivo/core@^0.79.0":
+"@nivo/core@^0.79.1":
   version "0.79.0"
-  resolved "https://registry.npmjs.org/@nivo/core/-/core-0.79.0.tgz"
+  resolved "https://registry.yarnpkg.com/@nivo/core/-/core-0.79.0.tgz#5755212c2058c20899990e7c8ec0e918ac00e5f5"
   integrity sha512-e1iGodmGuXkF+QWAjhHVFc+lUnfBoUwaWqVcBXBfebzNc50tTJrTTMHyQczjgOIfTc8gEu23lAY4mVZCDKscig==
   dependencies:
     "@nivo/recompose" "0.79.0"

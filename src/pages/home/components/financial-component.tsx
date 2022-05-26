@@ -1,6 +1,11 @@
 import { Grid } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const PieComponent = dynamic(() => import("./pie-component"), {
+  ssr: false
+})
 
 import styles from "../home.module.scss";
 
@@ -20,8 +25,13 @@ export default function Component() {
             searches, how we spent it, and how many trees this helped us plant.
           </div>
         </Grid>
-        <Grid item xs={6} xl={6}>
-          {/* <PieContainer><PieComponent /></PieContainer> */}
+        <Grid item xs={0} xl={2}>
+          &nbsp;
+        </Grid>
+        <Grid item xs={6} xl={4}>
+          <div className={styles['pie-wrapper']}>
+          <PieComponent/>
+          </div>
         </Grid>
         <Grid item xs={12} xl={12}>
           <div className={styles["link-container"]}>

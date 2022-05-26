@@ -8,6 +8,7 @@ import { Image } from "../../shared-components";
 import * as Images from "./images";
 import styles from "./project.module.scss";
 import Link from "next/link";
+import _ from "lodash";
 
 interface ProjectProps {
   project: Project;
@@ -97,18 +98,22 @@ function showTags(tags: any[]) {
 
   function renderImage(title: string) {
     const images = [
-      { slug: "Partners", img: Images.PartnersImage },
-      { slug: "Planting method", img: Images.PlantingMethodImage },
-      { slug: "Planting season", img: Images.PlantingSeasonImage },
-      { slug: "Main threats", img: Images.MainThreatsImage },
-      { slug: "Wildlife protected", img: Images.WildlifeProtectedImage },
-      { slug: "Challenges", img: Images.ChallengesImage },
-    ].filter((x) => x.slug.toLowerCase().includes(title.toLowerCase()));
+      { slug: "Partners", src: Images.PartnersImage },
+      { slug: "Planting method", src: Images.PlantingMethodImage },
+      { slug: "Planting season", src: Images.PlantingSeasonImage },
+      { slug: "Main threats", src: Images.MainThreatsImage },
+      { slug: "Wildlife protected", src: Images.WildlifeProtectedImage },
+      { slug: "Challenges", src: Images.ChallengesImage },
+    ];
 
-    if (images.length > 0) {
+    const foundImage = _.find(images, (x) =>
+      x.slug.toLowerCase().includes(title.toLowerCase())
+    );
+
+    if (foundImage) {
       const imageProps = { width: 172, height: 161, alt: "something special" };
 
-      return <Image src={images[0].img} {...imageProps}></Image>;
+      return <Image src={foundImage.src} {...imageProps}></Image>;
     }
   }
 }
