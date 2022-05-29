@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-import ProjectComponent from "./project-component";
+import ProjectComponent, { ProjectProps } from "./project-component";
 
 export async function getServerSideProps(context: any) {
   const { params } = context;
@@ -19,6 +19,6 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-export default function Index({ project, tags }: any) {
-  return <ProjectComponent project={project} tags={tags} />;
+export default function Index(props: ProjectProps) {
+  return <ProjectComponent {...props} />;
 }

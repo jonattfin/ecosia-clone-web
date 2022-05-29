@@ -3,14 +3,14 @@ import { Grid } from "@mui/material";
 import { Project, Tag } from "@prisma/client";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-
-import { Image } from "../../shared-components";
-import * as Images from "./images";
-import styles from "./project.module.scss";
 import Link from "next/link";
 import _ from "lodash";
+import styled from "@emotion/styled";
 
-interface ProjectProps {
+import { AppColor, Image } from "../../shared-components";
+import * as Images from "./images";
+
+export interface ProjectProps {
   project: Project;
   tags: Tag[];
 }
@@ -26,41 +26,41 @@ export default function Index({ project, tags }: ProjectProps) {
   logoimageProps.height = imageProps.width * 0.5;
 
   return (
-    <div className={styles.project}>
+    <MainContainerDiv>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <div className={styles["logo-header"]}>
-            <div className={styles["logo-image"]}>
+          <LogoHeaderDiv>
+            <LogoImageDiv>
               <Image src={Images.LogoImage} {...logoimageProps} />
-            </div>
-            <h1 className={styles["blog-title"]}>Blog</h1>
-          </div>
+            </LogoImageDiv>
+            <TitleHeading>Blog</TitleHeading>
+          </LogoHeaderDiv>
 
-          <div className={styles["projects-header"]}>
+          <ProjectsHeaderDiv>
             <Breadcrumbs aria-label="breadcrumb">
               <Link href="/">Home</Link>
               <Link href="/blog">Projects</Link>
               <Typography color="textPrimary">{project.name}</Typography>
             </Breadcrumbs>
-          </div>
+          </ProjectsHeaderDiv>
 
-          <div className={styles.container}>
+          <ProjectContainerDiv>
             <img src={project.image}></img>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>
-                <p className={styles.teal}>9000</p>
+                <TealParagraph>9000</TealParagraph>
               </Grid>
               <Grid item xs={12} xl={4}>
                 <p>hectares restored</p>
-                <p className={styles.orange}>updating</p>
+                <OrangeParagraph>updating</OrangeParagraph>
               </Grid>
               <Grid item xs={12} xl={4}>
                 <p>since</p>
-                <p className={styles.green}>2001</p>
+                <GreenParagraph>2001</GreenParagraph>
               </Grid>
               <Grid item xs={12} xl={12}>
                 <h1>From monoculture to sustainable rubber farming</h1>
@@ -73,17 +73,17 @@ export default function Index({ project, tags }: ProjectProps) {
               </Grid>
               {showTags(tags)}
             </Grid>
-          </div>
+          </ProjectContainerDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
       </Grid>
-    </div>
+    </MainContainerDiv>
   );
 }
 
-function showTags(tags: any[]) {
+function showTags(tags: Tag[]) {
   return (
     <React.Fragment>
       {tags.map((tag, index) => (
@@ -117,3 +117,54 @@ function showTags(tags: any[]) {
     }
   }
 }
+
+// Styled Components
+
+const MainContainerDiv = styled.div`
+  padding: 100px 0px;
+`;
+
+const LogoHeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+`;
+
+const LogoImageDiv = styled.div`
+  max-width: 100px;
+`;
+
+const TitleHeading = styled.h1`
+  color: ${AppColor.Teal};
+  text-transform: uppercase;
+`;
+
+const ProjectsHeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ProjectContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 50px 0px;
+  text-align: center;
+`;
+
+const TealParagraph = styled.p`
+  background-color: ${AppColor.Teal};
+  padding: 10px 0px;
+`;
+
+const OrangeParagraph = styled.p`
+  background-color: orange;
+  padding: 10px 0px;
+`;
+
+const GreenParagraph = styled.p`
+  background-color: green;
+  padding: 10px 0px;
+`;
