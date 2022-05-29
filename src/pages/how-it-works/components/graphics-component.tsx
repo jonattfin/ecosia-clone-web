@@ -1,43 +1,66 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
-import styles from "../how-it-works.module.scss";
+import { MainTitleDiv } from "../../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["graphics-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["main-title"]}>
-            Over 146 million trees planted
-          </div>
-          <div className={styles["main-container"]}>
+          <MainTitleDiv>Over 146 million trees planted</MainTitleDiv>
+          <ContainerDiv>
             <div>
-              <div className={styles["title"]}>{"December 2009"}</div>
-              <div className={styles["subtitle"]}>{"1.1 sec"}</div>
-              <div className={styles["line"]} />
-              <div className={styles["title"]}>{"to plant a tree"}</div>
+              <TitleDiv>{"December 2009"}</TitleDiv>
+              <SubtitleDiv>{"1.1 sec"}</SubtitleDiv>
+              <LineDiv />
+              <TitleDiv>{"to plant a tree"}</TitleDiv>
             </div>
             <div>
-              <div className={styles["title"]}>{"over"}</div>
-              <div className={styles["subtitle"]}>{"15 million"}</div>
-              <div className={styles["line"]} />
-              <div className={styles["title"]}>{"active users"}</div>
+              <TitleDiv>{"over"}</TitleDiv>
+              <SubtitleDiv>{"15 million"}</SubtitleDiv>
+              <LineDiv />
+              <TitleDiv>{"active users"}</TitleDiv>
             </div>
             <div>
-              <div className={styles["title"]}>{"over"}</div>
-              <div className={styles["subtitle"]}>{"12,101,152"}</div>
-              <div className={styles["line"]} />
-              <div className={styles["title"]}>{"EUR invested"}</div>
+              <TitleDiv>{"over"}</TitleDiv>
+              <SubtitleDiv>{"12,101,152"}</SubtitleDiv>
+              <LineDiv />
+              <TitleDiv>{"EUR invested"}</TitleDiv>
             </div>
             <div>
-              <div className={styles["title"]}>{"over"}</div>
-              <div className={styles["subtitle"]}>{"9000"}</div>
-              <div className={styles["line"]} />
-              <div className={styles["title"]}>{"planting sites"}</div>
+              <TitleDiv>{"over"}</TitleDiv>
+              <SubtitleDiv>{"9000"}</SubtitleDiv>
+              <LineDiv />
+              <TitleDiv>{"planting sites"}</TitleDiv>
             </div>
-          </div>
+          </ContainerDiv>
         </Grid>
       </Grid>
     </section>
   );
 }
+
+// Styled Components
+
+const ContainerDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 20vh;
+`;
+
+const TitleDiv = styled.div`
+  text-transform: uppercase;
+  padding: 15px 0;
+  text-align: center;
+`;
+
+const SubtitleDiv = styled.div`
+  text-align: center;
+`;
+
+const LineDiv = styled.div`
+  border: 3px solid #aab74f;
+`;

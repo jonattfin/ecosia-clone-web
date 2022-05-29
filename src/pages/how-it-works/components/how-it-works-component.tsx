@@ -1,57 +1,78 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
-import { Image } from "../../../shared-components";
+import { Image, MainTitleDiv } from "../../../shared-components";
 import * as Images from "./images";
-import styles from "../how-it-works.module.scss";
 
 export default function Component() {
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.5;
 
   return (
-    <section className={styles["how-it-works-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["parent-container"]}>
-            <div className={styles["main-title"]}>How it works</div>
-            <div className={styles["child-container"]}>
-              <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
+          <ParentContainerDiv>
+            <MainTitleDiv>How it works</MainTitleDiv>
+            <ChildContainerDiv>
+              <ImageContainerDiv>
+                <LogoImage
                   src={Images.AdsImage}
                   alt="tdlr"
                   {...imageProps}
-                ></Image>
-                <div className={styles["content"]}>
-                  Search ads generate income for Ecosia.
-                </div>
-              </div>
-              <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
+                ></LogoImage>
+                <ContentDiv>Search ads generate income for Ecosia.</ContentDiv>
+              </ImageContainerDiv>
+              <ImageContainerDiv>
+                <LogoImage
                   src={Images.EcosiaImage}
                   alt="tdlr"
                   {...imageProps}
-                ></Image>
-                <div className={styles["content"]}>
-                  You search the web with Ecosia.
-                </div>
-              </div>
-              <div className={styles["image--centered"]}>
-                <Image
-                  className={styles["image"]}
+                ></LogoImage>
+                <ContentDiv>You search the web with Ecosia.</ContentDiv>
+              </ImageContainerDiv>
+              <ImageContainerDiv>
+                <LogoImage
                   src={Images.IncomeImage}
                   alt="tdlr"
                   {...imageProps}
-                ></Image>
-                <div className={styles["content"]}>
-                  Ecosia uses this income to plant trees.
-                </div>
-              </div>
-            </div>
-          </div>
+                ></LogoImage>
+                <ContentDiv>Ecosia uses this income to plant trees.</ContentDiv>
+              </ImageContainerDiv>
+            </ChildContainerDiv>
+          </ParentContainerDiv>
         </Grid>
       </Grid>
     </section>
   );
 }
+
+// Styled Components
+
+const ParentContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 40vh;
+`;
+
+const ChildContainerDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ImageContainerDiv = styled.div`
+  text-align: center;
+`;
+
+const LogoImage = styled(Image)`
+  max-width: 150px;
+  padding: 20px;
+`;
+
+const ContentDiv = styled.div`
+  padding: 40px;
+`;

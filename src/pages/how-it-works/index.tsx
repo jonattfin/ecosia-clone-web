@@ -1,21 +1,22 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
 import * as Components from "./components";
-import styles from "./how-it-works.module.scss";
+import { AppColor } from "../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["how-it-works-section"]}>
+    <section>
       <Grid container>
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xs={12} xl={6}>
+        </BlueGrid>
+        <BlueGrid item xs={12} xl={6}>
           <Components.PlantTreesComponent />
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        </BlueGrid>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </BlueGrid>
 
         {/* Brands section */}
         <Grid item xs={12} xl={12}>
@@ -36,15 +37,15 @@ export default function Component() {
         {/* How it works section */}
 
         {/* Graphics section */}
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xs={12} xl={6}>
+        </BlueGrid>
+        <BlueGrid item xs={12} xl={6}>
           <Components.GraphicsComponent />
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        </BlueGrid>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </BlueGrid>
         {/* Graphics section */}
 
         {/* Reports section */}
@@ -62,3 +63,9 @@ export default function Component() {
     </section>
   );
 }
+
+// Styled Components
+
+const BlueGrid = styled(Grid)`
+  background-color: ${AppColor.AliceBlue};
+`;

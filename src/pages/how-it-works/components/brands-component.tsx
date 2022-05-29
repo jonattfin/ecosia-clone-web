@@ -1,18 +1,18 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
 import { Image } from "../../../shared-components";
 import * as Images from "./images";
-import styles from "../how-it-works.module.scss";
 
 export default function Component() {
   const imageProps = { width: 100, height: 0 };
   imageProps.height = imageProps.width * 0.5;
 
   return (
-    <section className={styles["brands-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["brands-container"]}>
+          <BrandsContainerDiv>
             {getBrands().map((brand, index) => (
               <Image
                 src={brand}
@@ -21,7 +21,7 @@ export default function Component() {
                 {...imageProps}
               ></Image>
             ))}
-          </div>
+          </BrandsContainerDiv>
         </Grid>
       </Grid>
     </section>
@@ -45,3 +45,14 @@ function getBrands() {
     ForbesImage,
   ];
 }
+
+// Styled Components
+
+const BrandsContainerDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 5vh;
+  background-color: #ededed;
+`;

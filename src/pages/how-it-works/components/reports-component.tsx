@@ -1,18 +1,18 @@
+import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
 
-import { Image } from "../../../shared-components";
+import { Image, MainTitleDiv } from "../../../shared-components";
 import * as Images from "./images";
-import styles from "../how-it-works.module.scss";
 
 export default function Component() {
   const imageProps = { width: 100, height: 0 };
   imageProps.height = imageProps.width * 1;
 
   return (
-    <section className={styles["reports-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["container"]}>
+          <ContainerDiv>
             <div>
               <Image
                 src={Images.ReportsImage}
@@ -20,20 +20,32 @@ export default function Component() {
                 {...imageProps}
               />
             </div>
-            <div className={styles["main-title"]}>
-              We know trust has to be earned
-            </div>
-            <div className={styles["content"]}>
+            <MainTitleDiv>We know trust has to be earned</MainTitleDiv>
+            <ContentDiv>
               That is why we publish our monthly financial reports and tree
               planting receipts. <br /> This way you can hold us accountable as
               we follow our journey to a reforested world.
-            </div>
+            </ContentDiv>
             <div>
               <Button variant="contained">View Reports</Button>
             </div>
-          </div>
+          </ContainerDiv>
         </Grid>
       </Grid>
     </section>
   );
 }
+
+// Styled Components
+
+const ContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+`;
+
+const ContentDiv = styled.div`
+  font-size: x-large;
+`;
