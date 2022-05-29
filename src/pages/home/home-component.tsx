@@ -1,16 +1,17 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
 import * as Components from "./components";
-import styles from "./home.module.scss";
+import { AppColor } from "../../shared-components";
 
-interface HomeComponentProps {
+export interface HomeComponentProps {
   counter: number;
   onSearch: (query: string) => void;
 }
 
 export default function Component({ counter, onSearch }: HomeComponentProps) {
   return (
-    <section className={styles["home-section"]}>
+    <section>
       <Grid container>
         {/* Search section */}
         <Grid item xl={3}>
@@ -25,15 +26,15 @@ export default function Component({ counter, onSearch }: HomeComponentProps) {
         {/* Search section */}
 
         {/* Countries section */}
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xs={12} xl={6}>
+        </BlueGrid>
+        <BlueGrid item xs={12} xl={6}>
           <Components.CountriesComponent />
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        </BlueGrid>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </BlueGrid>
         {/* Countries section */}
 
         {/* Map section */}
@@ -49,15 +50,15 @@ export default function Component({ counter, onSearch }: HomeComponentProps) {
         {/* Map section  */}
 
         {/* Financial section */}
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xl={6}>
+        </BlueGrid>
+        <BlueGrid item xl={6}>
           <Components.FinancialComponent />
-        </Grid>
-        <Grid className={styles["alice-blue"]} item xl={3}>
+        </BlueGrid>
+        <BlueGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </BlueGrid>
         {/* Financial section */}
 
         {/* Why choose us section */}
@@ -80,3 +81,9 @@ export default function Component({ counter, onSearch }: HomeComponentProps) {
     </section>
   );
 }
+
+// Styled Components
+
+const BlueGrid = styled(Grid)`
+  background-color: ${AppColor.AliceBlue};
+`;

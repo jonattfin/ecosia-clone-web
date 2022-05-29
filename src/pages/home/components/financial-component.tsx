@@ -2,48 +2,71 @@ import { Grid } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import styled from "@emotion/styled";
+
+import {
+  MainTitleDiv,
+  MainSubtitleDiv,
+  LinkDiv,
+} from "../../../shared-components";
 
 const PieComponent = dynamic(() => import("./pie-component"), {
-  ssr: false
-})
-
-import styles from "../home.module.scss";
+  ssr: false,
+});
 
 export default function Component() {
   return (
-    <section className={styles["financial-section"]}>
+    <MainSection>
       <Grid container spacing={2}>
         <Grid item xs={6} xl={6}>
-          <div className={styles["main-title"]} data-test="reports-title">
+          <MainTitleDiv data-test="reports-title">
             Monthly financial reports
-          </div>
-          <div className={styles["main-subtitle"]}>
-            Our revenue in January 2022
-          </div>
-          <div className={styles["content"]}>
+          </MainTitleDiv>
+          <MainSubtitleDiv>Our revenue in January 2022</MainSubtitleDiv>
+          <ContentDiv>
             Our monthly reports show how much ad revenue we made from your
             searches, how we spent it, and how many trees this helped us plant.
-          </div>
+          </ContentDiv>
         </Grid>
         <Grid item xs={0} xl={2}>
           &nbsp;
         </Grid>
         <Grid item xs={6} xl={4}>
-          <div className={styles['pie-wrapper']}>
-          <PieComponent/>
-          </div>
+          <PieContainerDiv>
+            <PieComponent />
+          </PieContainerDiv>
         </Grid>
         <Grid item xs={12} xl={12}>
-          <div className={styles["link-container"]}>
+          <LinkDiv>
             <Link href="#">
               <a data-test="explore-reports">
                 Explore our financial reports{" "}
                 <ChevronRightIcon fontSize="small" />
               </a>
             </Link>
-          </div>
+          </LinkDiv>
         </Grid>
       </Grid>
-    </section>
+    </MainSection>
   );
 }
+
+// Styled Components
+
+const MainSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+`;
+
+const ContentDiv = styled.div`
+  padding-top: 20px;
+  font-size: larger;
+`;
+
+const PieContainerDiv = styled.div`
+  width: 300px;
+  height: 300px;
+`;

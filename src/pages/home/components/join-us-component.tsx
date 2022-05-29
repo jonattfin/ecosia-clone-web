@@ -1,19 +1,31 @@
 import { Button } from "@mui/material";
+import styled from "@emotion/styled";
 
-import styles from "../home.module.scss";
+import { AppColor, MainSubtitleDiv } from "../../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["join-us-section"]}>
-      <div className={styles["main-subtitle"]} data-test="join-us-title">
+    <MainSection>
+      <MainSubtitleDiv data-test="join-us-title">
         Join 15 million people who already use Ecosia
-      </div>
+      </MainSubtitleDiv>
       <div>&nbsp;</div>
       <div>
         <Button color="primary" variant="contained" data-test="share-ecosia">
           Share Ecosia
         </Button>
       </div>
-    </section>
+    </MainSection>
   );
 }
+
+// Styled Components
+
+const MainSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  background-color: ${AppColor.AliceBlue};
+`;

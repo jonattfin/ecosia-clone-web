@@ -1,34 +1,36 @@
 import { Grid } from "@mui/material";
-import { Image } from "../../../shared-components";
+import styled from "@emotion/styled";
 
+import {
+  Image,
+  MainTitleDiv,
+  MainSubtitleDiv,
+  AppColor,
+} from "../../../shared-components";
 import * as Images from "./images";
-import styles from "../home.module.scss";
 
 export default function Component() {
   const imageProps = { width: 300, height: 0 };
   imageProps.height = imageProps.width * 0.7;
 
   return (
-    <section className={styles["countries-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["main-title"]} data-test="countries-title">
-            Where are your trees being planted?
-          </div>
-          <div
-            className={styles["main-subtitle"]}
-            data-test="countries-subtitle"
-          >
+          <MainTitleDiv data-test="countries-title">
+            Where are your trees being planted?{" "}
+          </MainTitleDiv>
+          <MainSubtitleDiv data-test="countries-subtitle">
             We plant in 30+ countries with local organizations
-          </div>
+          </MainSubtitleDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image src={Images.BrazilImage} alt="brazil" {...imageProps} />
-          <div className={styles.name}>Brazil</div>
-          <div className={styles.text}>
+          <NameDiv>Brazil</NameDiv>
+          <TextDiv>
             Your trees in Brazil protect thousands of endangered plants and
             animals.
-          </div>
+          </TextDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image
@@ -36,22 +38,34 @@ export default function Component() {
             alt="burkina faso"
             {...imageProps}
           />
-          <div className={styles.name}>Burkina Faso</div>
-          <div className={styles.text}>
+          <NameDiv>Burkina Faso</NameDiv>
+          <TextDiv>
             By planting trees in Burkina Faso, you restore desertified land to
             its former fertility.
-          </div>
+          </TextDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image src={Images.IndonesiaImage} alt="indonesia" {...imageProps} />
-          <div className={styles.name}>Indonesia</div>
-          <div className={styles.text}>
+          <NameDiv>Indonesia</NameDiv>
+          <TextDiv>
             In Indonesia, your searches bring back forests on former palm oil
             plantations while creating alternative sources of income.
-          </div>
+          </TextDiv>
         </Grid>
         <Grid item>&nbsp;</Grid>
       </Grid>
     </section>
   );
 }
+
+// Styled Components
+
+const NameDiv = styled.div`
+  padding: 1%;
+  border-left: 5px solid ${AppColor.Teal};
+  text-transform: uppercase;
+`;
+
+const TextDiv = styled.div`
+  padding-top: 2%;
+`;

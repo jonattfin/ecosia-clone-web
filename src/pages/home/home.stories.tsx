@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
 
-import HomeComponent from "./home-component";
+import HomeComponent, { HomeComponentProps } from "./home-component";
 
 import * as Components from "./components";
 
@@ -61,7 +61,7 @@ export const JoinUsComponent = () => {
 };
 
 export const HomePageIndex = () => {
-  const props = {
+  const props: HomeComponentProps = {
     counter: 100,
     onSearch: action("onSearch"),
   };
