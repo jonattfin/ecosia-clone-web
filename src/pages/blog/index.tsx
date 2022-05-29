@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { PrismaClient, Project } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
-import BlogComponent from "./blog-component";
+import BlogComponent, { BlogProps } from "./blog-component";
 
 export async function getServerSideProps() {
   const prismaClient = new PrismaClient();
@@ -9,13 +8,11 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      initialProjects: projects,
+      projects,
     },
   };
 }
 
-export default function Component(props: any) {
-  const [projects, setProjects] = useState<Project[]>(props.initialProjects);
-
+export default function Component({ projects }: BlogProps) {
   return <BlogComponent {...{ projects }}></BlogComponent>;
 }

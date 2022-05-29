@@ -9,19 +9,19 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import Link from "next/link";
 import Button from "@mui/material/Button";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { Image } from "../../shared-components";
+import styled from "@emotion/styled";
 
-import styles from "./blog.module.scss";
+import { AppColor, Image } from "../../shared-components";
 import * as Images from "./components/images";
 import { Project } from "@prisma/client";
 
-interface BlogProps {
+export interface BlogProps {
   projects: Project[];
 }
 
 export default function Component({ projects }: BlogProps) {
   const [value, setValue] = React.useState(0);
-  const [shownId, setShownId] = React.useState<string>();
+  const [shownId, setShownId] = React.useState("");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -31,20 +31,20 @@ export default function Component({ projects }: BlogProps) {
   imageProps.height = imageProps.width * 0.5;
 
   return (
-    <div className={styles.blog}>
+    <MainContainer>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <div className={styles["logo-header"]}>
-            <div className={styles["logo-image"]}>
-              <Image src={Images.LogoImage} {...imageProps}/>
-            </div>
-            <h1 className={styles["blog-title"]}>Blog</h1>
-          </div>
+          <LogoHeaderDiv>
+            <LogoImageDiv>
+              <Image src={Images.LogoImage} {...imageProps} />
+            </LogoImageDiv>
+            <TitleHeader>Blog</TitleHeader>
+          </LogoHeaderDiv>
 
-          <div className={styles["projects-header"]}>
+          <ProjectsHeaderDiv>
             <Tabs
               value={value}
               onChange={handleChange}
@@ -55,17 +55,17 @@ export default function Component({ projects }: BlogProps) {
               <Tab value={1} label="News" />
               <Tab value={2} label="Money" />
             </Tabs>
-          </div>
+          </ProjectsHeaderDiv>
 
           <TabPanel index={0} value={value}>
             <Grid container spacing={2}>
               <Grid item xs={12} xl={12}>
-                <div className={styles["projects-description"]}>
-                  Tree planting At Ecosia, we plant trees where they&apos;re needed
-                  most. Browse through our tree-planting portfolio to learn
-                  where the trees stand, which species we plant, and what their
-                  impact is. And much more!
-                </div>
+                <ProjectsDescriptionDiv>
+                  Tree planting At Ecosia, we plant trees where they&apos;re
+                  needed most. Browse through our tree-planting portfolio to
+                  learn where the trees stand, which species we plant, and what
+                  their impact is. And much more!
+                </ProjectsDescriptionDiv>
               </Grid>
               {projects.map((project) => (
                 <Grid
@@ -75,18 +75,15 @@ export default function Component({ projects }: BlogProps) {
                   xl={4}
                   key={project.id}
                   onMouseEnter={() => setShownId(project.id)}
-                  onMouseLeave={() => setShownId(undefined)}
+                  onMouseLeave={() => setShownId("")}
                 >
-                  <div className={styles.container}>
-                    <img
-                      className={styles["image-wrapper"]}
-                      src={project.image}
-                    ></img>
-                    <div className={styles["title-container"]}>
-                      <p className={styles.title}>{project.scope}</p>
+                  <div>
+                    <ProjectImg src={project.image}></ProjectImg>
+                    <TitleContainerDiv>
+                      <TitleParagraph>{project.scope}</TitleParagraph>
                       {shownId === project.id && showMediaLinks(project)}
-                    </div>
-                    <p className={styles.subtitle}>{project.name}</p>
+                    </TitleContainerDiv>
+                    <SubtitleParagraph>{project.name}</SubtitleParagraph>
                     <p>{project.desc}</p>
                     <Link href={`/project/${project.id}`}>
                       <a>
@@ -104,20 +101,12 @@ export default function Component({ projects }: BlogProps) {
               ))}
             </Grid>
           </TabPanel>
-
-          <TabPanel index={1} value={value}>
-            <div className={styles["news-container"]}></div>
-          </TabPanel>
-
-          <TabPanel index={2} value={value}>
-            <div className={styles["reports-container"]}></div>
-          </TabPanel>
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
       </Grid>
-    </div>
+    </MainContainer>
   );
 }
 
@@ -155,3 +144,57 @@ function showMediaLinks(project: Project) {
     </div>
   );
 }
+
+// Styled Components
+
+const MainContainer = styled.div`
+  padding: 100px 0px;
+`;
+
+const LogoHeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+`;
+
+const LogoImageDiv = styled.div`
+  max-width: 100px;
+`;
+
+const TitleHeader = styled.h1`
+  color: ${AppColor.Teal};
+  text-transform: uppercase;
+`;
+
+const ProjectsHeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ProjectsDescriptionDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  margin: 50px 0px;
+  border: 1px dashed grey;
+`;
+
+const ProjectImg = styled.img`
+  max-width: 100%;
+`;
+
+const TitleContainerDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TitleParagraph = styled.p`
+  text-transform: uppercase;
+  border-left: 5px solid teal;
+  padding: 5px;
+`;
+
+const SubtitleParagraph = styled.p`
+  font-size: larger;
+`;
