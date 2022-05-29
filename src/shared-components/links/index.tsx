@@ -3,25 +3,23 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 
 import images from "./images";
-import styles from "./links.module.scss";
 
-const Links = () => {
+export default function Links() {
   return (
-    <div className={styles.links}>
+    <MainDiv>
       <Grid container spacing={2}>
         <Grid item xs={2} xl={2}>
           <div>
-            <Image
-              className={styles["image-wrapper"]}
+            <LogoImage
               src={images.corporationImage}
               alt="b corporation"
-            ></Image>
+            ></LogoImage>
           </div>
         </Grid>
         <Grid item xs={8} xl={8}>
-          <div className={styles.container}>
+          <ContainerDiv>
             <div>
-              <div className={styles.title}>SITEMAP</div>
+              <TitleDiv>SITEMAP</TitleDiv>
               <div>
                 <a href="#id">News</a>
               </div>
@@ -42,7 +40,7 @@ const Links = () => {
               </div>
             </div>
             <div>
-              <div className={styles.title}>Resources</div>
+              <TitleDiv>Resources</TitleDiv>
               <div>
                 <a href="#id">FAQ</a>
               </div>
@@ -66,7 +64,7 @@ const Links = () => {
               </div>
             </div>
             <div>
-              <div className={styles.title}>Imprint</div>
+              <TitleDiv>Imprint</TitleDiv>
               <div>
                 Ecosia GmbH Schinkestraße 9
                 <br />
@@ -75,28 +73,43 @@ const Links = () => {
                 Chairman Christian Kroll
               </div>
             </div>
-          </div>
+          </ContainerDiv>
         </Grid>
         <Grid item xs={2} xl={2}>
-          <div className={styles.title}>Apps</div>
+          <TitleDiv>Apps</TitleDiv>
           <div>
-            <Image
-              className={styles["image-wrapper"]}
-              src={images.appStoreImage}
-              alt="app store"
-            />
+            <LogoImage src={images.appStoreImage} alt="app store" />
           </div>
           <div>
-            <Image
-              className={styles["image-wrapper"]}
-              src={images.playStoreImage}
-              alt="play store"
-            />
+            <LogoImage src={images.playStoreImage} alt="play store" />
           </div>
         </Grid>
       </Grid>
-    </div>
+    </MainDiv>
   );
-};
+}
 
-export default Links;
+// Styled Components
+
+const MainDiv = styled.div`
+  margin: 25px 0;
+`;
+
+const ContainerDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 15vh;
+`;
+
+const TitleDiv = styled.div`
+  font-size: medium;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+`;
+
+const LogoImage = styled(Image)`
+  width: 10vw;
+  max-width: 150px;
+`;

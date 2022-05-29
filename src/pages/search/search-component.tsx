@@ -53,7 +53,7 @@ export default function Component({
   );
 }
 
-function showResults(value: any, progress: boolean, resultsObject: any) {
+function showResults(value: number, progress: boolean, resultsObject: any) {
   if (progress) return <CircularProgress />;
 
   if (value === 0) return <Components.SearchList {...resultsObject} />;

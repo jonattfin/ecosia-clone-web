@@ -71,7 +71,6 @@ function searchByQueryAsync(
           name: `name ${i}`,
         };
       });
-      debugger;
       resolve(data);
     }, 500);
   });

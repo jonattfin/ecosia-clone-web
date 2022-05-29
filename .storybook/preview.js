@@ -3,11 +3,6 @@ import React from "react";
 
 import { ImageOptimisationProvider } from "../src/providers/image-provider";
 
-// Object.defineProperty(nextImage, 'default', {
-//   configurable: true,
-//   value: props => <img {...props} />
-// });
-
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
