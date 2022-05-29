@@ -3,11 +3,11 @@ import { Search as SearchIcon } from "@mui/icons-material";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import styled from "@emotion/styled";
 
 import * as Images from "../images";
-import styles from "../search.module.scss";
 
-interface SearchProps {
+export interface SearchProps {
   query: string;
   doSearch: (query: string) => void;
 }
@@ -16,7 +16,7 @@ export default function Component(props: SearchProps) {
   const [query, setQuery] = useState(props.query);
 
   return (
-    <section className={styles["search-section"]}>
+    <MainSection>
       <Stack direction="row" spacing={2}>
         <Link href="/">
           <a>
@@ -41,6 +41,10 @@ export default function Component(props: SearchProps) {
           />
         </FormControl>
       </Stack>
-    </section>
+    </MainSection>
   );
 }
+
+const MainSection = styled.section`
+  padding-top: 100px;
+`
