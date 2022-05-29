@@ -1,28 +1,29 @@
 import { Grid } from "@mui/material";
+import styled from "@emotion/styled";
 
 import * as Components from "./components";
-import styles from "./about-us.module.scss";
+import { AppColor } from "../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["about-us-section"]}>
+    <section>
       <Grid container>
         {/* section */}
-        <Grid className={styles["alice-blue"]} item xs={12} xl={12}>
+        <BlueGrid item xs={12} xl={12}>
           <Components.BannerComponent />
-        </Grid>
+        </BlueGrid>
         {/* section */}
 
         {/* section */}
-        <Grid className={styles["grey"]} item xl={3}>
+        <GreyGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["grey"]} item xs={12} xl={6}>
+        </GreyGrid>
+        <GreyGrid item xs={12} xl={6}>
           <Components.SocialBusinessComponent />
-        </Grid>
-        <Grid className={styles["grey"]} item xl={3}>
+        </GreyGrid>
+        <GreyGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </GreyGrid>
         {/* section */}
 
         {/* section */}
@@ -38,15 +39,15 @@ export default function Component() {
         {/* section */}
 
         {/* section */}
-        <Grid className={styles["grey"]} item xl={3}>
+        <GreyGrid item xl={3}>
           &nbsp;
-        </Grid>
-        <Grid className={styles["grey"]} item xs={12} xl={6}>
+        </GreyGrid>
+        <GreyGrid item xs={12} xl={6}>
           <Components.HireComponent />
-        </Grid>
-        <Grid className={styles["grey"]} item xl={3}>
+        </GreyGrid>
+        <GreyGrid item xl={3}>
           &nbsp;
-        </Grid>
+        </GreyGrid>
         {/* section */}
 
         {/* section */}
@@ -64,3 +65,13 @@ export default function Component() {
     </section>
   );
 }
+
+// Styled Components
+
+const BlueGrid = styled(Grid)`
+  background-color: ${AppColor.AliceBlue};
+`;
+
+const GreyGrid = styled(Grid)`
+  background-color: ${AppColor.Grey};
+`;

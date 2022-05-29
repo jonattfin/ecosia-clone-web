@@ -10,6 +10,7 @@ export { default as Image } from "./image";
 export const enum AppColor {
   AliceBlue = "aliceblue",
   Teal = "teal",
+  Grey = '#f9f9f9',
 }
 
 export const MainTitleDiv = styled.div`

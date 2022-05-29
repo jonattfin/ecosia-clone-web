@@ -1,25 +1,27 @@
-import styles from "../about-us.module.scss";
+import styled from "@emotion/styled";
+
+import { MainTitleDiv } from "../../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["social-business-section"]}>
-      <div className={styles["social-business-parent"]}>
-        <div className={styles["main-title"]}>
+    <section>
+      <ParentDiv>
+        <MainTitleDiv>
           Ecosia is a social business founded in 2009 after a trip around the
           world
-        </div>
-        <div className={styles["social-business-child"]}>
+        </MainTitleDiv>
+        <ChildDiv>
           {getTimePeriods().map((period, index) => (
             <div key={`period_${index}`}>
-              <div className={styles["title"]}>{period.time}</div>
-              <div className={styles["center"]}>{period.title}</div>
-              <div className={styles["line"]} />
-              <div className={styles["center"]}>{period.content}</div>
+              <TitleDiv>{period.time}</TitleDiv>
+              <ContentDiv>{period.title}</ContentDiv>
+              <LineDiv />
+              <ContentDiv>{period.content}</ContentDiv>
             </div>
           ))}
-        </div>
-        <div/>
-      </div>
+        </ChildDiv>
+        <div />
+      </ParentDiv>
     </section>
   );
 }
@@ -52,3 +54,33 @@ function getTimePeriods() {
     },
   ];
 }
+
+// Styled Components
+
+const ParentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ChildDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40vh;
+`;
+
+const TitleDiv = styled.div`
+  text-transform: uppercase;
+  padding: 15px 0;
+  text-align: center;
+`;
+
+const LineDiv = styled.div`
+  border: 3px solid #aab74f;
+  margin: 10px 50px;
+`;
+
+const ContentDiv = styled.div`
+  text-align: center;
+`;

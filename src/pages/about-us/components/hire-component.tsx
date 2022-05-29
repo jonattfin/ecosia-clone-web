@@ -1,26 +1,37 @@
+import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
 
-import styles from "../about-us.module.scss";
+import { MainSubtitleDiv, MainTitleDiv } from "../../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["hire-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["hire-container"]}>
-            <div className={styles["main-title"]}>We&apos;re hiring!</div>
-            <div className={styles["main-subtitle"]}>
+          <ContainerDiv>
+            <MainTitleDiv>We&apos;re hiring!</MainTitleDiv>
+            <MainSubtitleDiv>
               Want to help change the world? Let&apos;s team up. <br />
               Apply to help us build great products and services that can make
               the world a more sustainable place. <br />
               We can&apos;t wait to hear from you.
-            </div>
+            </MainSubtitleDiv>
             <div>
               <Button variant="contained">See openings</Button>
             </div>
-          </div>
+          </ContainerDiv>
         </Grid>
       </Grid>
     </section>
   );
 }
+
+// Styled Components
+
+const ContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 30vh;
+`;

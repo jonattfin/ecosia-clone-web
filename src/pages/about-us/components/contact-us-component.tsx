@@ -1,52 +1,69 @@
+import styled from "@emotion/styled";
 import { TextField, Button, MenuItem, Grid } from "@mui/material";
 
-import styles from "../about-us.module.scss";
+import { MainSubtitleDiv, MainTitleDiv } from "../../../shared-components";
 
 export default function Component() {
   return (
-    <section className={styles["contact-us-section"]}>
+    <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <div className={styles["parent-container"]}>
-            <div className={styles["main-title"]}>Contact us</div>
-            <div className={styles["main-subtitle"]}>
+          <ParentContainer>
+            <MainTitleDiv>Contact us</MainTitleDiv>
+            <MainSubtitleDiv>
               For questions about Ecosia check our FAQ first. <br />
               If you don&apos;t see what you are looking for, drop us a line!
-            </div>
-            <div className={styles["child-container"]}>
-              <TextField
-                className={styles["extra-field"]}
+            </MainSubtitleDiv>
+            <ChildContainer>
+              <ExtraTextField
                 variant="outlined"
                 label="Message"
                 multiline
                 rows={5}
-              ></TextField>
-              <TextField
-                className={styles["extra-field"]}
-                variant="outlined"
-                label="E-mail"
-              />
-              <TextField
-                className={styles["extra-field"]}
-                variant="outlined"
-                label="Subject"
-                select
-              >
+              ></ExtraTextField>
+              <ExtraTextField variant="outlined" label="E-mail" />
+              <ExtraTextField variant="outlined" label="Subject" select>
                 {getFilterOptions().map((option) => (
                   <MenuItem key={option} value={option}>
                     {option}
-                </MenuItem>
+                  </MenuItem>
                 ))}
-              </TextField>
+              </ExtraTextField>
               <Button variant="contained">Send</Button>
-            </div>
-          </div>
+            </ChildContainer>
+          </ParentContainer>
         </Grid>
       </Grid>
     </section>
   );
 }
 
-function getFilterOptions() {
+function getFilterOptions(): string[] {
   return ["Subject", "Technical problem", "General inquiry", "Press inquiry"];
 }
+
+// Styled Components
+
+const ParentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ChildContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+
+  @media (max-height: 1080px) {
+    height: 50vh;
+  }
+`;
+
+const ExtraTextField = styled(TextField)`
+  width: 25vw;
+  margin: 5px;
+`;
