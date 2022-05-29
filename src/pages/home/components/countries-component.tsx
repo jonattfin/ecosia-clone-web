@@ -18,7 +18,7 @@ export default function Component() {
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <MainTitleDiv data-test="countries-title">
-            Where are your trees being planted?{" "}
+            Where are your trees being planted?
           </MainTitleDiv>
           <MainSubtitleDiv data-test="countries-subtitle">
             We plant in 30+ countries with local organizations
