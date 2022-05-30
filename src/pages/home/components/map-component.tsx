@@ -6,7 +6,6 @@ import {
   AppColor,
   LinkDiv,
   MainTitleDiv,
-  MainSubtitleDiv,
   MainSubtitleKickDiv,
 } from "../../../shared-components";
 
