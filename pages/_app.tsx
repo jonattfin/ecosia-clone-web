@@ -7,7 +7,7 @@ import { TreesContext } from "../src/providers/context";
 
 import "../styles/globals.css";
 
-export default function Component({ Component, pageProps }: AppProps) {
+export default function AppComponent({ Component, pageProps }: AppProps) {
   const [numberOfTrees, setNumberOfTrees] = useState(0);
 
   const incrementTreeCount = () => {
