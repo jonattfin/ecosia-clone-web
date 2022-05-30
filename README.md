@@ -16,20 +16,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Other opinionated decisions
 
 - pages are split by "features", and all the components / images / styles stay within that feature folder "page" for better coupling.
+- Typescript is used for clarity & to catch errors at compiletime.
+- Prisma is used for the ORM and Postgresql is used for data storage (right now just for projects). The Postgresql database is hosted in Heroku.
 - pages are loaded in a lazy fashion "by demand" to minimize the loading time.
 - the components are split by the "smart/not smart" rule, and usually per page there's only one smart component which does the api calls, all the others just render what they receive as props.
 - Storybook is used to render components "out of the box" and to build them in isolation. Also those components are snapshot tested.
 - For the integration tests we're using cypress.js with cucumber.js and the features/scenarios are written in Gerkin.
 - The style & icons are based on material ui and based on styled components.
-
-
 
 ## Learn More
 
