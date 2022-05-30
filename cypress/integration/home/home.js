@@ -2,7 +2,7 @@
 
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 
-Given('The user opens the home page', (page) => {
+Given('The user opens the home page', () => {
   cy.visit(`http://localhost:3000/`)
 })
 

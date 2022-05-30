@@ -15,7 +15,7 @@ export default function Component({
   var data = showWindow(values, PAGE_SIZE, page);
   const numberOfPages = parseInt((values.length / PAGE_SIZE).toString(), 10);
 
-  const handleChange = (ev: any, value: number) => setPage(value);
+  const handleChange = (_ev: any, value: number) => setPage(value);
 
   return (
     <section>
@@ -53,7 +53,7 @@ export default function Component({
 const PAGE_SIZE = 15;
 
 function showWindow(data: Array<any>, pageSize: number, pageNumber = 1) {
-  return data.filter((v, index) => {
+  return data.filter((_v, index) => {
     return (
       index >= pageSize * (pageNumber - 1) && index < pageSize * pageNumber
     );

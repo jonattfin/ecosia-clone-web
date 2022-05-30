@@ -85,7 +85,7 @@ export default function Component() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {pages.map(({ icon, text, url }, index) => (
+              {pages.map(({ text, url }, index) => (
                 <MenuItem
                   key={`menuItem_${index}`}
                   onClick={() => handleClose(url)}

@@ -60,7 +60,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
 function searchByQueryAsync(
   query: string | string[] | undefined
 ): Promise<ResultQuery[]> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     setTimeout(() => {
       const max = _.random(50, 1000);
 

@@ -23,7 +23,7 @@ export default function Component({ projects }: BlogProps) {
   const [value, setValue] = React.useState(0);
   const [shownId, setShownId] = React.useState("");
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 

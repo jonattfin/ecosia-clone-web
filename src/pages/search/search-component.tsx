@@ -24,8 +24,6 @@ export default function Component({
 }: SearchProps) {
   const [value] = useState(0);
 
-  const handleChange = () => {};
-
   return (
     <Grid container>
       <Grid item xl={4}>
@@ -35,11 +33,7 @@ export default function Component({
         <section>
           <Components.Search {...{ query, doSearch }} />
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
+            <Tabs value={value} aria-label="basic tabs example">
               <Tab icon={<SearchIcon />} iconPosition="start" label="Web" />
               <Tab icon={<PhotoIcon />} iconPosition="start" label="Images" />
               <Tab icon={<NewspaperIcon />} iconPosition="start" label="News" />
