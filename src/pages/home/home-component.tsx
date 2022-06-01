@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
+import Head from "next/head";
 
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
@@ -10,8 +11,14 @@ export interface HomeComponentProps {
 }
 
 export default function Component({ counter, onSearch }: HomeComponentProps) {
+  const title = "Ecosia - The search engine that plants trees";
+
   return (
     <section>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
+      </Head>
       <Grid container>
         {/* Search section */}
         <Grid item xl={3}>

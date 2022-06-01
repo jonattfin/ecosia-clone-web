@@ -1,12 +1,19 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
+import Head from "next/head";
 
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
 
 export default function Component() {
+  const title = "About Ecosia and the team";
+
   return (
     <section>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
+      </Head>
       <Grid container>
         {/* section */}
         <BlueGrid item xs={12} xl={12}>
