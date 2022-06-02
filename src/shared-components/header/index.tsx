@@ -20,14 +20,7 @@ import {
   ForestOutlined as ForestOutlinedIcon,
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
 } from "@mui/icons-material";
-
-const pages = [
-  { url: "/", text: "Home", icon: "home" },
-  { url: "/how-it-works", text: "How Ecosia works", icon: "build" },
-  { url: "/about-us", text: "About us", icon: "help" },
-  { url: "/mobile", text: "Mobile app", icon: "mobile-phone" },
-  { url: "/privacy", text: "Privacy", icon: "shield" },
-];
+import getTranslations from "../translations";
 
 const darkTheme = createTheme({
   palette: {
@@ -61,6 +54,8 @@ export default function Component({ changeLanguage }: any) {
   const language = useContext(LanguageContext);
   const otherLanguage: Language =
     language == Language.English ? Language.French : Language.English;
+
+  const t = useTranslations(language);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -98,12 +93,12 @@ export default function Component({ changeLanguage }: any) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {pages.map(({ text, url }, index) => (
+              {getPages().map(({ slug, url }, index) => (
                 <MenuItem
                   key={`menuItem_${index}`}
                   onClick={() => handleClose(url)}
                 >
-                  {text}
+                  {t(slug)}
                 </MenuItem>
               ))}
               <Divider />
@@ -127,3 +122,39 @@ export default function Component({ changeLanguage }: any) {
     </Box>
   );
 }
+
+const getPages = () => {
+  return [
+    { url: "/", slug: "home", icon: "home" },
+    { url: "/how-it-works", slug: "howItWorks", icon: "build" },
+    { url: "/about-us", slug: "aboutUs", icon: "help" },
+    { url: "/mobile", slug: "mobileApp", icon: "mobile-phone" },
+    { url: "/privacy", slug: "privacy", icon: "shield" },
+  ];
+};
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: any = {
+    [Language.English]: {
+      home: "Home",
+      howItWorks: "How Ecosia works",
+      aboutUs: "About us",
+      mobileApp: "Mobile app",
+      privacy: "Privacy",
+    },
+    [Language.French]: {
+      home: "Home",
+      howItWorks: "Comment fonctionne Ecosia",
+      aboutUs: "Qui sommes-nous",
+      mobileApp: "Application mobile",
+      privacy: "Vie privée",
+    },
+  };
+
+  let currentLanguage = useContext(LanguageContext);
+  if (language) currentLanguage = language;
+
+  return getTranslations(translation)(currentLanguage);
+};

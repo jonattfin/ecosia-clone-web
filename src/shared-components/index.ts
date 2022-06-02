@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { Language } from "../providers/context";
 
 export { default as Footer } from "./footer";
 export { default as Header } from "./header";
 export { default as Links } from "./links";
 export { default as Image } from "./image";
+export { default as getTranslations } from "./translations";
 
 // Shared Styled Components & other styles
 
@@ -34,14 +34,3 @@ export const LinkDiv = styled.div`
   padding-top: 10px;
   padding-right: 20px;
 `;
-
-export function getTranslations(translation: any) {
-  return (language: Language | null) => {
-    return (slug: string) => {
-      const obj: any = translation[language || "en"];
-      if (obj && obj[slug]) return obj[slug];
-
-      return slug;
-    };
-  };
-}
