@@ -7,43 +7,47 @@ import {
   LinkDiv,
   MainTitleDiv,
   MainSubtitleKickDiv,
+  getTranslations,
 } from "../../../shared-components";
+import { Language, LanguageContext } from "../../../providers/context";
+import { useContext } from "react";
 
 export interface MapComponentProps {
   counter: number;
+  language?: Language;
 }
 
-export default function Component({ counter }: MapComponentProps) {
+export default function Component({ counter, language }: MapComponentProps) {
+  const t = useTranslations(language);
+
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
-          <MainTitleDiv data-test="map-title">
-            Trees planted by ecosia users
-          </MainTitleDiv>
+          <MainTitleDiv data-test="map-title">{t("treesPlanted")}</MainTitleDiv>
           <MainSubtitleKickDiv>{counter}</MainSubtitleKickDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>15 Million</TitleDiv>
-          <ContentDiv>People using Ecosia</ContentDiv>
+          <ContentDiv>{t("peopleUsingEcosia")}</ContentDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>500+</TitleDiv>
-          <ContentDiv>Native species</ContentDiv>
+          <ContentDiv>{t("nativeSpecies")}</ContentDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>30+</TitleDiv>
-          <ContentDiv>Countries</ContentDiv>
+          <ContentDiv>{t("countries")}</ContentDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>60+</TitleDiv>
-          <ContentDiv>Active projects</ContentDiv>
+          <ContentDiv>{t("activeProjects")}</ContentDiv>
         </Grid>
         <Grid item xs={12} xl={12}>
           <LinkDiv>
             <Link href="/blog">
               <a data-test="discover-projects">
-                Discover our projects <ChevronRightIcon fontSize="small" />
+                {t("discover")} <ChevronRightIcon fontSize="small" />
               </a>
             </Link>
           </LinkDiv>
@@ -68,3 +72,31 @@ const ContentDiv = styled.div`
   padding-left: 20px;
   border-left: 5px solid ${AppColor.Teal};
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: any = {
+    [Language.English]: {
+      treesPlanted: "Trees planted by ecosia users",
+      peopleUsingEcosia: "People using Ecosia",
+      nativeSpecies: "Native species",
+      countries: "Countries",
+      activeProjects: "Active projects",
+      discover: "Discover our projects",
+    },
+    [Language.French]: {
+      treesPlanted: "Arbres plantés par les utilisateurs d'ecosia",
+      peopleUsingEcosia: "Personnes utilisant Ecosia",
+      nativeSpecies: "Espèces indigènes",
+      countries: "Pays",
+      activeProjects: "Projets actifs",
+      discover: "Découvrez nos projets",
+    },
+  };
+
+  let currentLanguage = useContext(LanguageContext);
+  if (language) currentLanguage = language;
+
+  return getTranslations(translation)(currentLanguage);
+};

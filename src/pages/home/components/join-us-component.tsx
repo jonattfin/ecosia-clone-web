@@ -1,18 +1,24 @@
 import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 
-import { AppColor, MainSubtitleDiv } from "../../../shared-components";
+import {
+  AppColor,
+  getTranslations,
+  MainSubtitleDiv,
+} from "../../../shared-components";
+import { Language, LanguageContext } from "../../../providers/context";
+import { useContext } from "react";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
+  const t = useTranslations(language);
+
   return (
     <MainSection>
-      <MainSubtitleDiv data-test="join-us-title">
-        Join 15 million people who already use Ecosia
-      </MainSubtitleDiv>
+      <MainSubtitleDiv data-test="join-us-title">{t("joinUs")}</MainSubtitleDiv>
       <div>&nbsp;</div>
       <div>
         <Button color="primary" variant="contained" data-test="share-ecosia">
-          Share Ecosia
+          {t("shareUs")}
         </Button>
       </div>
     </MainSection>
@@ -29,3 +35,23 @@ const MainSection = styled.section`
   height: 20vh;
   background-color: ${AppColor.AliceBlue};
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: any = {
+    [Language.English]: {
+      joinUs: "Join 15 million people who already use Ecosia",
+      shareUs: "Share Ecosia",
+    },
+    [Language.French]: {
+      joinUs: "Rejoignez 15 millions de personnes qui utilisent déjà Ecosia",
+      shareUs: "Partager Ecosia",
+    },
+  };
+
+  let currentLanguage = useContext(LanguageContext);
+  if (language) currentLanguage = language;
+
+  return getTranslations(translation)(currentLanguage);
+};

@@ -44,7 +44,7 @@ export default function Component({
           &nbsp;
         </BlueGrid>
         <BlueGrid item xs={12} xl={6}>
-          <Components.CountriesComponent />
+          <Components.CountriesComponent {...{ language }} />
         </BlueGrid>
         <BlueGrid item xl={3}>
           &nbsp;
@@ -56,7 +56,7 @@ export default function Component({
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <Components.MapComponent {...{ counter }} />
+          <Components.MapComponent {...{ counter, language }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;
@@ -68,7 +68,7 @@ export default function Component({
           &nbsp;
         </BlueGrid>
         <BlueGrid item xl={6}>
-          <Components.FinancialComponent />
+          <Components.FinancialComponent {...{ language }} />
         </BlueGrid>
         <BlueGrid item xl={3}>
           &nbsp;
@@ -80,7 +80,7 @@ export default function Component({
           &nbsp;
         </Grid>
         <Grid item xl={6}>
-          <Components.WhyChooseUsComponent />
+          <Components.WhyChooseUsComponent {...{ language }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;
@@ -88,7 +88,7 @@ export default function Component({
         {/* Why choose us section */}
         <Grid item xs={12} xl={12}>
           <section>
-            <Components.JoinUsComponent />
+            <Components.JoinUsComponent {...{ language }} />
           </section>
         </Grid>
       </Grid>

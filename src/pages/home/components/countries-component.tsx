@@ -1,36 +1,40 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
+import { useContext } from "react";
+
+import { Language, LanguageContext } from "../../../providers/context";
+
 import {
   Image,
   MainTitleDiv,
   MainSubtitleDiv,
   AppColor,
+  getTranslations,
 } from "../../../shared-components";
 import * as Images from "./images";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
   const imageProps = { width: 300, height: 0 };
   imageProps.height = imageProps.width * 0.7;
+
+  const t = useTranslations(language);
 
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <MainTitleDiv data-test="countries-title">
-            Where are your trees being planted?
+            {t("whereAreTreesPlanted")}
           </MainTitleDiv>
           <MainSubtitleDiv data-test="countries-subtitle">
-            We plant in 30+ countries with local organizations
+            {t("wePlantIn30Countries")}
           </MainSubtitleDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image src={Images.BrazilImage} alt="brazil" {...imageProps} />
           <NameDiv>Brazil</NameDiv>
-          <TextDiv>
-            Your trees in Brazil protect thousands of endangered plants and
-            animals.
-          </TextDiv>
+          <TextDiv>{t("treesInBrasil")}</TextDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image
@@ -39,18 +43,12 @@ export default function Component() {
             {...imageProps}
           />
           <NameDiv>Burkina Faso</NameDiv>
-          <TextDiv>
-            By planting trees in Burkina Faso, you restore desertified land to
-            its former fertility.
-          </TextDiv>
+          <TextDiv>{t("treesInBurkinaFaso")}</TextDiv>
         </Grid>
         <Grid item xs={12} xl={4}>
           <Image src={Images.IndonesiaImage} alt="indonesia" {...imageProps} />
           <NameDiv>Indonesia</NameDiv>
-          <TextDiv>
-            In Indonesia, your searches bring back forests on former palm oil
-            plantations while creating alternative sources of income.
-          </TextDiv>
+          <TextDiv>{t("treesInIndonesia")}</TextDiv>
         </Grid>
         <Grid item>&nbsp;</Grid>
       </Grid>
@@ -69,3 +67,37 @@ const NameDiv = styled.div`
 const TextDiv = styled.div`
   padding-top: 2%;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: any = {
+    [Language.English]: {
+      whereAreTreesPlanted: "Where are your trees being planted?",
+      wePlantIn30Countries:
+        "We plant in 30+ countries with local organizations",
+      treesInBrasil:
+        "Your trees in Brazil protect thousands of endangered plants and animals.",
+      treesInBurkinaFaso:
+        "By planting trees in Burkina Faso, you restore desertified land to its former fertility.",
+      treesInIndonesia:
+        "In Indonesia, your searches bring back forests on former palm oil plantations while creating alternative sources of income.",
+    },
+    [Language.French]: {
+      whereAreTreesPlanted: "Où vos arbres sont-ils plantés?",
+      wePlantIn30Countries:
+        "Nous plantons dans plus de 30 pays avec des organisations locales",
+      treesInBrasil:
+        "Vos arbres au Brésil protègent des milliers de plantes et d'animaux en voie de disparition.",
+      treesInBurkinaFaso:
+        "En plantant des arbres au Burkina Faso, vous redonnez aux terres désertifiées leur fertilité d'antan.",
+      treesInIndonesia:
+        "En Indonésie, vos recherches ramènent des forêts sur d'anciennes plantations de palmiers à huile tout en créant des sources alternatives de revenus.",
+    },
+  };
+
+  let currentLanguage = useContext(LanguageContext);
+  if (language) currentLanguage = language;
+
+  return getTranslations(translation)(currentLanguage);
+};

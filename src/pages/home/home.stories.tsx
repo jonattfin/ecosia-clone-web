@@ -18,15 +18,12 @@ export const PieComponent = () => {
   );
 };
 
-const SearchComponentTemplate: ComponentStory<
-  typeof Components.SearchComponent
-> = (args) => <Components.SearchComponent {...args} />;
-
-export const SearchComponent = SearchComponentTemplate.bind({});
+export const SearchComponent = (args: any) => (
+  <Components.SearchComponent {...args} />
+);
 SearchComponent.args = {
   onSearch: action("onSearch"),
   counter: 100,
-  language: Language.English,
 };
 SearchComponent.argTypes = {
   language: {
@@ -35,29 +32,68 @@ SearchComponent.argTypes = {
   },
 };
 
-export const CountriesComponent = () => <Components.CountriesComponent />;
+export const CountriesComponent = (args: any) => (
+  <Components.CountriesComponent {...args} />
+);
+CountriesComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
+};
 
-const MapComponentTemplate: ComponentStory<typeof Components.MapComponent> = (
-  args
-) => <Components.MapComponent {...args} />;
-
-export const MapComponent = MapComponentTemplate.bind({});
+export const MapComponent = (args: any) => (
+  <Components.MapComponent {...args} />
+);
 MapComponent.args = {
   counter: 100,
 };
+MapComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
+};
 
-export const FinancialComponent = () => <Components.FinancialComponent />;
-
-export const WhyChooseUsComponent = () => <Components.WhyChooseUsComponent />;
-
-export const JoinUsComponent = () => <Components.JoinUsComponent />;
-
-const HomePageIndexTemplate: ComponentStory<typeof HomeComponent> = (args) => (
-  <HomeComponent {...args} />
+export const FinancialComponent = (args: any) => (
+  <Components.FinancialComponent {...args} />
 );
+FinancialComponent.args = {};
+FinancialComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
+};
 
-export const HomePageIndex = HomePageIndexTemplate.bind({});
+export const WhyChooseUsComponent = (args: any) => (
+  <Components.WhyChooseUsComponent {...args} />
+);
+WhyChooseUsComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
+};
+
+export const JoinUsComponent = (args: any) => (
+  <Components.JoinUsComponent {...args} />
+);
+JoinUsComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
+};
+
+export const HomePageIndex = (args: any) => <HomeComponent {...args} />;
 HomePageIndex.args = {
   counter: 100,
   onSearch: action("onSearch"),
+};
+HomePageIndex.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
 };
