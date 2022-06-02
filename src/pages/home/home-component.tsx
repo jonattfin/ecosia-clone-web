@@ -1,16 +1,23 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 import Head from "next/head";
+import { useContext } from "react";
 
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
+import { Language, LanguageContext } from "../../providers/context";
 
 export interface HomeComponentProps {
   counter: number;
+  language?: Language;
   onSearch: (query: string) => void;
 }
 
-export default function Component({ counter, onSearch }: HomeComponentProps) {
+export default function Component({
+  counter,
+  onSearch,
+  language,
+}: HomeComponentProps) {
   const title = "Ecosia - The search engine that plants trees";
 
   return (
@@ -25,7 +32,7 @@ export default function Component({ counter, onSearch }: HomeComponentProps) {
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <Components.SearchComponent {...{ counter, onSearch }} />
+          <Components.SearchComponent {...{ counter, onSearch, language }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;

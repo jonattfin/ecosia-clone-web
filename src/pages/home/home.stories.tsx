@@ -4,6 +4,7 @@ import { ComponentStory } from "@storybook/react";
 import HomeComponent, { HomeComponentProps } from "./home-component";
 
 import * as Components from "./components";
+import { Language } from "../../providers/context";
 
 export default function Index() {
   return <div></div>;
@@ -25,6 +26,13 @@ export const SearchComponent = SearchComponentTemplate.bind({});
 SearchComponent.args = {
   onSearch: action("onSearch"),
   counter: 100,
+  language: Language.English,
+};
+SearchComponent.argTypes = {
+  language: {
+    options: [Language.English, Language.French],
+    control: { type: "select" },
+  },
 };
 
 export const CountriesComponent = () => <Components.CountriesComponent />;

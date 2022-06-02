@@ -1,4 +1,10 @@
 import { createContext } from "react";
 
-const numberOfTrees: number = 0;
-export const TreesContext = createContext(numberOfTrees);
+export const TreesContext = createContext(0);
+
+export enum Language {
+  English = "English",
+  French = "French",
+}
+
+export const LanguageContext = createContext(Language.English);

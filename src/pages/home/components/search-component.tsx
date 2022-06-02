@@ -1,21 +1,29 @@
 import { FormControl, OutlinedInput } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "@emotion/styled";
 
 import * as Images from "./images";
-import { Image, AppColor } from "../../../shared-components";
+import { Image, AppColor, getTranslations } from "../../../shared-components";
+import { Language, LanguageContext } from "../../../providers/context";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
   counter: number;
+  language?: Language;
 }
 
-export default function Component({ onSearch, counter }: SearchComponentProps) {
+export default function Component({
+  onSearch,
+  counter,
+  language,
+}: SearchComponentProps) {
   const [query, setQuery] = useState("");
 
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
+
+  const t = useTranslations(language);
 
   return (
     <MainSection>
@@ -26,7 +34,7 @@ export default function Component({ onSearch, counter }: SearchComponentProps) {
         <SearchFormControl variant="outlined">
           <OutlinedInput
             value={query}
-            placeholder="Search the web to plant trees..."
+            placeholder={t("searchTheWeb")}
             onChange={(ev) => {
               setQuery(ev.target.value);
             }}
@@ -39,10 +47,10 @@ export default function Component({ onSearch, counter }: SearchComponentProps) {
         </SearchFormControl>
       </div>
       <div>
-        <h1>The search engine that plants trees.</h1>
+        <h1>{t("searchEngine")}</h1>
       </div>
       <CounterTextDiv>{counter.toLocaleString()}</CounterTextDiv>
-      <div>Trees planted by Ecosia users.</div>
+      <div>{t("numberOfTrees")}</div>
     </MainSection>
   );
 }
@@ -74,3 +82,25 @@ const CounterTextDiv = styled.div`
   font-size: 4vh;
   color: ${AppColor.Teal};
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: any = {
+    [Language.English]: {
+      searchTheWeb: "Search the web to plant trees...",
+      searchEngine: "The search engine that plants trees.",
+      numberOfTrees: "Trees planted by Ecosia users.",
+    },
+    [Language.French]: {
+      searchTheWeb: "Rechercher sur le Web pour planter des arbres...",
+      searchEngine: "Le moteur de recherche qui plante des arbres.",
+      numberOfTrees: "Arbres plantés par les utilisateurs d'Ecosia",
+    },
+  };
+
+  let currentLanguage = useContext(LanguageContext);
+  if (language) currentLanguage = language;
+
+  return getTranslations(translation)(currentLanguage);
+};

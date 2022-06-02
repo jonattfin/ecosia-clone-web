@@ -10,7 +10,11 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { useRouter } from "next/router";
 
-import { TreesContext } from "../../providers/context";
+import {
+  Language,
+  LanguageContext,
+  TreesContext,
+} from "../../providers/context";
 
 import {
   ForestOutlined as ForestOutlinedIcon,
@@ -34,7 +38,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Component() {
+export default function Component({ changeLanguage }: any) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (event: any) => {
@@ -47,7 +51,16 @@ export default function Component() {
     router.push(url);
   };
 
+  const handleChangeLanguage = (language: string) => {
+    setAnchorEl(null);
+    changeLanguage(language);
+  };
+
   const numberOfTrees = useContext(TreesContext);
+
+  const language = useContext(LanguageContext);
+  const otherLanguage: Language =
+    language == Language.English ? Language.French : Language.English;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -94,6 +107,9 @@ export default function Component() {
                 </MenuItem>
               ))}
               <Divider />
+              <MenuItem onClick={() => handleChangeLanguage(otherLanguage)}>
+                {otherLanguage}
+              </MenuItem>
             </Menu>
             <IconButton
               size="large"
