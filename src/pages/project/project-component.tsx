@@ -48,7 +48,7 @@ export default function Index({ project, tags }: ProjectProps) {
           </ProjectsHeaderDiv>
 
           <ProjectContainerDiv>
-            <img src={project.image}></img>
+            <img src={project.image} alt="something special"></img>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>
