@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { ComponentStory } from "@storybook/react";
 
 import HomeComponent, { HomeComponentProps } from "./home-component";
 
@@ -15,59 +16,40 @@ export const PieComponent = () => {
     </div>
   );
 };
-PieComponent.parameters = {
-  storyshots: { disable: true },
+
+const SearchComponentTemplate: ComponentStory<
+  typeof Components.SearchComponent
+> = (args) => <Components.SearchComponent {...args} />;
+
+export const SearchComponent = SearchComponentTemplate.bind({});
+SearchComponent.args = {
+  onSearch: action("onSearch"),
+  counter: 100,
 };
 
-export const SearchComponent = () => {
-  const props = {
-    onSearch: action("onSearch"),
-    counter: 100,
-  };
+export const CountriesComponent = () => <Components.CountriesComponent />;
 
-  return <Components.SearchComponent {...props} />;
+const MapComponentTemplate: ComponentStory<typeof Components.MapComponent> = (
+  args
+) => <Components.MapComponent {...args} />;
+
+export const MapComponent = MapComponentTemplate.bind({});
+MapComponent.args = {
+  counter: 100,
 };
 
-export const CountriesComponent = () => {
-  const props = {};
+export const FinancialComponent = () => <Components.FinancialComponent />;
 
-  return <Components.CountriesComponent {...props} />;
-};
+export const WhyChooseUsComponent = () => <Components.WhyChooseUsComponent />;
 
-export const MapComponent = () => {
-  const props = {
-    counter: 0,
-  };
+export const JoinUsComponent = () => <Components.JoinUsComponent />;
 
-  return <Components.MapComponent {...props} />;
-};
+const HomePageIndexTemplate: ComponentStory<typeof HomeComponent> = (args) => (
+  <HomeComponent {...args} />
+);
 
-export const FinancialComponent = () => {
-  const props = {};
-  return <Components.FinancialComponent {...props} />;
-};
-FinancialComponent.parameters = {
-  storyshots: { disable: true },
-};
-
-export const WhyChooseUsComponent = () => {
-  const props = {};
-  return <Components.WhyChooseUsComponent {...props} />;
-};
-
-export const JoinUsComponent = () => {
-  const props = {};
-  return <Components.JoinUsComponent {...props} />;
-};
-
-export const HomePageIndex = () => {
-  const props: HomeComponentProps = {
-    counter: 100,
-    onSearch: action("onSearch"),
-  };
-
-  return <HomeComponent {...props} />;
-};
-HomePageIndex.parameters = {
-  storyshots: { disable: true },
+export const HomePageIndex = HomePageIndexTemplate.bind({});
+HomePageIndex.args = {
+  counter: 100,
+  onSearch: action("onSearch"),
 };

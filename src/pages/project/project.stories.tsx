@@ -1,18 +1,23 @@
+import { Project } from "@prisma/client";
+import { ComponentStory } from "@storybook/react";
+
 import ProjectComponent from "./project-component";
 
 export default function Index() {
   return <div></div>;
 }
 
-export const ProjectPage = () => {
-  return <ProjectComponent {...getProjectAndTags()} />;
-};
-ProjectPage.parameters = {
-  storyshots: { disable: true },
+const ProjectPageTemplate: ComponentStory<typeof ProjectComponent> = (args) => (
+  <ProjectComponent {...args} />
+);
+
+export const SearchComponent = ProjectPageTemplate.bind({});
+SearchComponent.args = {
+  ...getProjectAndTags(),
 };
 
 function getProjectAndTags() {
-  const project: any = {
+  const project: Project = {
     id: "id",
     name: "name",
     desc: "desc",
