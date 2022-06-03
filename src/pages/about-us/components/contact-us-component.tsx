@@ -1,18 +1,24 @@
 import styled from "@emotion/styled";
 import { TextField, Button, MenuItem, Grid } from "@mui/material";
+import { ITranslation, Language } from "../../../providers/context";
 
-import { MainSubtitleDiv, MainTitleDiv } from "../../../shared-components";
+import {
+  getTranslations,
+  MainSubtitleDiv,
+  MainTitleDiv,
+} from "../../../shared-components";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
+  const t = useTranslations(language);
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <ParentContainer>
-            <MainTitleDiv>Contact us</MainTitleDiv>
+            <MainTitleDiv>{t("contactUs")}</MainTitleDiv>
             <MainSubtitleDiv>
-              For questions about Ecosia check our FAQ first. <br />
-              If you don&apos;t see what you are looking for, drop us a line!
+              {t("faqSummary")} <br />
+              {t("faqDescription")}
             </MainSubtitleDiv>
             <ChildContainer>
               <ExtraTextField
@@ -67,3 +73,25 @@ const ExtraTextField = styled(TextField)`
   width: 25vw;
   margin: 5px;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: ITranslation = {
+    [Language.English]: {
+      contactUs: "Contact us",
+      faqSummary: "For questions about Ecosia check our FAQ first.",
+      faqDescription:
+        "If you don't see what you are looking for, drop us a line!",
+    },
+    [Language.French]: {
+      contactUs: "Contactez-nous",
+      faqSummary:
+        "Pour toute question sur Ecosia, consultez d'abord notre FAQ.",
+      faqDescription:
+        "Si vous ne voyez pas ce que vous cherchez, écrivez-nous!",
+    },
+  };
+
+  return getTranslations(translation)(language);
+};

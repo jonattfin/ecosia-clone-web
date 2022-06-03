@@ -1,21 +1,23 @@
 import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
+import { ITranslation, Language } from "../../../providers/context";
 
-import { MainTitleDiv } from "../../../shared-components";
+import { getTranslations, MainTitleDiv } from "../../../shared-components";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
+  const t = useTranslations(language);
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <ContainerDiv>
             <MainTitleDiv data-test="banner-title">
-              We believe in everyone&apos;s power to do good
+              {t("weBelive")}
             </MainTitleDiv>
             <div>&nbsp;</div>
             <div>
               <Button variant="contained" data-test="add-ecosia-button">
-                Add Ecosia to Firefox
+                {t("addEcosiaToFirefox")}
               </Button>
             </div>
           </ContainerDiv>
@@ -34,3 +36,20 @@ const ContainerDiv = styled.div`
   align-items: center;
   height: 40vh;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: ITranslation = {
+    [Language.English]: {
+      weBelive: "We believe in everyone's power to do good",
+      addEcosiaToFirefox: "Add Ecosia to Firefox",
+    },
+    [Language.French]: {
+      weBelive: "Nous croyons au pouvoir de chacun de faire le bien",
+      addEcosiaToFirefox: "Ajouter Ecosia à Firefox",
+    },
+  };
+
+  return getTranslations(translation)(language);
+};

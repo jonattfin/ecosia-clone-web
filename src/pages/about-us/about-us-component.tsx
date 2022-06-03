@@ -4,8 +4,9 @@ import Head from "next/head";
 
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
+import { Language } from "../../providers/context";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
   const title = "About Ecosia and the team";
 
   return (
@@ -17,7 +18,7 @@ export default function Component() {
       <Grid container>
         {/* section */}
         <BlueGrid item xs={12} xl={12}>
-          <Components.BannerComponent />
+          <Components.BannerComponent {...{ language }} />
         </BlueGrid>
         {/* section */}
 
@@ -26,7 +27,7 @@ export default function Component() {
           &nbsp;
         </GreyGrid>
         <GreyGrid item xs={12} xl={6}>
-          <Components.SocialBusinessComponent />
+          <Components.SocialBusinessComponent {...{ language }} />
         </GreyGrid>
         <GreyGrid item xl={3}>
           &nbsp;
@@ -38,7 +39,7 @@ export default function Component() {
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <Components.MeetTheTeamComponent />
+          <Components.MeetTheTeamComponent {...{ language }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;
@@ -50,7 +51,7 @@ export default function Component() {
           &nbsp;
         </GreyGrid>
         <GreyGrid item xs={12} xl={6}>
-          <Components.HireComponent />
+          <Components.HireComponent {...{ language }} />
         </GreyGrid>
         <GreyGrid item xl={3}>
           &nbsp;
@@ -62,7 +63,7 @@ export default function Component() {
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={4}>
-          <Components.ContactUsComponent />
+          <Components.ContactUsComponent {...{ language }} />
         </Grid>
         <Grid item xl={4}>
           &nbsp;

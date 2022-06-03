@@ -2,10 +2,16 @@ import { useState } from "react";
 import { Button, Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
-import { MainSubtitleDiv, MainTitleDiv } from "../../../shared-components";
+import {
+  getTranslations,
+  MainSubtitleDiv,
+  MainTitleDiv,
+} from "../../../shared-components";
+import { ITranslation, Language } from "../../../providers/context";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
   const [play, setPlay] = useState(false);
+  const t = useTranslations(language);
 
   return (
     <section>
@@ -14,11 +20,8 @@ export default function Component() {
           <TeamContainerDiv>
             {!play && (
               <>
-                <MainTitleDiv>Step inside!</MainTitleDiv>
-                <MainSubtitleDiv>
-                  Meet the humans who make Ecosia and learn what it&apos;s like
-                  to work here.
-                </MainSubtitleDiv>
+                <MainTitleDiv>{t("stepInside")}</MainTitleDiv>
+                <MainSubtitleDiv>{t("meetTheHumans")}</MainSubtitleDiv>
                 <div>
                   <Button
                     variant="contained"
@@ -60,3 +63,22 @@ const TeamContainerDiv = styled.div`
 const MovieVideo = styled.video`
   max-width: 25vw;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: ITranslation = {
+    [Language.English]: {
+      stepInside: "Step inside!",
+      meetTheHumans:
+        "Meet the humans who make Ecosia and learn what it's like to work here.",
+    },
+    [Language.French]: {
+      stepInside: "Entrez à l'intérieur!",
+      meetTheHumans:
+        "Rencontrez les humains qui fabriquent Ecosia et découvrez ce que c'est que de travailler ici.",
+    },
+  };
+
+  return getTranslations(translation)(language);
+};
