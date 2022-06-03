@@ -8,9 +8,9 @@ import {
   MainTitleDiv,
   MainSubtitleDiv,
   LinkDiv,
-  getTranslations,
 } from "../../../shared-components";
 import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
 const PieComponent = dynamic(() => import("./pie-component"), {
   ssr: false,

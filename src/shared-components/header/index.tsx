@@ -20,7 +20,7 @@ import {
   ForestOutlined as ForestOutlinedIcon,
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
 } from "@mui/icons-material";
-import getTranslations from "../translations";
+import { getTranslations } from "../../helpers";
 
 const darkTheme = createTheme({
   palette: {

@@ -4,8 +4,9 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 
 import * as Images from "./images";
-import { Image, AppColor, getTranslations } from "../../../shared-components";
+import { Image, AppColor } from "../../../shared-components";
 import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;

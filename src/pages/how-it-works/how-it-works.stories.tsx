@@ -1,37 +1,27 @@
-import HowItWorksPage from ".";
+import HowItWorksPage from "./how-it-works-component";
+import { withLanguageControls } from "../../helpers";
 import * as Components from "./components";
 
 export default function Index() {
   return <div></div>;
 }
 
-export const BrandsComponent = () => {
-  const props = { };
-  return <Components.BrandsComponent {...props} />;
-};
+export const BrandsComponent = withLanguageControls(Components.BrandsComponent);
 
-export const GraphicsComponent = () => {
-  const props = {};
-  return <Components.GraphicsComponent {...props} />;
-};
+export const GraphicsComponent = withLanguageControls(
+  Components.GraphicsComponent
+);
 
-export const HowItWorksComponent = () => {
-  const props = { };
-  return <Components.HowItWorksComponent {...props} />;
-};
+export const HowItWorksComponent = withLanguageControls(
+  Components.HowItWorksComponent
+);
 
-export const PlantTreesComponent = () => {
-  const props = {};
-  return <Components.PlantTreesComponent {...props} />;
-};
+export const PlantTreesComponent = withLanguageControls(
+  Components.PlantTreesComponent
+);
 
-export const ReportsComponent = () => {
-  const props = { };
-  return <Components.ReportsComponent {...props} />;
-};
+export const ReportsComponent = withLanguageControls(
+  Components.ReportsComponent
+);
 
-export const HowItWorksPageIndex = () => {
-  const props = {};
-
-  return <HowItWorksPage {...props} />;
-};
+export const HowItWorksPageIndex = withLanguageControls(HowItWorksPage);

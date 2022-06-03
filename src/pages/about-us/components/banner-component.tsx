@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
+import { getTranslations } from "../../../helpers";
 import { ITranslation, Language } from "../../../providers/context";
 
-import { getTranslations, MainTitleDiv } from "../../../shared-components";
+import { MainTitleDiv } from "../../../shared-components";
 
 export default function Component({ language }: { language?: Language }) {
   const t = useTranslations(language);

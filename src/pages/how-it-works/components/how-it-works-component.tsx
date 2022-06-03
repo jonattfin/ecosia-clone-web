@@ -3,17 +3,21 @@ import styled from "@emotion/styled";
 
 import { Image, MainTitleDiv } from "../../../shared-components";
 import * as Images from "./images";
+import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.5;
+
+  const t = useTranslations(language);
 
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <ParentContainerDiv>
-            <MainTitleDiv>How it works</MainTitleDiv>
+            <MainTitleDiv>{t("howItWorks")}</MainTitleDiv>
             <ChildContainerDiv>
               <ImageContainerDiv>
                 <LogoImage
@@ -21,7 +25,7 @@ export default function Component() {
                   alt="tdlr"
                   {...imageProps}
                 ></LogoImage>
-                <ContentDiv>Search ads generate income for Ecosia.</ContentDiv>
+                <ContentDiv>{t("searchAdds")}</ContentDiv>
               </ImageContainerDiv>
               <ImageContainerDiv>
                 <LogoImage
@@ -29,7 +33,7 @@ export default function Component() {
                   alt="tdlr"
                   {...imageProps}
                 ></LogoImage>
-                <ContentDiv>You search the web with Ecosia.</ContentDiv>
+                <ContentDiv>{t("webSearch")}</ContentDiv>
               </ImageContainerDiv>
               <ImageContainerDiv>
                 <LogoImage
@@ -37,7 +41,7 @@ export default function Component() {
                   alt="tdlr"
                   {...imageProps}
                 ></LogoImage>
-                <ContentDiv>Ecosia uses this income to plant trees.</ContentDiv>
+                <ContentDiv>{t("incomeUse")}</ContentDiv>
               </ImageContainerDiv>
             </ChildContainerDiv>
           </ParentContainerDiv>
@@ -76,3 +80,24 @@ const LogoImage = styled(Image)`
 const ContentDiv = styled.div`
   padding: 40px;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: ITranslation = {
+    [Language.English]: {
+      searchAdds: "Search ads generate income for Ecosia.",
+      incomeUse: "Ecosia uses this income to plant trees",
+      webSearch: "You search the web with Ecosia.",
+      howItWorks: "How it works",
+    },
+    [Language.French]: {
+      searchAdds: "Les annonces de recherche génèrent des revenus pour Ecosia.",
+      incomeUse: "Ecosia utilise ce revenu pour planter des arbres",
+      webSearch: "Vous effectuez des recherches sur le Web avec Ecosia.",
+      howItWorks: "Comment ça marche",
+    },
+  };
+
+  return getTranslations(translation)(language);
+};

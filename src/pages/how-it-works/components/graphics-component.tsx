@@ -2,8 +2,11 @@ import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
 import { MainTitleDiv } from "../../../shared-components";
+import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
-export default function Component() {
+export default function Component({ language }: { language?: Language }) {
+  const t = useTranslations(language);
   return (
     <section>
       <Grid container spacing={2}>
@@ -14,13 +17,13 @@ export default function Component() {
               <TitleDiv>{"December 2009"}</TitleDiv>
               <SubtitleDiv>{"1.1 sec"}</SubtitleDiv>
               <LineDiv />
-              <TitleDiv>{"to plant a tree"}</TitleDiv>
+              <TitleDiv>{t("plantTree")}</TitleDiv>
             </div>
             <div>
               <TitleDiv>{"over"}</TitleDiv>
               <SubtitleDiv>{"15 million"}</SubtitleDiv>
               <LineDiv />
-              <TitleDiv>{"active users"}</TitleDiv>
+              <TitleDiv>{t("activeUsers")}</TitleDiv>
             </div>
             <div>
               <TitleDiv>{"over"}</TitleDiv>
@@ -32,7 +35,7 @@ export default function Component() {
               <TitleDiv>{"over"}</TitleDiv>
               <SubtitleDiv>{"9000"}</SubtitleDiv>
               <LineDiv />
-              <TitleDiv>{"planting sites"}</TitleDiv>
+              <TitleDiv>{t("plantingSites")}</TitleDiv>
             </div>
           </ContainerDiv>
         </Grid>
@@ -64,3 +67,22 @@ const SubtitleDiv = styled.div`
 const LineDiv = styled.div`
   border: 3px solid #aab74f;
 `;
+
+// translations
+
+const useTranslations = (language?: Language) => {
+  const translation: ITranslation = {
+    [Language.English]: {
+      plantTree: "to plant a tree",
+      activeUsers: "active users",
+      plantingSites: "planting sites",
+    },
+    [Language.French]: {
+      plantTree: "pour planter un arbre",
+      activeUsers: "utilisateurs actifs",
+      plantingSites: "sites de plantation",
+    },
+  };
+
+  return getTranslations(translation)(language);
+};

@@ -7,9 +7,9 @@ import {
   LinkDiv,
   MainTitleDiv,
   MainSubtitleKickDiv,
-  getTranslations,
 } from "../../../shared-components";
 import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
 export interface MapComponentProps {
   counter: number;

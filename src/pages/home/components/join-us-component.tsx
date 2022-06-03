@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 
 import {
   AppColor,
-  getTranslations,
   MainSubtitleDiv,
 } from "../../../shared-components";
 import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
 export default function Component({ language }: { language?: Language }) {
   const t = useTranslations(language);

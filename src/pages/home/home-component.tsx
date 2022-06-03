@@ -1,11 +1,10 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 import Head from "next/head";
-import { useContext } from "react";
 
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
-import { Language, LanguageContext } from "../../providers/context";
+import { Language } from "../../providers/context";
 
 export interface HomeComponentProps {
   counter: number;

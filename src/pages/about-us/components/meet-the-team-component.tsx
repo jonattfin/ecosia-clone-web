@@ -3,11 +3,11 @@ import { Button, Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
 import {
-  getTranslations,
   MainSubtitleDiv,
   MainTitleDiv,
 } from "../../../shared-components";
 import { ITranslation, Language } from "../../../providers/context";
+import { getTranslations } from "../../../helpers";
 
 export default function Component({ language }: { language?: Language }) {
   const [play, setPlay] = useState(false);

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
+import { getTranslations } from "../../../helpers";
 import { ITranslation, Language } from "../../../providers/context";
 
 import {
-  getTranslations,
   MainSubtitleDiv,
   MainTitleDiv,
 } from "../../../shared-components";

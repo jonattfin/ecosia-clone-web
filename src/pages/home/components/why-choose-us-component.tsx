@@ -11,9 +11,9 @@ import {
   MainTitleDiv,
   MainSubtitleDiv,
   LinkDiv,
-  getTranslations,
 } from "../../../shared-components";
 import * as Images from "./images";
+import { getTranslations } from "../../../helpers";
 
 export default function Component({ language }: { language?: Language }) {
   const imageProps = { width: 150, height: 0 };
