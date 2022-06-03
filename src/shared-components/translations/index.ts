@@ -1,9 +1,9 @@
 import { Language } from "../../providers/context";
 
 export default function getTranslations(translation: any) {
-  return (language: Language | null) => {
+  return (language?: Language) => {
     return (slug: string) => {
-      const obj: any = translation[language || "en"];
+      const obj: any = translation[language || Language.English];
       if (obj && obj[slug]) return obj[slug];
 
       return slug;

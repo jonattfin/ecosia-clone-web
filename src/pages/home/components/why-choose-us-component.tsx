@@ -2,9 +2,8 @@ import { Grid } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 import styled from "@emotion/styled";
-import { useContext } from "react";
 
-import { Language, LanguageContext } from "../../../providers/context";
+import { Language } from "../../../providers/context";
 
 import {
   AppColor,
@@ -135,10 +134,5 @@ const useTranslations = (language?: Language) => {
     },
   };
 
-  let currentLanguage = useContext(LanguageContext);
-  if (language) currentLanguage = language;
-
-  console.log(currentLanguage);
-
-  return getTranslations(translation)(currentLanguage);
+  return getTranslations(translation)(language);
 };

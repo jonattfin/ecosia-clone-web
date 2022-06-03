@@ -1,11 +1,11 @@
 import { FormControl, OutlinedInput } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 
 import * as Images from "./images";
 import { Image, AppColor, getTranslations } from "../../../shared-components";
-import { Language, LanguageContext } from "../../../providers/context";
+import { Language } from "../../../providers/context";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
@@ -99,8 +99,5 @@ const useTranslations = (language?: Language) => {
     },
   };
 
-  let currentLanguage = useContext(LanguageContext);
-  if (language) currentLanguage = language;
-
-  return getTranslations(translation)(currentLanguage);
+  return getTranslations(translation)(language);
 };

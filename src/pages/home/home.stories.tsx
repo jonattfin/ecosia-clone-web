@@ -24,6 +24,7 @@ export const SearchComponent = (args: any) => (
 SearchComponent.args = {
   onSearch: action("onSearch"),
   counter: 100,
+  language: Language.English,
 };
 SearchComponent.argTypes = {
   language: {
@@ -35,6 +36,9 @@ SearchComponent.argTypes = {
 export const CountriesComponent = (args: any) => (
   <Components.CountriesComponent {...args} />
 );
+CountriesComponent.args = {
+  language: Language.English,
+};
 CountriesComponent.argTypes = {
   language: {
     options: [Language.English, Language.French],
@@ -47,6 +51,7 @@ export const MapComponent = (args: any) => (
 );
 MapComponent.args = {
   counter: 100,
+  language: Language.English,
 };
 MapComponent.argTypes = {
   language: {
@@ -58,7 +63,9 @@ MapComponent.argTypes = {
 export const FinancialComponent = (args: any) => (
   <Components.FinancialComponent {...args} />
 );
-FinancialComponent.args = {};
+FinancialComponent.args = {
+  language: Language.English,
+};
 FinancialComponent.argTypes = {
   language: {
     options: [Language.English, Language.French],
@@ -69,6 +76,9 @@ FinancialComponent.argTypes = {
 export const WhyChooseUsComponent = (args: any) => (
   <Components.WhyChooseUsComponent {...args} />
 );
+WhyChooseUsComponent.args = {
+  language: Language.English,
+};
 WhyChooseUsComponent.argTypes = {
   language: {
     options: [Language.English, Language.French],
@@ -79,6 +89,9 @@ WhyChooseUsComponent.argTypes = {
 export const JoinUsComponent = (args: any) => (
   <Components.JoinUsComponent {...args} />
 );
+JoinUsComponent.args = {
+  language: Language.English,
+};
 JoinUsComponent.argTypes = {
   language: {
     options: [Language.English, Language.French],
@@ -90,6 +103,7 @@ export const HomePageIndex = (args: any) => <HomeComponent {...args} />;
 HomePageIndex.args = {
   counter: 100,
   onSearch: action("onSearch"),
+  language: Language.English,
 };
 HomePageIndex.argTypes = {
   language: {

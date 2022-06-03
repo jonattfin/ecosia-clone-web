@@ -3,6 +3,7 @@ import { interval, tap } from "rxjs";
 import { useRouter } from "next/router";
 
 import HomeComponent from "./home-component";
+import { LanguageContext } from "../../providers/context";
 
 export default function Component() {
   const initialValue = 146000000;
@@ -20,5 +21,7 @@ export default function Component() {
     return () => subscription.unsubscribe();
   }, []);
 
-  return <HomeComponent {...{ counter, onSearch }} />;
+  const language = useContext(LanguageContext);
+
+  return <HomeComponent {...{ counter, onSearch, language }} />;
 }

@@ -6,8 +6,7 @@ import {
   getTranslations,
   MainSubtitleDiv,
 } from "../../../shared-components";
-import { Language, LanguageContext } from "../../../providers/context";
-import { useContext } from "react";
+import { Language } from "../../../providers/context";
 
 export default function Component({ language }: { language?: Language }) {
   const t = useTranslations(language);
@@ -50,8 +49,5 @@ const useTranslations = (language?: Language) => {
     },
   };
 
-  let currentLanguage = useContext(LanguageContext);
-  if (language) currentLanguage = language;
-
-  return getTranslations(translation)(currentLanguage);
+  return getTranslations(translation)(language);
 };

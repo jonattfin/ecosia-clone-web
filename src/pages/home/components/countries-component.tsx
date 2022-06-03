@@ -1,9 +1,7 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
-import { useContext } from "react";
-
-import { Language, LanguageContext } from "../../../providers/context";
+import { Language } from "../../../providers/context";
 
 import {
   Image,
@@ -96,8 +94,5 @@ const useTranslations = (language?: Language) => {
     },
   };
 
-  let currentLanguage = useContext(LanguageContext);
-  if (language) currentLanguage = language;
-
-  return getTranslations(translation)(currentLanguage);
+  return getTranslations(translation)(language);
 };
