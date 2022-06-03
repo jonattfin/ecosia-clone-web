@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 
 import * as Images from "./images";
 import { Image, AppColor, getTranslations } from "../../../shared-components";
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
@@ -86,7 +86,7 @@ const CounterTextDiv = styled.div`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       searchTheWeb: "Search the web to plant trees...",
       searchEngine: "The search engine that plants trees.",

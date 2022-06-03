@@ -1,6 +1,6 @@
-import { Language } from "../../providers/context";
+import { ITranslation, Language } from "../../providers/context";
 
-export default function getTranslations(translation: any) {
+export default function getTranslations(translation: ITranslation) {
   return (language?: Language) => {
     return (slug: string) => {
       const obj: any = translation[language || Language.English];

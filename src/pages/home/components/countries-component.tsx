@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 import {
   Image,
@@ -69,7 +69,7 @@ const TextDiv = styled.div`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       whereAreTreesPlanted: "Where are your trees being planted?",
       wePlantIn30Countries:

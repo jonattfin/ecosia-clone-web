@@ -3,7 +3,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 import styled from "@emotion/styled";
 
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 import {
   AppColor,
@@ -96,7 +96,7 @@ const TitleDiv = styled.div`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       why: "Why choose Ecosia?",
       wePutPeople: "We put people and planet before profit",

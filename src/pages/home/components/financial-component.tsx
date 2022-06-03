@@ -10,7 +10,7 @@ import {
   LinkDiv,
   getTranslations,
 } from "../../../shared-components";
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 const PieComponent = dynamic(() => import("./pie-component"), {
   ssr: false,
@@ -75,7 +75,7 @@ const PieContainerDiv = styled.div`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       monthlyReports: "Monthly financial reports",
       ourRevenue: "Our revenue in January 2022",

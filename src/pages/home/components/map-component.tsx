@@ -9,7 +9,7 @@ import {
   MainSubtitleKickDiv,
   getTranslations,
 } from "../../../shared-components";
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 export interface MapComponentProps {
   counter: number;
@@ -75,7 +75,7 @@ const ContentDiv = styled.div`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       treesPlanted: "Trees planted by ecosia users",
       peopleUsingEcosia: "People using Ecosia",

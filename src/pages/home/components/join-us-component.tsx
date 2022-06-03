@@ -6,7 +6,7 @@ import {
   getTranslations,
   MainSubtitleDiv,
 } from "../../../shared-components";
-import { Language } from "../../../providers/context";
+import { ITranslation, Language } from "../../../providers/context";
 
 export default function Component({ language }: { language?: Language }) {
   const t = useTranslations(language);
@@ -38,7 +38,7 @@ const MainSection = styled.section`
 // translations
 
 const useTranslations = (language?: Language) => {
-  const translation: any = {
+  const translation: ITranslation = {
     [Language.English]: {
       joinUs: "Join 15 million people who already use Ecosia",
       shareUs: "Share Ecosia",

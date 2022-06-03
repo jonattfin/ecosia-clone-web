@@ -7,4 +7,9 @@ export enum Language {
   French = "French",
 }
 
+export interface ITranslation {
+  [Language.English]: any;
+  [Language.French]: any;
+}
+
 export const LanguageContext = createContext(Language.English);
