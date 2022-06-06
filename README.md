@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=jonattfin_ecosia-clone2)](https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone2)
 
+The building blocks for this app can be seen in storybook at this url: https://629e38adc84b50004a0c06fc-ciypykolfj.chromatic.com/?path=/story/pages-about-us--banner-component
+
 ## Getting Started
 
 First, run the development server:
