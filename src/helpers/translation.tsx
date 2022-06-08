@@ -10,7 +10,7 @@ export const withTranslations =
   };
 
 function getTranslations(translation: any) {
-  return (language: string) => {
+  return (language: string): ITranslationFunc => {
     return (slug: string) => {
       const obj: any = translation[language];
       if (obj && obj[slug]) return obj[slug];
