@@ -9,16 +9,14 @@ import {
   MainSubtitleDiv,
   LinkDiv,
 } from "../../../shared-components";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
 const PieComponent = dynamic(() => import("./pie-component"), {
   ssr: false,
 });
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
-
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <MainSection>
       <Grid container spacing={2}>
@@ -50,7 +48,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </MainSection>
   );
-}
+};
 
 // Styled Components
 
@@ -74,23 +72,21 @@ const PieContainerDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      monthlyReports: "Monthly financial reports",
-      ourRevenue: "Our revenue in January 2022",
-      reportsDescription:
-        "Our monthly reports show how much ad revenue we made from your searches, how we spent it, and how many trees this helped us plant.",
-      exploreReports: "Explore our financial reports ",
-    },
-    [Language.French]: {
-      monthlyReports: "Rapports financiers mensuels",
-      ourRevenue: "Notre chiffre d'affaires en janvier 2022",
-      reportsDescription:
-        "Nos rapports mensuels montrent combien de revenus publicitaires nous avons tirés de vos recherches, comment nous les avons dépensés et combien d'arbres cela nous a aidés à planter.",
-      exploreReports: "Explorez nos rapports financiers",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    monthlyReports: "Monthly financial reports",
+    ourRevenue: "Our revenue in January 2022",
+    reportsDescription:
+      "Our monthly reports show how much ad revenue we made from your searches, how we spent it, and how many trees this helped us plant.",
+    exploreReports: "Explore our financial reports ",
+  },
+  [Language.French]: {
+    monthlyReports: "Rapports financiers mensuels",
+    ourRevenue: "Notre chiffre d'affaires en janvier 2022",
+    reportsDescription:
+      "Nos rapports mensuels montrent combien de revenus publicitaires nous avons tirés de vos recherches, comment nous les avons dépensés et combien d'arbres cela nous a aidés à planter.",
+    exploreReports: "Explorez nos rapports financiers",
+  },
 };
+
+export default withTranslations(translations)(Component);

@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import { Button, Grid } from "@mui/material";
-import { getTranslations } from "../../../helpers";
-import { ITranslation, Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
 
 import { MainTitleDiv } from "../../../shared-components";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <Grid container spacing={2}>
@@ -26,7 +25,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </section>
   );
-}
+};
 
 // Styled Components
 
@@ -40,17 +39,15 @@ const ContainerDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      weBelive: "We believe in everyone's power to do good",
-      addEcosiaToFirefox: "Add Ecosia to Firefox",
-    },
-    [Language.French]: {
-      weBelive: "Nous croyons au pouvoir de chacun de faire le bien",
-      addEcosiaToFirefox: "Ajouter Ecosia à Firefox",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    weBelive: "We believe in everyone's power to do good",
+    addEcosiaToFirefox: "Add Ecosia to Firefox",
+  },
+  [Language.French]: {
+    weBelive: "Nous croyons au pouvoir de chacun de faire le bien",
+    addEcosiaToFirefox: "Ajouter Ecosia à Firefox",
+  },
 };
+
+export default withTranslations(translations)(Component);

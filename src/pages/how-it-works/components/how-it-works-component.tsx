@@ -3,14 +3,12 @@ import styled from "@emotion/styled";
 
 import { Image, MainTitleDiv } from "../../../shared-components";
 import * as Images from "./images";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
-export default function Component({ language }: { language?: Language }) {
+const Component = ({ t }: { t: ITranslationFunc }) => {
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.5;
-
-  const t = useTranslations(language);
 
   return (
     <section>
@@ -49,7 +47,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </section>
   );
-}
+};
 
 // Styled Components
 
@@ -83,21 +81,19 @@ const ContentDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      searchAdds: "Search ads generate income for Ecosia.",
-      incomeUse: "Ecosia uses this income to plant trees",
-      webSearch: "You search the web with Ecosia.",
-      howItWorks: "How it works",
-    },
-    [Language.French]: {
-      searchAdds: "Les annonces de recherche génèrent des revenus pour Ecosia.",
-      incomeUse: "Ecosia utilise ce revenu pour planter des arbres",
-      webSearch: "Vous effectuez des recherches sur le Web avec Ecosia.",
-      howItWorks: "Comment ça marche",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    searchAdds: "Search ads generate income for Ecosia.",
+    incomeUse: "Ecosia uses this income to plant trees",
+    webSearch: "You search the web with Ecosia.",
+    howItWorks: "How it works",
+  },
+  [Language.French]: {
+    searchAdds: "Les annonces de recherche génèrent des revenus pour Ecosia.",
+    incomeUse: "Ecosia utilise ce revenu pour planter des arbres",
+    webSearch: "Vous effectuez des recherches sur le Web avec Ecosia.",
+    howItWorks: "Comment ça marche",
+  },
 };
+
+export default withTranslations(translations)(Component);

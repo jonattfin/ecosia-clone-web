@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
-import { ITranslation, Language } from "../../../providers/context";
+import { Language } from "../../../providers/context";
 
 import {
   Image,
@@ -10,13 +10,11 @@ import {
   AppColor,
 } from "../../../shared-components";
 import * as Images from "./images";
-import { getTranslations } from "../../../helpers";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
-export default function Component({ language }: { language?: Language }) {
+const Component = ({ t }: { t: ITranslationFunc }) => {
   const imageProps = { width: 300, height: 0 };
   imageProps.height = imageProps.width * 0.7;
-
-  const t = useTranslations(language);
 
   return (
     <section>
@@ -52,7 +50,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </section>
   );
-}
+};
 
 // Styled Components
 
@@ -68,31 +66,28 @@ const TextDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      whereAreTreesPlanted: "Where are your trees being planted?",
-      wePlantIn30Countries:
-        "We plant in 30+ countries with local organizations",
-      treesInBrasil:
-        "Your trees in Brazil protect thousands of endangered plants and animals.",
-      treesInBurkinaFaso:
-        "By planting trees in Burkina Faso, you restore desertified land to its former fertility.",
-      treesInIndonesia:
-        "In Indonesia, your searches bring back forests on former palm oil plantations while creating alternative sources of income.",
-    },
-    [Language.French]: {
-      whereAreTreesPlanted: "Où vos arbres sont-ils plantés?",
-      wePlantIn30Countries:
-        "Nous plantons dans plus de 30 pays avec des organisations locales",
-      treesInBrasil:
-        "Vos arbres au Brésil protègent des milliers de plantes et d'animaux en voie de disparition.",
-      treesInBurkinaFaso:
-        "En plantant des arbres au Burkina Faso, vous redonnez aux terres désertifiées leur fertilité d'antan.",
-      treesInIndonesia:
-        "En Indonésie, vos recherches ramènent des forêts sur d'anciennes plantations de palmiers à huile tout en créant des sources alternatives de revenus.",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    whereAreTreesPlanted: "Where are your trees being planted?",
+    wePlantIn30Countries: "We plant in 30+ countries with local organizations",
+    treesInBrasil:
+      "Your trees in Brazil protect thousands of endangered plants and animals.",
+    treesInBurkinaFaso:
+      "By planting trees in Burkina Faso, you restore desertified land to its former fertility.",
+    treesInIndonesia:
+      "In Indonesia, your searches bring back forests on former palm oil plantations while creating alternative sources of income.",
+  },
+  [Language.French]: {
+    whereAreTreesPlanted: "Où vos arbres sont-ils plantés?",
+    wePlantIn30Countries:
+      "Nous plantons dans plus de 30 pays avec des organisations locales",
+    treesInBrasil:
+      "Vos arbres au Brésil protègent des milliers de plantes et d'animaux en voie de disparition.",
+    treesInBurkinaFaso:
+      "En plantant des arbres au Burkina Faso, vous redonnez aux terres désertifiées leur fertilité d'antan.",
+    treesInIndonesia:
+      "En Indonésie, vos recherches ramènent des forêts sur d'anciennes plantations de palmiers à huile tout en créant des sources alternatives de revenus.",
+  },
 };
+
+export default withTranslations(translations)(Component);

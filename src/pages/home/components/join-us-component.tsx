@@ -1,16 +1,11 @@
 import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 
-import {
-  AppColor,
-  MainSubtitleDiv,
-} from "../../../shared-components";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { AppColor, MainSubtitleDiv } from "../../../shared-components";
+import { Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
-
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <MainSection>
       <MainSubtitleDiv data-test="join-us-title">{t("joinUs")}</MainSubtitleDiv>
@@ -22,7 +17,7 @@ export default function Component({ language }: { language?: Language }) {
       </div>
     </MainSection>
   );
-}
+};
 
 // Styled Components
 
@@ -37,17 +32,15 @@ const MainSection = styled.section`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      joinUs: "Join 15 million people who already use Ecosia",
-      shareUs: "Share Ecosia",
-    },
-    [Language.French]: {
-      joinUs: "Rejoignez 15 millions de personnes qui utilisent déjà Ecosia",
-      shareUs: "Partager Ecosia",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    joinUs: "Join 15 million people who already use Ecosia",
+    shareUs: "Share Ecosia",
+  },
+  [Language.French]: {
+    joinUs: "Rejoignez 15 millions de personnes qui utilisent déjà Ecosia",
+    shareUs: "Partager Ecosia",
+  },
 };
+
+export default withTranslations(translations)(Component);

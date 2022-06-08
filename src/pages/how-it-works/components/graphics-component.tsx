@@ -2,11 +2,10 @@ import { Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
 import { MainTitleDiv } from "../../../shared-components";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <Grid container spacing={2}>
@@ -42,7 +41,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </section>
   );
-}
+};
 
 // Styled Components
 
@@ -70,19 +69,17 @@ const LineDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      plantTree: "to plant a tree",
-      activeUsers: "active users",
-      plantingSites: "planting sites",
-    },
-    [Language.French]: {
-      plantTree: "pour planter un arbre",
-      activeUsers: "utilisateurs actifs",
-      plantingSites: "sites de plantation",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    plantTree: "to plant a tree",
+    activeUsers: "active users",
+    plantingSites: "planting sites",
+  },
+  [Language.French]: {
+    plantTree: "pour planter un arbre",
+    activeUsers: "utilisateurs actifs",
+    plantingSites: "sites de plantation",
+  },
 };
+
+export default withTranslations(translations)(Component);

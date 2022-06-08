@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
-import { getTranslations } from "../../../helpers";
-import { ITranslation, Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
 
 import { MainTitleDiv } from "../../../shared-components";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
-
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <ParentDiv>
@@ -25,7 +23,7 @@ export default function Component({ language }: { language?: Language }) {
       </ParentDiv>
     </section>
   );
-}
+};
 
 function getTimePeriods() {
   return [
@@ -84,33 +82,31 @@ const ContentDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      ecosiaDescription:
-        "Ecosia is a social business founded in 2009 after a trip around the world",
-      ecosiaIsBornContent:
-        "Christian founded Ecosia.org after a trip around the world helped him understand the problems of deforestation.",
-      peopleChoiceContent:
-        "Ecosia won several awards for its clever concept and speedy growth in Europe and beyond.",
-      firstGermanBContent:
-        "Ecosia was the first German company to become a B Corporation thanks to its social business model.",
-      plantingMilestoneContent:
-        "A planting milestone! That same year, Ecosia also builds its own solar energy plant to power every search.",
-    },
-    [Language.French]: {
-      ecosiaDescription:
-        "Ecosia est une entreprise sociale fondée en 2009 après un voyage autour du monde",
-      ecosiaIsBornContent:
-        "Christian a fondé Ecosia.org après un voyage autour du monde qui l'a aidé à comprendre les problèmes de la déforestation.",
-      peopleChoiceContent:
-        "Ecosia a remporté plusieurs prix pour son concept intelligent et sa croissance rapide en Europe et au-delà.",
-      firstGermanBContent:
-        "Ecosia a été la première entreprise allemande à devenir une B Corporation grâce à son modèle d'entreprise sociale.",
-      plantingMilestoneContent:
-        "Une étape importante dans la plantation! La même année, Ecosia construit également sa propre centrale solaire pour alimenter toutes les recherches.",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    ecosiaDescription:
+      "Ecosia is a social business founded in 2009 after a trip around the world",
+    ecosiaIsBornContent:
+      "Christian founded Ecosia.org after a trip around the world helped him understand the problems of deforestation.",
+    peopleChoiceContent:
+      "Ecosia won several awards for its clever concept and speedy growth in Europe and beyond.",
+    firstGermanBContent:
+      "Ecosia was the first German company to become a B Corporation thanks to its social business model.",
+    plantingMilestoneContent:
+      "A planting milestone! That same year, Ecosia also builds its own solar energy plant to power every search.",
+  },
+  [Language.French]: {
+    ecosiaDescription:
+      "Ecosia est une entreprise sociale fondée en 2009 après un voyage autour du monde",
+    ecosiaIsBornContent:
+      "Christian a fondé Ecosia.org après un voyage autour du monde qui l'a aidé à comprendre les problèmes de la déforestation.",
+    peopleChoiceContent:
+      "Ecosia a remporté plusieurs prix pour son concept intelligent et sa croissance rapide en Europe et au-delà.",
+    firstGermanBContent:
+      "Ecosia a été la première entreprise allemande à devenir une B Corporation grâce à son modèle d'entreprise sociale.",
+    plantingMilestoneContent:
+      "Une étape importante dans la plantation! La même année, Ecosia construit également sa propre centrale solaire pour alimenter toutes les recherches.",
+  },
 };
+
+export default withTranslations(translations)(Component);

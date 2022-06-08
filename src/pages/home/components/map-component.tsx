@@ -8,17 +8,15 @@ import {
   MainTitleDiv,
   MainSubtitleKickDiv,
 } from "../../../shared-components";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
 export interface MapComponentProps {
   counter: number;
-  language?: Language;
+  t: ITranslationFunc;
 }
 
-export default function Component({ counter, language }: MapComponentProps) {
-  const t = useTranslations(language);
-
+const Component = ({ counter, t }: MapComponentProps) => {
   return (
     <section>
       <Grid container spacing={2}>
@@ -57,7 +55,7 @@ export default function Component({ counter, language }: MapComponentProps) {
       </Grid>
     </section>
   );
-}
+};
 
 // Styled Components
 
@@ -74,25 +72,23 @@ const ContentDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      treesPlanted: "Trees planted by ecosia users",
-      peopleUsingEcosia: "People using Ecosia",
-      nativeSpecies: "Native species",
-      countries: "Countries",
-      activeProjects: "Active projects",
-      discover: "Discover our projects",
-    },
-    [Language.French]: {
-      treesPlanted: "Arbres plantés par les utilisateurs d'ecosia",
-      peopleUsingEcosia: "Personnes utilisant Ecosia",
-      nativeSpecies: "Espèces indigènes",
-      countries: "Pays",
-      activeProjects: "Projets actifs",
-      discover: "Découvrez nos projets",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    treesPlanted: "Trees planted by ecosia users",
+    peopleUsingEcosia: "People using Ecosia",
+    nativeSpecies: "Native species",
+    countries: "Countries",
+    activeProjects: "Active projects",
+    discover: "Discover our projects",
+  },
+  [Language.French]: {
+    treesPlanted: "Arbres plantés par les utilisateurs d'ecosia",
+    peopleUsingEcosia: "Personnes utilisant Ecosia",
+    nativeSpecies: "Espèces indigènes",
+    countries: "Pays",
+    activeProjects: "Projets actifs",
+    discover: "Découvrez nos projets",
+  },
 };
+
+export default withTranslations(translations)(Component);

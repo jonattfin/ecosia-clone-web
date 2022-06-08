@@ -5,26 +5,24 @@ import styled from "@emotion/styled";
 
 import * as Images from "./images";
 import { Image, AppColor } from "../../../shared-components";
-import { ITranslation, Language } from "../../../providers/context";
-import { getTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
+import {
+  ITranslationFunc,
+  withTranslations,
+} from "../../../helpers";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
   counter: number;
   language?: Language;
+  t: ITranslationFunc;
 }
 
-export default function Component({
-  onSearch,
-  counter,
-  language,
-}: SearchComponentProps) {
+const Component = ({ onSearch, counter, t }: SearchComponentProps) => {
   const [query, setQuery] = useState("");
 
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
-
-  const t = useTranslations(language);
 
   return (
     <MainSection>
@@ -54,7 +52,7 @@ export default function Component({
       <div>{t("numberOfTrees")}</div>
     </MainSection>
   );
-}
+};
 
 // Styled Components
 
@@ -86,19 +84,17 @@ const CounterTextDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      searchTheWeb: "Search the web to plant trees...",
-      searchEngine: "The search engine that plants trees.",
-      numberOfTrees: "Trees planted by Ecosia users.",
-    },
-    [Language.French]: {
-      searchTheWeb: "Rechercher sur le Web pour planter des arbres...",
-      searchEngine: "Le moteur de recherche qui plante des arbres.",
-      numberOfTrees: "Arbres plantés par les utilisateurs d'Ecosia",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    searchTheWeb: "Search the web to plant trees...",
+    searchEngine: "The search engine that plants trees.",
+    numberOfTrees: "Trees planted by Ecosia users.",
+  },
+  [Language.French]: {
+    searchTheWeb: "Rechercher sur le Web pour planter des arbres...",
+    searchEngine: "Le moteur de recherche qui plante des arbres.",
+    numberOfTrees: "Arbres plantés par les utilisateurs d'Ecosia",
+  },
 };
+
+export default withTranslations(translations)(Component);

@@ -1,15 +1,11 @@
 import styled from "@emotion/styled";
 import { TextField, Button, MenuItem, Grid } from "@mui/material";
-import { getTranslations } from "../../../helpers";
-import { ITranslation, Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
 
-import {
-  MainSubtitleDiv,
-  MainTitleDiv,
-} from "../../../shared-components";
+import { MainSubtitleDiv, MainTitleDiv } from "../../../shared-components";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <Grid container spacing={2}>
@@ -42,7 +38,7 @@ export default function Component({ language }: { language?: Language }) {
       </Grid>
     </section>
   );
-}
+};
 
 function getFilterOptions(): string[] {
   return ["Subject", "Technical problem", "General inquiry", "Press inquiry"];
@@ -76,22 +72,18 @@ const ExtraTextField = styled(TextField)`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      contactUs: "Contact us",
-      faqSummary: "For questions about Ecosia check our FAQ first.",
-      faqDescription:
-        "If you don't see what you are looking for, drop us a line!",
-    },
-    [Language.French]: {
-      contactUs: "Contactez-nous",
-      faqSummary:
-        "Pour toute question sur Ecosia, consultez d'abord notre FAQ.",
-      faqDescription:
-        "Si vous ne voyez pas ce que vous cherchez, écrivez-nous!",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    contactUs: "Contact us",
+    faqSummary: "For questions about Ecosia check our FAQ first.",
+    faqDescription:
+      "If you don't see what you are looking for, drop us a line!",
+  },
+  [Language.French]: {
+    contactUs: "Contactez-nous",
+    faqSummary: "Pour toute question sur Ecosia, consultez d'abord notre FAQ.",
+    faqDescription: "Si vous ne voyez pas ce que vous cherchez, écrivez-nous!",
+  },
 };
+
+export default withTranslations(translations)(Component);

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 import Image from "next/image";
-import { getTranslations } from "../../../helpers";
-import { ITranslation, Language } from "../../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { Language } from "../../../providers/context";
 
 import {
   AppColor,
@@ -12,8 +12,7 @@ import {
 
 import * as Images from "./images";
 
-export default function Component({ language }: { language?: Language }) {
-  const t = useTranslations(language);
+const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <Grid container spacing={2}>
@@ -48,19 +47,17 @@ const ContainerDiv = styled.div`
 
 // translations
 
-const useTranslations = (language?: Language) => {
-  const translation: ITranslation = {
-    [Language.English]: {
-      ecosiaForMobile: "Ecosia for Mobile",
-      plantTreesWhileSearching: "Plant trees while searching the web",
-      withMobile: "with your mobile phone or tablet.",
-    },
-    [Language.French]: {
-      ecosiaForMobile: "Ecosia pour Mobile",
-      plantTreesWhileSearching: "Plantez des arbres en effectuant une recherche sur le Web",
-      withMobile: "avec votre téléphone portable ou votre tablette.",
-    },
-  };
-
-  return getTranslations(translation)(language);
+const translations = {
+  [Language.English]: {
+    ecosiaForMobile: "Ecosia for Mobile",
+    plantTreesWhileSearching: "Plant trees while searching the web",
+    withMobile: "with your mobile phone or tablet.",
+  },
+  [Language.French]: {
+    ecosiaForMobile: "Ecosia pour Mobile",
+    plantTreesWhileSearching: "Plantez des arbres en effectuant une recherche sur le Web",
+    withMobile: "avec votre téléphone portable ou votre tablette.",
+  },
 };
+
+export default withTranslations(translations)(Component);
