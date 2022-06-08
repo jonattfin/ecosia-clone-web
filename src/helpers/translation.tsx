@@ -9,7 +9,7 @@ export const withTranslations =
     return DecoratedComponent;
   };
 
-export function getTranslations(translation: any) {
+function getTranslations(translation: any) {
   return (language: string) => {
     return (slug: string) => {
       const obj: any = translation[language];
