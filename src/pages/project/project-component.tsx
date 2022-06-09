@@ -1,13 +1,12 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { Project, Tag } from "@prisma/client";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "next/link";
 import _ from "lodash";
 import styled from "@emotion/styled";
 
-import { AppColor, Image } from "../../shared-components";
+import { AppColor, Image, Project, Tag } from "../../shared-components";
 import * as Images from "./images";
 
 export interface ProjectProps {
@@ -48,7 +47,7 @@ export default function Index({ project, tags }: ProjectProps) {
           </ProjectsHeaderDiv>
 
           <ProjectContainerDiv>
-            <img src={project.image} alt="something special"></img>
+            <img src={project.imageUrl} alt="something special"></img>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>

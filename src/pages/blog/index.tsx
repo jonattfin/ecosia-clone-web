@@ -1,18 +1,17 @@
-import { PrismaClient } from "@prisma/client";
+import { useQuery } from "react-query";
 
-import BlogComponent, { BlogProps } from "./blog-component";
+import BlogComponent from "./blog-component";
 
-export async function getServerSideProps() {
-  const prismaClient = new PrismaClient();
-  const projects = await prismaClient.project.findMany();
+const fetchProjects = async () => {
+  const res = await fetch("https://ecosia-clone-nestjs.herokuapp.com/projects");
+  return res.json();
+};
 
-  return {
-    props: {
-      projects,
-    },
-  };
-}
+export default function Component() {
+  const { isLoading, error, data } = useQuery("projects", fetchProjects);
 
-export default function Component({ projects }: BlogProps) {
-  return <BlogComponent {...{ projects }}></BlogComponent>;
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: ";
+
+  return <BlogComponent {...{ projects: data }}></BlogComponent>;
 }

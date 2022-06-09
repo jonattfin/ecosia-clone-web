@@ -1,24 +1,28 @@
-import { PrismaClient } from "@prisma/client";
-
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
 import ProjectComponent, { ProjectProps } from "./project-component";
 
-export async function getServerSideProps(context: any) {
-  const { params } = context;
-  const { id } = params;
+const fetchProject = async (projectId: string | string[] | undefined) => {
+  const res = await fetch(
+    `https://ecosia-clone-nestjs.herokuapp.com/projects/${projectId}`
+  );
+  return res.json();
+};
 
-  const prismaClient = new PrismaClient();
+export default function Index() {
+  const { query } = useRouter();
+  const { id } = query;
+  const { isLoading, error, data } = useQuery(["project", id], () =>
+    fetchProject(id)
+  );
 
-  const project = await prismaClient.project.findUnique({ where: { id } });
-  const tags = await prismaClient.tag.findMany({ where: { projectId: id } });
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: ";
 
-  return {
-    props: {
-      project,
-      tags,
-    },
+  const props: ProjectProps = {
+    project: data,
+    tags: [],
   };
-}
 
-export default function Index(props: ProjectProps) {
   return <ProjectComponent {...props} />;
 }

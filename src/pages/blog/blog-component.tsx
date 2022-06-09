@@ -10,17 +10,12 @@ import Button from "@mui/material/Button";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import styled from "@emotion/styled";
 
-import { AppColor, Image } from "../../shared-components";
+import { AppColor, Image, Project } from "../../shared-components";
 import * as Images from "./components/images";
-import { Project } from "@prisma/client";
 
-export interface BlogProps {
-  projects: Project[];
-}
-
-export default function Component({ projects }: BlogProps) {
+export default function Component({ projects }: { projects: Project[] }) {
   const [value, setValue] = React.useState(0);
-  const [shownId, setShownId] = React.useState("");
+  const [shownId, setShownId] = React.useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -74,10 +69,10 @@ export default function Component({ projects }: BlogProps) {
                   xl={4}
                   key={project.id}
                   onMouseEnter={() => setShownId(project.id)}
-                  onMouseLeave={() => setShownId("")}
+                  onMouseLeave={() => setShownId(0)}
                 >
                   <div>
-                    <ProjectImg src={project.image}></ProjectImg>
+                    <ProjectImg src={project.imageUrl}></ProjectImg>
                     <TitleContainerDiv>
                       <TitleParagraph>{project.scope}</TitleParagraph>
                       {shownId === project.id && showMediaLinks(project)}

@@ -1,5 +1,5 @@
-import { Project } from "@prisma/client";
 import { ComponentStory } from "@storybook/react";
+import { Project } from "../../shared-components";
 
 import ProjectComponent from "./project-component";
 
@@ -18,12 +18,13 @@ SearchComponent.args = {
 
 function getProjectAndTags() {
   const project: Project = {
-    id: "id",
+    id: 1,
     name: "name",
     desc: "desc",
-    image:
+    imageUrl:
       "https://blog.ecosia.org/content/images/size/w1200/2021/08/Thailand_header.png",
     scope: "scope",
+    tags: [],
   };
   return { project, tags: [] };
 }
