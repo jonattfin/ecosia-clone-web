@@ -11,3 +11,9 @@ export const fetchProjectById = async (
   const res = await fetch(`${baseUrl}/projects/${projectId}`);
   return res.json();
 };
+
+
+export const fetchTags = async () => {
+  const res = await fetch(`${baseUrl}/tags`);
+  return res.json();
+};
