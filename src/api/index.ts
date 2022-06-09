@@ -1,0 +1,13 @@
+const baseUrl = "https://ecosia-clone-nestjs.herokuapp.com";
+
+export const fetchProjects = async () => {
+  const res = await fetch(`${baseUrl}/projects`);
+  return res.json();
+};
+
+export const fetchProjectById = async (
+  projectId: string | string[] | undefined
+) => {
+  const res = await fetch(`${baseUrl}/projects/${projectId}`);
+  return res.json();
+};

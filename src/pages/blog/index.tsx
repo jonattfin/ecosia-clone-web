@@ -1,11 +1,8 @@
 import { useQuery } from "react-query";
 
-import BlogComponent from "./blog-component";
+import { fetchProjects } from "../../api";
 
-const fetchProjects = async () => {
-  const res = await fetch("https://ecosia-clone-nestjs.herokuapp.com/projects");
-  return res.json();
-};
+import BlogComponent from "./blog-component";
 
 export default function Component() {
   const { isLoading, error, data } = useQuery("projects", fetchProjects);
