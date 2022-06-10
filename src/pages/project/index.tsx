@@ -30,7 +30,7 @@ export default function Index() {
 
   const props: ProjectProps = {
     project,
-    tags: tags.filter((t: Tag) => project.tags.includes(t.id)),
+    tags //tags.filter((t: Tag) => project.tags.includes(t.id)),
   };
 
   return <ProjectComponent {...props} />;
