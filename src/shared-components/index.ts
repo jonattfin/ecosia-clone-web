@@ -42,7 +42,7 @@ export interface Project {
   scope: string;
   desc: string;
   imageUrl: string;
-  tags: number[];
+  tags: Tag[];
 }
 
 export interface Tag {

@@ -1,9 +1,15 @@
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 
-import { fetchProjectById, fetchTags } from "../../api";
-import { Tag } from "../../shared-components";
+import { fetchProjectById } from "../../api";
+import { Project } from "../../shared-components";
 import ProjectComponent, { ProjectProps } from "./project-component";
+
+interface IProjectQuery {
+  data: Project;
+  isLoading: boolean;
+  error: any;
+}
 
 export default function Index() {
   const { query } = useRouter();
@@ -13,24 +19,13 @@ export default function Index() {
     data: project,
     isLoading: projectIsLoading,
     error: projectError,
-  } = useQuery(["project", id], () => fetchProjectById(id));
+  } = useQuery(["project", id], () => fetchProjectById(id)) as IProjectQuery;
 
-  // Then get the project tags
-  const {
-    data: tags,
-    isLoading: tagsAreLoading,
-    error: tagsError,
-  } = useQuery(["tags"], fetchTags, {
-    // The query will not execute until the project exists
-    enabled: !!project,
-  });
-
-  if (projectIsLoading || tagsAreLoading) return "Loading...";
-  if (projectError || tagsError) return "An error has occurred: ";
+  if (projectIsLoading) return "Loading...";
+  if (projectError) return "An error has occurred: ";
 
   const props: ProjectProps = {
     project,
-    tags //tags.filter((t: Tag) => project.tags.includes(t.id)),
   };
 
   return <ProjectComponent {...props} />;

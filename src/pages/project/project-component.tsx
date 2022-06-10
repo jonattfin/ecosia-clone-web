@@ -11,10 +11,9 @@ import * as Images from "./images";
 
 export interface ProjectProps {
   project: Project;
-  tags: Tag[];
 }
 
-export default function Index({ project, tags }: ProjectProps) {
+export default function Index({ project }: ProjectProps) {
   const imageProps = {
     width: 374 / 2,
     height: 684 / 2,
@@ -70,7 +69,7 @@ export default function Index({ project, tags }: ProjectProps) {
               <Grid item xs={12} xl={6}>
                 <Image src={Images.CountryMapImage} {...imageProps}></Image>
               </Grid>
-              {showTags(tags)}
+              {showTags(project.tags)}
             </Grid>
           </ProjectContainerDiv>
         </Grid>
