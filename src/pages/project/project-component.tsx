@@ -23,8 +23,6 @@ export default function Index({ project }: ProjectProps) {
   const logoimageProps = { width: 150, height: 0, alt: "something special" };
   logoimageProps.height = imageProps.width * 0.5;
 
-  debugger;
-
   return (
     <MainContainerDiv>
       <Grid container spacing={2}>
