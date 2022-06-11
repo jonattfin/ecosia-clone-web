@@ -22,7 +22,7 @@ export default function Index() {
   } = useQuery(["project", id], () => fetchProjectById(id)) as IProjectQuery;
 
   if (projectIsLoading) return "Loading...";
-  if (projectError) return "An error has occurred: ";
+  if (projectError || !project) return "An error has occurred: ";
 
   const props: ProjectProps = {
     project,
