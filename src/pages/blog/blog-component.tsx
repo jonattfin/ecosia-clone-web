@@ -28,10 +28,16 @@ const PieComponent = dynamic(() => import("../../shared-components/pie"), {
 
 export interface BlogProps {
   projects: Project[];
+  months: string[];
+  data: MonthData;
+  language: string
+}
+
+interface BlogPropsWithTranslation extends BlogProps {
   t: ITranslationFunc;
 }
 
-const Component = ({ projects, t }: BlogProps) => {
+const Component = ({ projects, t, months, data }: BlogPropsWithTranslation) => {
   const [value, setValue] = useState(0);
   const [shownId, setShownId] = useState(0);
   const [month, setMonth] = React.useState("April 2022");
@@ -74,7 +80,7 @@ const Component = ({ projects, t }: BlogProps) => {
           </ProjectsHeaderDiv>
           <SeparatorDiv />
           {renderProjects({ value, projects, setShownId, shownId, t })}
-          {renderMoney({ value, t, month, handleMonthChange })}
+          {renderMoney({ value, t, month, handleMonthChange, data, months })}
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
@@ -140,43 +146,38 @@ function renderProjects({
   );
 }
 
+interface KeyValuePair {
+  key: string;
+  value: number;
+}
+
+interface MonthData {
+  totalIncome: number;
+  financedTrees: number;
+  items: KeyValuePair[];
+  countries: KeyValuePair[];
+}
+
 function renderMoney({
   value,
   t,
   month,
   handleMonthChange,
+  data,
+  months,
 }: {
   value: number;
   t: ITranslationFunc;
   month: string;
   handleMonthChange: any;
+  months: string[];
+  data: MonthData;
 }): React.ReactNode {
-  const data = {
-    totalIncome: 2000 * 1000,
-    financedTrees: 1000 * 1000,
-    items: [
-      { name: "trees", value: 1000 },
-      { name: "green-investments", value: 250 },
-      { name: "taxes-and-social-security", value: 200 },
-      { name: "spreading the word", value: 100 },
-      { name: "operational-costs", value: 500 },
-    ],
-    countries: [
-      { name: "brazil", value: 10 },
-      { name: "kenya", value: 11 },
-      { name: "tanzania", value: 12 },
-      { name: "rwanda", value: 13 },
-      { name: "mexico", value: 14 },
-      { name: "thailand", value: 15 },
-    ],
-    months: ["April 2022", "March 2022", "February 2022"],
-  };
-
   const getPieData = () => {
-    return data.items.map(({ name, value }) => {
+    return data.items.map(({ key, value }) => {
       return {
-        id: name,
-        label: name,
+        id: key,
+        label: key,
         value,
       };
     });
@@ -194,7 +195,7 @@ function renderMoney({
             label="Month"
             onChange={handleMonthChange}
           >
-            {data.months.map((month) => {
+            {months.map((month) => {
               return <MenuItem value={month}>{month}</MenuItem>;
             })}
           </Select>
@@ -212,10 +213,8 @@ function renderMoney({
           </Card>
           <br />
           <CenteredContainerDiv>
-            {data.items.map(({ name, value }) => {
-              return (
-                <SubtitleParagraph>{`${name} ${value}`}</SubtitleParagraph>
-              );
+            {data.items.map(({ key, value }) => {
+              return <SubtitleParagraph>{`${key} ${value}`}</SubtitleParagraph>;
             })}
           </CenteredContainerDiv>
         </Grid>
@@ -233,10 +232,10 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <CenteredContainerDiv>
             Countries:
-            {data.countries.map(({ name, value }) => {
+            {data.countries.map(({ key, value }) => {
               return (
                 <SubtitleParagraph>
-                  <Chip label={name} />
+                  <Chip label={key} />
                   {`  ${value}`}&euro;
                 </SubtitleParagraph>
               );
