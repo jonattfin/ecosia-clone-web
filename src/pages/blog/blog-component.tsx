@@ -209,7 +209,11 @@ function renderMoney({
             onChange={handleMonthChange}
           >
             {months.map((month, index) => {
-              return <MenuItem value={index}>{month}</MenuItem>;
+              return (
+                <MenuItem key={`month_${month}`} value={index}>
+                  {month}
+                </MenuItem>
+              );
             })}
           </Select>
           <CenteredContainerDiv>
@@ -227,7 +231,11 @@ function renderMoney({
           <br />
           <CenteredContainerDiv>
             {currentReport.items.map(({ key, value }) => {
-              return <SubtitleParagraph>{`${key} ${value}`}</SubtitleParagraph>;
+              return (
+                <SubtitleParagraph
+                  key={key}
+                >{`${key} ${value}`}</SubtitleParagraph>
+              );
             })}
           </CenteredContainerDiv>
         </Grid>
@@ -247,10 +255,10 @@ function renderMoney({
             Countries:
             {currentReport.countries.map(({ key, value }) => {
               return (
-                <SubtitleParagraph>
+                <ChipContainer key={key}>
                   <Chip label={key} />
                   {`  ${value}`}&euro;
-                </SubtitleParagraph>
+                </ChipContainer>
               );
             })}
           </CenteredContainerDiv>
@@ -345,6 +353,10 @@ const TitleParagraph = styled.p`
 `;
 
 const SubtitleParagraph = styled.p`
+  font-size: larger;
+`;
+
+const ChipContainer = styled.div`
   font-size: larger;
 `;
 

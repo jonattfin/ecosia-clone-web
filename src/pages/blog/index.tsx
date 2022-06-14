@@ -17,7 +17,7 @@ export default function Component() {
     isLoading: reportsAreLoading,
     error: reportsError,
     data: reports,
-  } = useQuery("projects", fetchReports);
+  } = useQuery("reports", fetchReports);
 
   if (projectsAreLoading || reportsAreLoading) return "Loading...";
   if (projectsError || reportsError || !projects || !reports)
