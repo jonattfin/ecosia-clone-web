@@ -38,31 +38,26 @@ function getData() {
       id: "trees",
       label: "trees",
       value: 1128621,
-      color: "hsl(74, 70%, 50%)",
     },
     {
       id: "green_investments",
       label: "green_investments",
       value: 287981,
-      color: "hsl(67, 70%, 50%)",
     },
     {
       id: "taxes",
       label: "taxes",
       value: 423000,
-      color: "hsl(344, 70%, 50%)",
     },
     {
       id: "spreading_the_word",
       label: "spreading_the_word",
       value: 53655,
-      color: "hsl(160, 70%, 50%)",
     },
     {
       id: "operational_costs",
       label: "operational_costs",
       value: 483226,
-      color: "hsl(58, 70%, 50%)",
     },
   ];
 }

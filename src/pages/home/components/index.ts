@@ -1,4 +1,3 @@
-export { default as PieComponent } from './pie-component';
 export { default as SearchComponent } from './search-component';
 export { default as CountriesComponent } from './countries-component';
 export { default as MapComponent } from './map-component';

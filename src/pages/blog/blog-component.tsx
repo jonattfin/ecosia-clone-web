@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, SyntheticEvent, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -9,16 +9,39 @@ import Link from "next/link";
 import Button from "@mui/material/Button";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import styled from "@emotion/styled";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 
 import { AppColor, Image, Project } from "../../shared-components";
 import * as Images from "./components/images";
+import { Language } from "../../providers/context";
+import { ITranslationFunc, withTranslations } from "../../helpers";
+import dynamic from "next/dynamic";
 
-export default function Component({ projects }: { projects: Project[] }) {
-  const [value, setValue] = React.useState(0);
-  const [shownId, setShownId] = React.useState(0);
+const PieComponent = dynamic(() => import("../../shared-components/pie"), {
+  ssr: false,
+});
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+export interface BlogProps {
+  projects: Project[];
+  t: ITranslationFunc;
+}
+
+const Component = ({ projects, t }: BlogProps) => {
+  const [value, setValue] = useState(0);
+  const [shownId, setShownId] = useState(0);
+  const [month, setMonth] = React.useState("April 2022");
+
+  const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const handleMonthChange = (event: SelectChangeEvent) => {
+    setMonth(event.target.value as string);
   };
 
   const imageProps = { width: 150, height: 0, alt: "something special" };
@@ -46,61 +69,182 @@ export default function Component({ projects }: { projects: Project[] }) {
               indicatorColor="secondary"
             >
               <Tab value={0} label="Trees" />
-              <Tab value={1} label="News" />
-              <Tab value={2} label="Money" />
+              <Tab value={1} label="Money" />
             </Tabs>
           </ProjectsHeaderDiv>
-
-          <TabPanel index={0} value={value}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} xl={12}>
-                <ProjectsDescriptionDiv>
-                  Tree planting At Ecosia, we plant trees where they&apos;re
-                  needed most. Browse through our tree-planting portfolio to
-                  learn where the trees stand, which species we plant, and what
-                  their impact is. And much more!
-                </ProjectsDescriptionDiv>
-              </Grid>
-              {projects.map((project) => (
-                <Grid
-                  item
-                  xs={12}
-                  lg={6}
-                  xl={4}
-                  key={project.id}
-                  onMouseEnter={() => setShownId(project.id)}
-                  onMouseLeave={() => setShownId(0)}
-                >
-                  <div>
-                    <ProjectImg src={project.imageUrl}></ProjectImg>
-                    <TitleContainerDiv>
-                      <TitleParagraph>{project.scope}</TitleParagraph>
-                      {shownId === project.id && showMediaLinks(project)}
-                    </TitleContainerDiv>
-                    <SubtitleParagraph>{project.name}</SubtitleParagraph>
-                    <p>{project.desc}</p>
-                    <Link href={`/project/${project.id}`}>
-                      <a>
-                        <Button
-                          size="small"
-                          color="secondary"
-                          endIcon={<NavigateNextIcon />}
-                        >
-                          View
-                        </Button>
-                      </a>
-                    </Link>
-                  </div>
-                </Grid>
-              ))}
-            </Grid>
-          </TabPanel>
+          <SeparatorDiv />
+          {renderProjects({ value, projects, setShownId, shownId, t })}
+          {renderMoney({ value, t, month, handleMonthChange })}
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
         </Grid>
       </Grid>
     </MainContainer>
+  );
+};
+
+function renderProjects({
+  value,
+  projects,
+  setShownId,
+  shownId,
+  t,
+}: {
+  projects: Project[];
+  value: number;
+  setShownId: (id: number) => void;
+  shownId: number;
+  t: ITranslationFunc;
+}): React.ReactNode {
+  return (
+    <TabPanel index={0} value={value}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} xl={12}>
+          <ProjectsDescriptionDiv>{t("treePlanting")}</ProjectsDescriptionDiv>
+        </Grid>
+        {projects.map((project) => (
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            xl={4}
+            key={project.id}
+            onMouseEnter={() => setShownId(project.id)}
+            onMouseLeave={() => setShownId(0)}
+          >
+            <div>
+              <ProjectImg src={project.imageUrl}></ProjectImg>
+              <TitleContainerDiv>
+                <TitleParagraph>{project.scope}</TitleParagraph>
+                {shownId === project.id && showMediaLinks(project)}
+              </TitleContainerDiv>
+              <SubtitleParagraph>{project.name}</SubtitleParagraph>
+              <p>{project.desc}</p>
+              <Link href={`/project/${project.id}`}>
+                <a>
+                  <Button
+                    size="small"
+                    color="secondary"
+                    endIcon={<NavigateNextIcon />}
+                  >
+                    View
+                  </Button>
+                </a>
+              </Link>
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+    </TabPanel>
+  );
+}
+
+function renderMoney({
+  value,
+  t,
+  month,
+  handleMonthChange,
+}: {
+  value: number;
+  t: ITranslationFunc;
+  month: string;
+  handleMonthChange: any;
+}): React.ReactNode {
+  const data = {
+    totalIncome: 2000 * 1000,
+    financedTrees: 1000 * 1000,
+    items: [
+      { name: "trees", value: 1000 },
+      { name: "green-investments", value: 250 },
+      { name: "taxes-and-social-security", value: 200 },
+      { name: "spreading the word", value: 100 },
+      { name: "operational-costs", value: 500 },
+    ],
+    countries: [
+      { name: "brazil", value: 10 },
+      { name: "kenya", value: 11 },
+      { name: "tanzania", value: 12 },
+      { name: "rwanda", value: 13 },
+      { name: "mexico", value: 14 },
+      { name: "thailand", value: 15 },
+    ],
+    months: ["April 2022", "March 2022", "February 2022"],
+  };
+
+  const getPieData = () => {
+    return data.items.map(({ name, value }) => {
+      return {
+        id: name,
+        label: name,
+        value,
+      };
+    });
+  };
+
+  return (
+    <TabPanel index={1} value={value}>
+      <Grid container spacing={2}>
+        <Grid item xs={4} xl={4}>
+          <InputLabel id="month-select-label">Month</InputLabel>
+          <Select
+            labelId="month-select-label"
+            id="month-select"
+            value={month}
+            label="Month"
+            onChange={handleMonthChange}
+          >
+            {data.months.map((month) => {
+              return <MenuItem value={month}>{month}</MenuItem>;
+            })}
+          </Select>
+          <CenteredContainerDiv>
+            <TitleHeader>{t("title")}</TitleHeader>
+            <SubtitleParagraph>{t("aboutTransparency")}</SubtitleParagraph>
+          </CenteredContainerDiv>
+        </Grid>
+        <Grid item xs={4} xl={4}>
+          <Card variant="outlined">
+            <CardContent>
+              <CardParagraph>{data.totalIncome}</CardParagraph>
+            </CardContent>
+            <CardParagraph>{t("totalIncome")}</CardParagraph>
+          </Card>
+          <br />
+          <CenteredContainerDiv>
+            {data.items.map(({ name, value }) => {
+              return (
+                <SubtitleParagraph>{`${name} ${value}`}</SubtitleParagraph>
+              );
+            })}
+          </CenteredContainerDiv>
+        </Grid>
+        <Grid item xs={4} xl={4}>
+          <Card variant="outlined">
+            <CardContent>
+              <CardParagraph>{data.financedTrees}</CardParagraph>
+            </CardContent>
+            <CardParagraph>{t("treesFinanced")}</CardParagraph>
+          </Card>
+          <PieContainerDiv>
+            <PieComponent data={getPieData()} />
+          </PieContainerDiv>
+        </Grid>
+        <Grid item xs={4} xl={4}>
+          <CenteredContainerDiv>
+            Countries:
+            {data.countries.map(({ name, value }) => {
+              return (
+                <SubtitleParagraph>
+                  <Chip label={name} />
+                  {`  ${value}`}&euro;
+                </SubtitleParagraph>
+              );
+            })}
+          </CenteredContainerDiv>
+        </Grid>
+      </Grid>
+    </TabPanel>
   );
 }
 
@@ -169,7 +313,6 @@ const ProjectsDescriptionDiv = styled.div`
   display: flex;
   justify-content: center;
   padding: 50px;
-  margin: 50px 0px;
   border: 1px dashed grey;
 `;
 
@@ -192,3 +335,47 @@ const TitleParagraph = styled.p`
 const SubtitleParagraph = styled.p`
   font-size: larger;
 `;
+
+const CardParagraph = styled.p`
+  text-align: center;
+`;
+
+const CenteredContainerDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const PieContainerDiv = styled.div`
+  width: 400px;
+  height: 400px;
+`;
+
+const SeparatorDiv = styled.div`
+  margin: 50px 0px;
+`;
+
+// translations
+
+const translations = {
+  [Language.English]: {
+    title: `Let's be clear about the numbers`,
+    treePlanting: `Tree planting At Ecosia, we plant trees where they're needed
+    most. Browse through our tree-planting portfolio to learn where the
+    trees stand, which species we plant, and what their impact is. And
+    much more!`,
+    aboutTransparency: `We're all about transparency. That's why we publish monthly financial
+    reports. They keep you in the loop about our latest tree-planting
+    projects, how much money we made from your searches, and how we spent
+    it. Ecosia is a not-for-profit business. We don't pay out dividends
+    and cannot be bought. That way, we're able to use 100% of our profits
+    for the planet. Keep in mind that it takes six weeks to process the
+    month's payments.`,
+    totalIncome: "Total income this month",
+    treesFinanced: "Trees financed this month",
+  },
+  [Language.French]: {},
+};
+
+export default withTranslations(translations)(Component);

@@ -12,7 +12,7 @@ import {
 import { Language } from "../../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../../helpers";
 
-const PieComponent = dynamic(() => import("./pie-component"), {
+const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
   ssr: false,
 });
 

@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { useQuery } from "react-query";
 
 import { fetchProjects } from "../../api";
+import { LanguageContext } from "../../providers/context";
 
-import BlogComponent from "./blog-component";
+import BlogComponent, { BlogProps } from "./blog-component";
 
 export default function Component() {
   const {
@@ -14,5 +16,7 @@ export default function Component() {
   if (isLoading) return "Loading...";
   if (error || !projects) return "An error has occurred: ";
 
-  return <BlogComponent {...{ projects }}></BlogComponent>;
+  const language = useContext(LanguageContext);
+
+  return <BlogComponent {...{ projects, language }}></BlogComponent>;
 }
