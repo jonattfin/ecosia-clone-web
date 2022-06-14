@@ -28,26 +28,29 @@ const PieComponent = dynamic(() => import("../../shared-components/pie"), {
 
 export interface BlogProps {
   projects: Project[];
-  months: string[];
-  data: MonthData;
-  language: string
+  reports: ReportData[];
+  language: string;
 }
 
 interface BlogPropsWithTranslation extends BlogProps {
   t: ITranslationFunc;
 }
 
-const Component = ({ projects, t, months, data }: BlogPropsWithTranslation) => {
+const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
   const [value, setValue] = useState(0);
   const [shownId, setShownId] = useState(0);
-  const [month, setMonth] = React.useState("April 2022");
+  const [month, setMonth] = React.useState(0);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   const handleMonthChange = (event: SelectChangeEvent) => {
-    setMonth(event.target.value as string);
+    setMonth(parseInt(event.target.value));
+  };
+
+  const getReport = () => {
+    return reports[month];
   };
 
   const imageProps = { width: 150, height: 0, alt: "something special" };
@@ -80,7 +83,14 @@ const Component = ({ projects, t, months, data }: BlogPropsWithTranslation) => {
           </ProjectsHeaderDiv>
           <SeparatorDiv />
           {renderProjects({ value, projects, setShownId, shownId, t })}
-          {renderMoney({ value, t, month, handleMonthChange, data, months })}
+          {renderMoney({
+            value,
+            t,
+            handleMonthChange,
+            getReport,
+            month,
+            months: reports.map((r) => r.month),
+          })}
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
@@ -151,7 +161,8 @@ interface KeyValuePair {
   value: number;
 }
 
-interface MonthData {
+interface ReportData {
+  month: string;
   totalIncome: number;
   financedTrees: number;
   items: KeyValuePair[];
@@ -161,20 +172,22 @@ interface MonthData {
 function renderMoney({
   value,
   t,
-  month,
   handleMonthChange,
-  data,
+  getReport,
+  month,
   months,
 }: {
   value: number;
   t: ITranslationFunc;
-  month: string;
-  handleMonthChange: any;
+  month: number;
   months: string[];
-  data: MonthData;
+  handleMonthChange: any;
+  getReport: () => ReportData;
 }): React.ReactNode {
+  const currentReport = getReport();
+
   const getPieData = () => {
-    return data.items.map(({ key, value }) => {
+    return currentReport.items.map(({ key, value }) => {
       return {
         id: key,
         label: key,
@@ -195,8 +208,8 @@ function renderMoney({
             label="Month"
             onChange={handleMonthChange}
           >
-            {months.map((month) => {
-              return <MenuItem value={month}>{month}</MenuItem>;
+            {months.map((month, index) => {
+              return <MenuItem value={index}>{month}</MenuItem>;
             })}
           </Select>
           <CenteredContainerDiv>
@@ -207,13 +220,13 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <Card variant="outlined">
             <CardContent>
-              <CardParagraph>{data.totalIncome}</CardParagraph>
+              <CardParagraph>{currentReport.totalIncome}</CardParagraph>
             </CardContent>
             <CardParagraph>{t("totalIncome")}</CardParagraph>
           </Card>
           <br />
           <CenteredContainerDiv>
-            {data.items.map(({ key, value }) => {
+            {currentReport.items.map(({ key, value }) => {
               return <SubtitleParagraph>{`${key} ${value}`}</SubtitleParagraph>;
             })}
           </CenteredContainerDiv>
@@ -221,7 +234,7 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <Card variant="outlined">
             <CardContent>
-              <CardParagraph>{data.financedTrees}</CardParagraph>
+              <CardParagraph>{currentReport.financedTrees}</CardParagraph>
             </CardContent>
             <CardParagraph>{t("treesFinanced")}</CardParagraph>
           </Card>
@@ -232,7 +245,7 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <CenteredContainerDiv>
             Countries:
-            {data.countries.map(({ key, value }) => {
+            {currentReport.countries.map(({ key, value }) => {
               return (
                 <SubtitleParagraph>
                   <Chip label={key} />

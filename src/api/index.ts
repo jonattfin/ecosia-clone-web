@@ -17,3 +17,8 @@ export const fetchTags = async () => {
   const res = await fetch(`${baseUrl}/tags`);
   return res.json();
 };
+
+export const fetchReports = async () => {
+  const res = await fetch(`${baseUrl}/reports`);
+  return res.json();
+};

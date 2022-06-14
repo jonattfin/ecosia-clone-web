@@ -9,14 +9,6 @@ export default function Index() {
   return <div></div>;
 }
 
-export const PieComponent = () => {
-  return (
-    <div style={{ height: "40vh", width: "30vw" }}>
-      <Components.PieComponent />
-    </div>
-  );
-};
-
 export const SearchComponent = withLanguageControls(
   Components.SearchComponent,
   {
