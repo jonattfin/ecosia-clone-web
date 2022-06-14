@@ -15,12 +15,13 @@ import Chip from "@mui/material/Chip";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+import dynamic from "next/dynamic";
+import _ from "lodash";
 
 import { AppColor, Image, Project } from "../../shared-components";
 import * as Images from "./components/images";
 import { Language } from "../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../helpers";
-import dynamic from "next/dynamic";
 
 const PieComponent = dynamic(() => import("../../shared-components/pie"), {
   ssr: false,
@@ -157,15 +158,13 @@ function renderProjects({
 }
 
 interface KeyValuePair {
-  key: string;
+  name: string;
   value: number;
 }
 
 interface ReportData {
   month: string;
-  totalIncome: number;
-  financedTrees: number;
-  items: KeyValuePair[];
+  investments: KeyValuePair[];
   countries: KeyValuePair[];
 }
 
@@ -187,10 +186,10 @@ function renderMoney({
   const currentReport = getReport();
 
   const getPieData = () => {
-    return currentReport.items.map(({ key, value }) => {
+    return currentReport.investments.map(({ name, value }) => {
       return {
-        id: key,
-        label: key,
+        id: name,
+        label: name,
         value,
       };
     });
@@ -224,17 +223,19 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <Card variant="outlined">
             <CardContent>
-              <CardParagraph>{currentReport.totalIncome}</CardParagraph>
+              <CardParagraph>
+                <h1>{_.sumBy(currentReport.investments, (i) => i.value)}</h1>
+              </CardParagraph>
             </CardContent>
             <CardParagraph>{t("totalIncome")}</CardParagraph>
           </Card>
           <br />
           <CenteredContainerDiv>
-            {currentReport.items.map(({ key, value }) => {
+            {currentReport.investments.map(({ name, value }) => {
               return (
                 <SubtitleParagraph
-                  key={key}
-                >{`${key} ${value}`}</SubtitleParagraph>
+                  key={name}
+                >{`${name} ${value}`}</SubtitleParagraph>
               );
             })}
           </CenteredContainerDiv>
@@ -242,7 +243,16 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <Card variant="outlined">
             <CardContent>
-              <CardParagraph>{currentReport.financedTrees}</CardParagraph>
+              <CardParagraph>
+                <h1>
+                  {_.sumBy(
+                    currentReport.investments.filter((i) =>
+                      i.name.includes("Trees")
+                    ),
+                    (i) => i.value
+                  )}
+                </h1>
+              </CardParagraph>
             </CardContent>
             <CardParagraph>{t("treesFinanced")}</CardParagraph>
           </Card>
@@ -253,10 +263,10 @@ function renderMoney({
         <Grid item xs={4} xl={4}>
           <CenteredContainerDiv>
             Countries:
-            {currentReport.countries.map(({ key, value }) => {
+            {currentReport.countries.map(({ name, value }) => {
               return (
-                <ChipContainer key={key}>
-                  <Chip label={key} />
+                <ChipContainer key={name}>
+                  <Chip label={name} />
                   {`  ${value}`}&euro;
                 </ChipContainer>
               );
@@ -396,8 +406,8 @@ const translations = {
     and cannot be bought. That way, we're able to use 100% of our profits
     for the planet. Keep in mind that it takes six weeks to process the
     month's payments.`,
-    totalIncome: "Total income this month",
-    treesFinanced: "Trees financed this month",
+    totalIncome: "Total income this month.",
+    treesFinanced: "Trees financed this month.",
   },
   [Language.French]: {},
 };
