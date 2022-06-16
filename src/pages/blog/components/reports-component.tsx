@@ -19,7 +19,7 @@ const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
   ssr: false,
 });
 
-interface ReportsProps {
+export interface ReportsProps {
   t: ITranslationFunc;
   months: string[];
   reports: ReportData[];
@@ -128,6 +128,8 @@ export default ({ t, months, reports }: ReportsProps) => {
     </Grid>
   );
 };
+
+// Styled Components
 
 const TitleHeader = styled.h1`
   color: ${AppColor.Teal};

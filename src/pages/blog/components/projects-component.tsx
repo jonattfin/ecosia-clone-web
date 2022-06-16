@@ -9,7 +9,7 @@ import { ITranslationFunc } from "../../../helpers";
 import { Project } from "../../../shared-components";
 import { useState } from "react";
 
-interface ProjectsProps {
+export interface ProjectsProps {
   projects: Project[];
   t: ITranslationFunc;
 }

@@ -81,7 +81,7 @@ export default function Index({ project }: ProjectProps) {
   );
 }
 
-function showTags(tags: Tag[]) {
+function showTags(tags: Tag[] = []) {
   return (
     <React.Fragment>
       {tags.map((tag, index) => (

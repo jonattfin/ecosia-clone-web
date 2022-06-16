@@ -1,70 +1,51 @@
+import _ from "lodash";
+
 import { withLanguageControls } from "../../helpers";
-import BlogComponent from "./blog-component";
+import BlogComponent, { BlogProps } from "./blog-component";
 
 export default function Index() {
   return <div></div>;
 }
 
-export const BlogIndex = withLanguageControls(BlogComponent, {
+const props: BlogProps = {
   projects: [],
   reports: getReports(),
-});
+  language: "",
+};
 
-export function getReports() {
-  return [
-    {
-      month: "April 2022",
-      items: [
-        { name: "trees", value: 1000 },
-        { name: "green-investments", value: 250 },
-        { name: "taxes-and-social-security", value: 200 },
-        { name: "spreading the word", value: 100 },
-        { name: "operational-costs", value: 500 },
-      ],
-      countries: [
-        { name: "brazil", value: 10 },
-        { name: "kenya", value: 11 },
-        { name: "tanzania", value: 12 },
-        { name: "rwanda", value: 13 },
-        { name: "mexico", value: 14 },
-        { name: "thailand", value: 15 },
-      ],
-    },
-    {
-      month: "March 2022",
-      items: [
-        { name: "trees", value: 1000 },
-        { name: "green-investments", value: 250 },
-        { name: "taxes-and-social-security", value: 200 },
-        { name: "spreading the word", value: 100 },
-        { name: "operational-costs", value: 500 },
-      ],
-      countries: [
-        { name: "brazil", value: 10 },
-        { name: "kenya", value: 11 },
-        { name: "tanzania", value: 12 },
-        { name: "rwanda", value: 13 },
-        { name: "mexico", value: 14 },
-        { name: "thailand", value: 15 },
-      ],
-    },
-    {
-      month: "February 2022",
-      items: [
-        { name: "trees", value: 1000 },
-        { name: "green-investments", value: 250 },
-        { name: "taxes-and-social-security", value: 200 },
-        { name: "spreading the word", value: 100 },
-        { name: "operational-costs", value: 500 },
-      ],
-      countries: [
-        { name: "brazil", value: 10 },
-        { name: "kenya", value: 11 },
-        { name: "tanzania", value: 12 },
-        { name: "rwanda", value: 13 },
-        { name: "mexico", value: 14 },
-        { name: "thailand", value: 15 },
-      ],
-    },
+export const BlogIndex = withLanguageControls(BlogComponent, props);
+
+function getReports() {
+  const year = 2022;
+  const months = ["April", "March", "February"];
+
+  const investments = [
+    "trees",
+    "green investments",
+    "taxes and social security",
+    "spreading the word",
+    "operational costs",
   ];
+  const countries = [
+    "brazil",
+    "kenya",
+    "tanzania",
+    "rwanda",
+    "mexico",
+    "thailand",
+  ];
+
+  return months.map((month) => {
+    return {
+      month: `${month} ${year}`,
+      investments: investments.map((investment) => ({
+        name: investment,
+        value: _.random(100, 1000),
+      })),
+      countries: countries.map((country) => ({
+        name: country,
+        value: _.random(100, 1000),
+      })),
+    };
+  });
 }
