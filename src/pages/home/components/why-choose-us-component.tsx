@@ -3,7 +3,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Link from "next/link";
 import styled from "@emotion/styled";
 
-import { ITranslation, Language } from "../../../providers/context";
+import { Language } from "../../../providers/context";
 
 import {
   AppColor,

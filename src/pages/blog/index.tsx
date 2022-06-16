@@ -7,6 +7,8 @@ import { LanguageContext } from "../../providers/context";
 import BlogComponent, { BlogProps } from "./blog-component";
 
 export default function Component() {
+  const language = useContext(LanguageContext);
+
   const {
     isLoading: projectsAreLoading,
     error: projectsError,
@@ -26,7 +28,7 @@ export default function Component() {
   const props: BlogProps = {
     projects,
     reports,
-    language: useContext(LanguageContext),
+    language,
   };
 
   return <BlogComponent {...props}></BlogComponent>;
