@@ -2,30 +2,14 @@ import { Grid } from "@mui/material";
 import React, { Fragment, SyntheticEvent, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import Link from "next/link";
-import Button from "@mui/material/Button";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import styled from "@emotion/styled";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Chip from "@mui/material/Chip";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import dynamic from "next/dynamic";
-import _ from "lodash";
 
 import { AppColor, Image, Project } from "../../shared-components";
 import * as Images from "./components/images";
 import { Language } from "../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../helpers";
-
-const PieComponent = dynamic(() => import("../../shared-components/pie"), {
-  ssr: false,
-});
+import { ProjectsComponent, ReportsComponent } from "./components";
+import { ReportData } from "./components/interfaces";
 
 export interface BlogProps {
   projects: Project[];
@@ -39,19 +23,9 @@ interface BlogPropsWithTranslation extends BlogProps {
 
 const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
   const [value, setValue] = useState(0);
-  const [shownId, setShownId] = useState(0);
-  const [month, setMonth] = React.useState(0);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
-  };
-
-  const handleMonthChange = (event: SelectChangeEvent) => {
-    setMonth(parseInt(event.target.value));
-  };
-
-  const getReport = () => {
-    return reports[month];
   };
 
   const imageProps = { width: 150, height: 0, alt: "something special" };
@@ -83,15 +57,18 @@ const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
             </Tabs>
           </ProjectsHeaderDiv>
           <SeparatorDiv />
-          {renderProjects({ value, projects, setShownId, shownId, t })}
-          {renderMoney({
-            value,
-            t,
-            handleMonthChange,
-            getReport,
-            month,
-            months: reports.map((r) => r.month),
-          })}
+          <TabPanel index={0} value={value}>
+            <ProjectsComponent {...{ projects, t }} />
+          </TabPanel>
+          <TabPanel index={1} value={value}>
+            <ReportsComponent
+              {...{
+                t,
+                months: reports.map((r) => r.month),
+                reports,
+              }}
+            />
+          </TabPanel>
         </Grid>
         <Grid item xs={12} xl={3}>
           &nbsp;
@@ -100,183 +77,6 @@ const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
     </MainContainer>
   );
 };
-
-function renderProjects({
-  value,
-  projects,
-  setShownId,
-  shownId,
-  t,
-}: {
-  projects: Project[];
-  value: number;
-  setShownId: (id: number) => void;
-  shownId: number;
-  t: ITranslationFunc;
-}): React.ReactNode {
-  return (
-    <TabPanel index={0} value={value}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} xl={12}>
-          <ProjectsDescriptionDiv>{t("treePlanting")}</ProjectsDescriptionDiv>
-        </Grid>
-        {projects.map((project) => (
-          <Grid
-            item
-            xs={12}
-            lg={6}
-            xl={4}
-            key={project.id}
-            onMouseEnter={() => setShownId(project.id)}
-            onMouseLeave={() => setShownId(0)}
-          >
-            <div>
-              <ProjectImg src={project.imageUrl}></ProjectImg>
-              <TitleContainerDiv>
-                <TitleParagraph>{project.scope}</TitleParagraph>
-                {shownId === project.id && showMediaLinks(project)}
-              </TitleContainerDiv>
-              <SubtitleParagraph>{project.name}</SubtitleParagraph>
-              <p>{project.desc}</p>
-              <Link href={`/project/${project.id}`}>
-                <a>
-                  <Button
-                    size="small"
-                    color="secondary"
-                    endIcon={<NavigateNextIcon />}
-                  >
-                    View
-                  </Button>
-                </a>
-              </Link>
-            </div>
-          </Grid>
-        ))}
-      </Grid>
-    </TabPanel>
-  );
-}
-
-interface KeyValuePair {
-  name: string;
-  value: number;
-}
-
-interface ReportData {
-  month: string;
-  investments: KeyValuePair[];
-  countries: KeyValuePair[];
-}
-
-function renderMoney({
-  value,
-  t,
-  handleMonthChange,
-  getReport,
-  month,
-  months,
-}: {
-  value: number;
-  t: ITranslationFunc;
-  month: number;
-  months: string[];
-  handleMonthChange: any;
-  getReport: () => ReportData;
-}): React.ReactNode {
-  const currentReport = getReport();
-
-  const getPieData = () => {
-    return currentReport.investments.map(({ name, value }) => {
-      return {
-        id: name,
-        label: name,
-        value,
-      };
-    });
-  };
-
-  return (
-    <TabPanel index={1} value={value}>
-      <Grid container spacing={2}>
-        <Grid item xs={4} xl={4}>
-          <InputLabel id="month-select-label">Month</InputLabel>
-          <Select
-            labelId="month-select-label"
-            id="month-select"
-            value={month}
-            label="Month"
-            onChange={handleMonthChange}
-          >
-            {months.map((month, index) => {
-              return (
-                <MenuItem key={`month_${month}`} value={index}>
-                  {month}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <CenteredContainerDiv>
-            <TitleHeader>{t("title")}</TitleHeader>
-            <SubtitleParagraph>{t("aboutTransparency")}</SubtitleParagraph>
-          </CenteredContainerDiv>
-        </Grid>
-        <Grid item xs={4} xl={4}>
-          <Card variant="outlined">
-            <CardContent>
-              <CardParagraph>
-                <h1>{_.sumBy(currentReport.investments, (i) => i.value)}</h1>
-              </CardParagraph>
-            </CardContent>
-            <CardParagraph>{t("totalIncome")}</CardParagraph>
-          </Card>
-          <br />
-          <CenteredContainerDiv>
-            {currentReport.investments.map(({ name, value }) => {
-              return (
-                <SubtitleParagraph
-                  key={name}
-                >{`${name} ${value}`}</SubtitleParagraph>
-              );
-            })}
-          </CenteredContainerDiv>
-        </Grid>
-        <Grid item xs={4} xl={4}>
-          <Card variant="outlined">
-            <CardContent>
-              <CardParagraph>
-                <h1>
-                  {_.sumBy(
-                    currentReport.investments.filter((i) =>
-                      i.name.includes("Trees")
-                    ),
-                    (i) => i.value
-                  )}
-                </h1>
-              </CardParagraph>
-            </CardContent>
-            <CardParagraph>{t("treesFinanced")}</CardParagraph>
-          </Card>
-          <PieContainerDiv>
-            <PieComponent data={getPieData()} />
-          </PieContainerDiv>
-        </Grid>
-        <Grid item xs={4} xl={4}>
-          <CenteredContainerDiv>
-            Countries:
-            {currentReport.countries.map(({ name, value }) => {
-              return (
-                <ChipContainer key={name}>
-                  <Chip label={name} />
-                  {`  ${value}`}&euro;
-                </ChipContainer>
-              );
-            })}
-          </CenteredContainerDiv>
-        </Grid>
-      </Grid>
-    </TabPanel>
-  );
-}
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -289,28 +89,6 @@ function TabPanel(props: TabPanelProps) {
   if (value !== index) return <Fragment />;
 
   return <div>{children}</div>;
-}
-
-function showMediaLinks(project: Project) {
-  return (
-    <div>
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href={`https://twitter.com/intent/tweet?text=${project.name}`}
-      >
-        <TwitterIcon color="primary" />
-      </a>
-
-      <a target="_blank" href="https://www.facebook.com" rel="noreferrer">
-        <FacebookIcon color="primary" />
-      </a>
-
-      <a target="_blank" href="https://pinterest.com/" rel="noreferrer">
-        <PinterestIcon color="primary" />
-      </a>
-    </div>
-  );
 }
 
 // Styled Components
@@ -337,53 +115,6 @@ const TitleHeader = styled.h1`
 const ProjectsHeaderDiv = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-const ProjectsDescriptionDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 50px;
-  border: 1px dashed grey;
-`;
-
-const ProjectImg = styled.img`
-  max-width: 100%;
-`;
-
-const TitleContainerDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const TitleParagraph = styled.p`
-  text-transform: uppercase;
-  border-left: 5px solid teal;
-  padding: 5px;
-`;
-
-const SubtitleParagraph = styled.p`
-  font-size: larger;
-`;
-
-const ChipContainer = styled.div`
-  font-size: larger;
-`;
-
-const CardParagraph = styled.p`
-  text-align: center;
-`;
-
-const CenteredContainerDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const PieContainerDiv = styled.div`
-  width: 400px;
-  height: 400px;
 `;
 
 const SeparatorDiv = styled.div`
