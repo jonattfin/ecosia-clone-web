@@ -12,7 +12,7 @@ export default function Component({
 }: SearchListProps) {
   const [page, setPage] = useState(1);
 
-  var data = showWindow(values, PAGE_SIZE, page);
+  const data = showWindow(values, PAGE_SIZE, page);
   const numberOfPages = parseInt((values.length / PAGE_SIZE).toString(), 10);
 
   const handleChange = (_ev: any, value: number) => setPage(value);

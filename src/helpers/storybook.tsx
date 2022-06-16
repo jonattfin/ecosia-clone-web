@@ -4,7 +4,7 @@ export function withLanguageControls(
   CustomComponent: any,
   extraArgs: any = {}
 ) {
-  var DecoratedComponent = (args: any) => {
+  const DecoratedComponent = (args: any) => {
     return <CustomComponent {...args} />;
   };
   applyLanguageArguments(DecoratedComponent);

@@ -2,11 +2,10 @@ export type ITranslationFunc = (slug: string) => string;
 
 export const withTranslations =
   (translation: any) => (WrappedComponent: any) => {
-    var DecoratedComponent = ({ language, ...other }: any) => {
+    return ({ language, ...other }: any) => {
       const t = getTranslations(translation)(language);
       return <WrappedComponent {...{ t, language, ...other }} />;
     };
-    return DecoratedComponent;
   };
 
 function getTranslations(translation: any) {

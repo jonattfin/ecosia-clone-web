@@ -40,9 +40,9 @@ const Component = ({ changeLanguage, t, language }: any) => {
     router.push(url);
   };
 
-  const handleChangeLanguage = (language: string) => {
+  const handleChangeLanguage = (lang: string) => {
     setAnchorEl(null);
-    changeLanguage(language);
+    changeLanguage(lang);
   };
 
   const numberOfTrees = useContext(TreesContext);
