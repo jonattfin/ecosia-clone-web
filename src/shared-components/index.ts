@@ -35,8 +35,6 @@ export const LinkDiv = styled.div`
   padding-right: 20px;
 `;
 
-// TODO - Move to another file
-
 export interface Project {
   id: number;
   name: string;

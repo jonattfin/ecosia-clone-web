@@ -59,10 +59,10 @@ export default ({ t, months, reports }: ReportsProps) => {
           label="Month"
           onChange={handleMonthChange}
         >
-          {months.map((month, index) => {
+          {months.map((m, index) => {
             return (
-              <MenuItem key={`month_${month}`} value={index}>
-                {month}
+              <MenuItem key={`month_${m}`} value={index}>
+                {m}
               </MenuItem>
             );
           })}

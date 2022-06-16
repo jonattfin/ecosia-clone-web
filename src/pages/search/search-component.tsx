@@ -1,5 +1,4 @@
-import { Box, Tabs, Tab, CircularProgress } from "@mui/material";
-import { Grid } from "@mui/material";
+import { Box, Tabs, Tab, CircularProgress, Grid } from "@mui/material";
 import { useState } from "react";
 import {
   Search as SearchIcon,
