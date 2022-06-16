@@ -25,7 +25,7 @@ export interface ReportsProps {
   reports: ReportData[];
 }
 
-export default ({ t, months, reports }: ReportsProps) => {
+export default function Component({ t, months, reports }: ReportsProps) {
   const [month, setMonth] = React.useState(0);
 
   const handleMonthChange = (event: SelectChangeEvent) => {

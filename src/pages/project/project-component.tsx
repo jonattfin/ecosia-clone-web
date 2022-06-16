@@ -13,7 +13,7 @@ export interface ProjectProps {
   project: Project;
 }
 
-export default function Index({ project }: ProjectProps) {
+export default function Component({ project }: ProjectProps) {
   const imageProps = {
     width: 374 / 2,
     height: 684 / 2,

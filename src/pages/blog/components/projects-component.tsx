@@ -14,7 +14,7 @@ export interface ProjectsProps {
   t: ITranslationFunc;
 }
 
-export default ({ projects, t }: ProjectsProps) => {
+export default function Component({ projects, t }: ProjectsProps) {
   const [shownId, setShownId] = useState(0);
 
   return (
