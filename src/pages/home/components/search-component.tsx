@@ -6,13 +6,14 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "@emotion/styled";
 
 import * as Images from "./images";
 import { Image, AppColor } from "../../../shared-components";
 import { Language } from "../../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { useEffect } from "@storybook/addons";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
@@ -37,6 +38,11 @@ const Component = ({
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
 
+  const handleChange = (ev) => {
+    setQuery(ev.target.value);
+    setIsOpen(true);
+  };
+
   return (
     <MainSection>
       <div>
@@ -48,10 +54,7 @@ const Component = ({
             <OutlinedInput
               value={query}
               placeholder={t("searchTheWeb")}
-              onChange={(ev) => {
-                setQuery(ev.target.value);
-                setIsOpen(true);
-              }}
+              onChange={handleChange}
               onKeyDown={() => {
                 onSearch(query);
               }}
