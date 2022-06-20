@@ -1,4 +1,10 @@
-import { FormControl, OutlinedInput } from "@mui/material";
+import {
+  FormControl,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useState } from "react";
 import styled from "@emotion/styled";
@@ -6,20 +12,27 @@ import styled from "@emotion/styled";
 import * as Images from "./images";
 import { Image, AppColor } from "../../../shared-components";
 import { Language } from "../../../providers/context";
-import {
-  ITranslationFunc,
-  withTranslations,
-} from "../../../helpers";
+import { ITranslationFunc, withTranslations } from "../../../helpers";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
+  onSearchValueSelected: (query: string) => void;
   counter: number;
   language?: Language;
   t: ITranslationFunc;
+  data: string[];
 }
 
-const Component = ({ onSearch, counter, t }: SearchComponentProps) => {
+const Component = ({
+  onSearch,
+  onSearchValueSelected,
+  counter,
+  t,
+  data,
+}: SearchComponentProps) => {
   const [query, setQuery] = useState("");
+  const [value, setSelectedValue] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
 
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
@@ -30,20 +43,43 @@ const Component = ({ onSearch, counter, t }: SearchComponentProps) => {
         <LogoImage src={Images.LogoImage} alt="logo" {...imageProps} />
       </div>
       <div>
-        <SearchFormControl variant="outlined">
-          <OutlinedInput
-            value={query}
-            placeholder={t("searchTheWeb")}
-            onChange={(ev) => {
-              setQuery(ev.target.value);
-            }}
-            onKeyDown={(ev) => {
-              if (ev.key === "Enter") onSearch(query);
-            }}
-            inputProps={{ "data-test": "searchInput" }}
-            endAdornment={<SearchIcon />}
-          />
-        </SearchFormControl>
+        <FormControl fullWidth>
+          <SearchFormControl variant="outlined" fullWidth>
+            <OutlinedInput
+              value={query}
+              placeholder={t("searchTheWeb")}
+              onChange={(ev) => {
+                setQuery(ev.target.value);
+                setIsOpen(true);
+              }}
+              onKeyDown={() => {
+                onSearch(query);
+              }}
+              inputProps={{ "data-test": "searchInput" }}
+              endAdornment={<SearchIcon />}
+            />
+          </SearchFormControl>
+          {data && data.length > 0 && (
+            <Select
+              onChange={(event: SelectChangeEvent<string>) => {
+                const value = event.target.value;
+
+                setSelectedValue(value);
+                onSearchValueSelected(value);
+              }}
+              value={value}
+              open={isOpen}
+              onClose={() => setIsOpen(false)}
+              onOpen={() => setIsOpen(true)}
+            >
+              {data.map((d) => (
+                <MenuItem key={d} value={d}>
+                  {d}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+        </FormControl>
       </div>
       <div>
         <h1>{t("searchEngine")}</h1>

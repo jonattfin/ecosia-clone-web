@@ -10,12 +10,16 @@ export interface HomeComponentProps {
   counter: number;
   language?: Language;
   onSearch: (query: string) => void;
+  onSearchValueSelected: (query: string) => void;
+  data: string[],
 }
 
 export default function Component({
   counter,
   onSearch,
+  onSearchValueSelected,
   language,
+  data
 }: HomeComponentProps) {
   const title = "Ecosia - The search engine that plants trees";
 
@@ -31,7 +35,7 @@ export default function Component({
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <Components.SearchComponent {...{ counter, onSearch, language }} />
+          <Components.SearchComponent {...{ counter, onSearch, onSearchValueSelected, language, data }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;
