@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { interval, tap } from "rxjs";
 import { useRouter } from "next/router";
 
 import HomeComponent from "./home-component";
 import { LanguageContext } from "../../providers/context";
 import { ResultQuery, searchByQueryAsync } from "../../api";
+import { debounce } from "lodash";
 
 export default function Component() {
   const initialValue = 146000000;
@@ -34,5 +34,15 @@ export default function Component() {
 
   const language = useContext(LanguageContext);
 
-  return <HomeComponent {...{ counter, onSearch, onSearchValueSelected, language, data }} />;
+  return (
+    <HomeComponent
+      {...{
+        counter,
+        onSearch: debounce(onSearch, 200),
+        onSearchValueSelected,
+        language,
+        data,
+      }}
+    />
+  );
 }

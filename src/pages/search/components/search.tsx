@@ -1,6 +1,6 @@
 import { FormControl, OutlinedInput, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "@emotion/styled";
@@ -14,6 +14,8 @@ export interface SearchProps {
 
 export default function Component(props: SearchProps) {
   const [query, setQuery] = useState(props.query);
+
+  useEffect(() => props.doSearch(query), [query]);
 
   return (
     <MainSection>
@@ -34,9 +36,6 @@ export default function Component(props: SearchProps) {
             onChange={(ev) => {
               setQuery(ev.target.value);
             }}
-            onKeyDown={(ev) => {
-              if (ev.key === "Enter") props.doSearch(query);
-            }}
             endAdornment={<SearchIcon />}
           />
         </FormControl>
@@ -47,4 +46,4 @@ export default function Component(props: SearchProps) {
 
 const MainSection = styled.section`
   padding-top: 100px;
-`
+`;

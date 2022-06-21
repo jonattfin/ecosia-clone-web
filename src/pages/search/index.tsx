@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import _ from "lodash";
+import { debounce } from "lodash";
 
 import SearchComponent, { SearchProps } from "./search-component";
 import { ResultQuery, searchByQueryAsync } from "../../api";
@@ -47,7 +47,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   const props: SearchProps = {
     query: (pid || "").toString(),
     resultsObject,
-    doSearch,
+    doSearch: debounce(doSearch, 200),
     progress,
   };
 
