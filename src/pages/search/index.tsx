@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 
 import SearchComponent, { SearchProps } from "./search-component";
+import { ResultQuery, searchByQueryAsync } from "../../api";
 
 interface IndexSearchProps {
   incrementTreeCount: () => void;
@@ -11,12 +12,6 @@ interface IndexSearchProps {
 interface ResultsState {
   totalEstimatedMatches: number;
   values: ResultQuery[];
-}
-
-interface ResultQuery {
-  url: string;
-  snippet: string;
-  name: string;
 }
 
 export default function Component({ incrementTreeCount }: IndexSearchProps) {
@@ -38,11 +33,13 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   useEffect(() => {
     const fetchData = async () => {
       setProgress(true);
-      const data = await searchByQueryAsync(pid);
+      const data = await searchByQueryAsync(pid?.toString());
       setResultsObject({ values: data, totalEstimatedMatches: data.length });
       setProgress(false);
     };
-    fetchData();
+    if (pid) {
+      fetchData();
+    }
 
     incrementTreeCount();
   }, [pid]);
@@ -55,23 +52,4 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   };
 
   return <SearchComponent {...props} />;
-}
-
-function searchByQueryAsync(
-  query: string | string[] | undefined
-): Promise<ResultQuery[]> {
-  return new Promise((resolve, _reject) => {
-    setTimeout(() => {
-      const max = _.random(50, 1000);
-
-      const data = _.range(1, max).map((i: number) => {
-        return {
-          url: `https://${query}.com`,
-          snippet: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
-          name: `name ${i}`,
-        };
-      });
-      resolve(data);
-    }, 500);
-  });
 }

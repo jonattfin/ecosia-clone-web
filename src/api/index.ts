@@ -22,7 +22,15 @@ export const fetchReports = async () => {
   return res.json();
 };
 
-export const fetchSearch = async (query: string) => {
+export const searchByQueryAsync = async (
+  query: string | undefined
+): Promise<ResultQuery[]> => {
   const res = await fetch(`${baseUrl}/search/${query}`);
   return res.json();
 };
+
+export interface ResultQuery {
+  url: string;
+  snippet: string;
+  name: string;
+}

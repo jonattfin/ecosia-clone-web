@@ -1,19 +1,20 @@
 import {
   FormControl,
-  MenuItem,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   OutlinedInput,
-  Select,
-  SelectChangeEvent,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useRef, useState } from "react";
+import { useState, Fragment, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import * as Images from "./images";
 import { Image, AppColor } from "../../../shared-components";
 import { Language } from "../../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../../helpers";
-import { useEffect } from "@storybook/addons";
+import { ResultQuery } from "../../../api";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
@@ -21,7 +22,7 @@ export interface SearchComponentProps {
   counter: number;
   language?: Language;
   t: ITranslationFunc;
-  data: string[];
+  data: ResultQuery[];
 }
 
 const Component = ({
@@ -32,16 +33,13 @@ const Component = ({
   data,
 }: SearchComponentProps) => {
   const [query, setQuery] = useState("");
-  const [value, setSelectedValue] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
 
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
 
-  const handleChange = (ev) => {
-    setQuery(ev.target.value);
-    setIsOpen(true);
-  };
+  const handleChange = (ev: any) => setQuery(ev.target.value);
+
+  useEffect(() => onSearch(query), [query]);
 
   return (
     <MainSection>
@@ -55,40 +53,32 @@ const Component = ({
               value={query}
               placeholder={t("searchTheWeb")}
               onChange={handleChange}
-              onKeyDown={() => {
-                onSearch(query);
-              }}
               inputProps={{ "data-test": "searchInput" }}
               endAdornment={<SearchIcon />}
             />
           </SearchFormControl>
-          {data && data.length > 0 && (
-            <Select
-              onChange={(event: SelectChangeEvent<string>) => {
-                const value = event.target.value;
-
-                setSelectedValue(value);
-                onSearchValueSelected(value);
-              }}
-              value={value}
-              open={isOpen}
-              onClose={() => setIsOpen(false)}
-              onOpen={() => setIsOpen(true)}
-            >
-              {data.map((d) => (
-                <MenuItem key={d} value={d}>
-                  {d}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
+          <SearchList>
+            {data.map((item, index) => (
+              <ListItem key={`d_${index}`} disablePadding>
+                <ListItemButton
+                  onClick={() => onSearchValueSelected(item.snippet)}
+                >
+                  <ListItemText primary={item.snippet} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </SearchList>
         </FormControl>
       </div>
-      <div>
-        <h1>{t("searchEngine")}</h1>
-      </div>
-      <CounterTextDiv>{counter.toLocaleString()}</CounterTextDiv>
-      <div>{t("numberOfTrees")}</div>
+      {data && data.length == 0 && (
+        <Fragment>
+          <div>
+            <h1>{t("searchEngine")}</h1>
+          </div>
+          <CounterTextDiv>{counter.toLocaleString()}</CounterTextDiv>
+          <div>{t("numberOfTrees")}</div>
+        </Fragment>
+      )}
     </MainSection>
   );
 };
@@ -119,6 +109,11 @@ const SearchFormControl = styled(FormControl)`
 const CounterTextDiv = styled.div`
   font-size: 4vh;
   color: ${AppColor.Teal};
+`;
+
+const SearchList = styled(List)`
+  height: 300px;
+  overflow: auto;
 `;
 
 // translations

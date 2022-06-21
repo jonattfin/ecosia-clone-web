@@ -5,13 +5,14 @@ import Head from "next/head";
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
 import { Language } from "../../providers/context";
+import { ResultQuery } from "../../api";
 
 export interface HomeComponentProps {
   counter: number;
   language?: Language;
   onSearch: (query: string) => void;
   onSearchValueSelected: (query: string) => void;
-  data: string[],
+  data: ResultQuery[],
 }
 
 export default function Component({

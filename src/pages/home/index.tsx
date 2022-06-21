@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 
 import HomeComponent from "./home-component";
 import { LanguageContext } from "../../providers/context";
-import { fetchSearch } from "../../api";
+import { ResultQuery, searchByQueryAsync } from "../../api";
 
 export default function Component() {
   const initialValue = 146000000;
   const [counter, setCounter] = useState(initialValue);
   const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<ResultQuery[]>([]);
 
   const onSearch = (q: string) => setQuery(q);
 
@@ -25,9 +25,8 @@ export default function Component() {
   // }, []);
 
   useEffect(() => {
-    console.log(query);
     async function fetchData() {
-      const data = await fetchSearch(query);
+      const data = await searchByQueryAsync(query);
       setData(data);
     }
     if (query.length > 0) fetchData();
