@@ -5,7 +5,7 @@ import { debounce } from "lodash";
 
 import HomeComponent from "./home-component";
 import { LanguageContext } from "../../providers/context";
-import { ResultQuery, searchByQueryAsync, wsBaseUrl } from "../../api";
+import { ResultQuery, searchByQueryAsync, wssBaseUrl } from "../../api";
 
 export default function Component() {
   const [counter, setCounter] = useState(1500);
