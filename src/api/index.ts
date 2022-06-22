@@ -2,7 +2,7 @@
 const baseUrl = "ecosia-clone-nestjs.herokuapp.com"
 
 export const httpBaseUrl = `https://${baseUrl}`;
-export const wsBaseUrl = `ws://${baseUrl}`;
+export const wssBaseUrl = `wss://${baseUrl}`;
 
 export const fetchProjects = async () => {
   const res = await fetch(`${httpBaseUrl}/projects`);

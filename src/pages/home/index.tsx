@@ -12,7 +12,7 @@ export default function Component() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState<ResultQuery[]>([]);
 
-  const [socketUrl] = useState(wsBaseUrl);
+  const [socketUrl] = useState(wssBaseUrl);
   const { sendJsonMessage, lastMessage } = useWebSocket(socketUrl);
 
   const onSearch = (q: string) => {
