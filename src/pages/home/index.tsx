@@ -12,7 +12,10 @@ export default function Component() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState<ResultQuery[]>([]);
 
-  const onSearch = (q: string) => setQuery(q);
+  const onSearch = (q: string) => { 
+    setQuery(q) 
+    console.log(`called with ${q}`);
+  };
 
   const router = useRouter();
   const onSearchValueSelected = (q: string) => router.push(`/search/${q}`);

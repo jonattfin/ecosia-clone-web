@@ -57,17 +57,19 @@ const Component = ({
               endAdornment={<SearchIcon />}
             />
           </SearchFormControl>
-          <SearchList>
-            {data.map((item, index) => (
-              <ListItem key={`d_${index}`} disablePadding>
-                <ListItemButton
-                  onClick={() => onSearchValueSelected(item.snippet)}
-                >
-                  <ListItemText primary={item.snippet} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </SearchList>
+          {query && (
+            <SearchList>
+              {data.map((item, index) => (
+                <ListItem key={`d_${index}`} disablePadding>
+                  <ListItemButton
+                    onClick={() => onSearchValueSelected(item.snippet)}
+                  >
+                    <ListItemText primary={item.snippet} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </SearchList>
+          )}
         </FormControl>
       </div>
       {data && data.length == 0 && (
