@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import useWebSocket from "react-use-websocket";
 import { debounce } from "lodash";
 
 import HomeComponent from "./home-component";
@@ -24,18 +24,18 @@ export default function Component() {
   const onSearchValueSelected = (q: string) => router.push(`/search/${q}`);
 
   useEffect(() => {
-    if (!lastMessage) return;
+    if (!lastMessage) 
+      return;
 
-    const { data } = lastMessage;
-    const dataObj = JSON.parse(data);
+    const dataObj = JSON.parse(lastMessage.data);
     console.log(dataObj);
     setCounter(dataObj.data || 0);
   }, [lastMessage]);
 
   useEffect(() => {
     async function fetchData() {
-      const data = await searchByQueryAsync(query);
-      setData(data);
+      const fetchedData = await searchByQueryAsync(query);
+      setData(fetchedData);
     }
     if (query.length > 0) fetchData();
   }, [query]);

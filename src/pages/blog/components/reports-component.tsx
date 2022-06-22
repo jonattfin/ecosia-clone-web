@@ -127,7 +127,7 @@ export default function Component({ t, months, reports }: ReportsProps) {
       </Grid>
     </Grid>
   );
-};
+}
 
 // Styled Components
 

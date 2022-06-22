@@ -52,7 +52,7 @@ export default function Component({ projects, t }: ProjectsProps) {
       ))}
     </Grid>
   );
-};
+}
 
 function showMediaLinks(project: Project) {
   return (

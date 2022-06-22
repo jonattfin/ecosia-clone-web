@@ -1,8 +1,7 @@
+const environment = getEnvironment();
 
-const baseUrl = "ecosia-clone-nestjs.herokuapp.com"
-
-export const httpBaseUrl = `https://${baseUrl}`;
-export const wssBaseUrl = `wss://${baseUrl}`;
+export const httpBaseUrl = environment.httpBaseUrl;
+export const wssBaseUrl = environment.wssBaseUrl;
 
 export const fetchProjects = async () => {
   const res = await fetch(`${httpBaseUrl}/projects`);
@@ -37,4 +36,28 @@ export interface ResultQuery {
   url: string;
   snippet: string;
   name: string;
+}
+
+function getEnvironment(isDevelopment: boolean = false) {
+  return isDevelopment ? getDevEnvironment() : getProdEnvironment();
+
+  function getDevEnvironment() {
+    const baseUrl = "localhost:8080";
+
+    return {
+      baseUrl,
+      httpBaseUrl: `http://${baseUrl}`,
+      wssBaseUrl: `ws://${baseUrl}`,
+    };
+  }
+
+  function getProdEnvironment() {
+    const baseUrl = "ecosia-clone-nestjs.herokuapp.com";
+
+    return {
+      baseUrl,
+      httpBaseUrl: `https://${baseUrl}`,
+      wssBaseUrl: `wss://${baseUrl}`,
+    };
+  }
 }
