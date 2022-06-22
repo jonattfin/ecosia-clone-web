@@ -1,31 +1,36 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import useWebSocket, { ReadyState } from "react-use-websocket";
+import { debounce } from "lodash";
 
 import HomeComponent from "./home-component";
 import { LanguageContext } from "../../providers/context";
-import { ResultQuery, searchByQueryAsync } from "../../api";
-import { debounce } from "lodash";
+import { ResultQuery, searchByQueryAsync, wsBaseUrl } from "../../api";
 
 export default function Component() {
-  const initialValue = 146000000;
-  const [counter, setCounter] = useState(initialValue);
+  const [counter, setCounter] = useState(1500);
   const [query, setQuery] = useState("");
   const [data, setData] = useState<ResultQuery[]>([]);
 
-  const onSearch = (q: string) => { 
-    setQuery(q) 
+  const [socketUrl] = useState(wsBaseUrl);
+  const { sendJsonMessage, lastMessage } = useWebSocket(socketUrl);
+
+  const onSearch = (q: string) => {
+    setQuery(q);
     console.log(`called with ${q}`);
   };
 
   const router = useRouter();
   const onSearchValueSelected = (q: string) => router.push(`/search/${q}`);
 
-  // useEffect(() => {
-  //   const subscription = interval(5000)
-  //     .pipe(tap((value) => console.log(value + 1)))
-  //     .subscribe((value) => setCounter(initialValue + (value + 1)));
-  //   return () => subscription.unsubscribe();
-  // }, []);
+  useEffect(() => {
+    if (!lastMessage) return;
+
+    const { data } = lastMessage;
+    const dataObj = JSON.parse(data);
+    console.log(dataObj);
+    setCounter(dataObj.data || 0);
+  }, [lastMessage]);
 
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +39,10 @@ export default function Component() {
     }
     if (query.length > 0) fetchData();
   }, [query]);
+
+  useEffect(() => {
+    sendJsonMessage({ event: "events" });
+  }, []);
 
   const language = useContext(LanguageContext);
 
