@@ -72,7 +72,7 @@ const Component = ({
           )}
         </FormControl>
       </div>
-      {data && data.length == 0 && (
+      {!query && (
         <Fragment>
           <div>
             <h1>{t("searchEngine")}</h1>
