@@ -41,7 +41,7 @@ export default function Component() {
     <HomeComponent
       {...{
         counter,
-        onSearch: debounce(onSearch, 200),
+        onSearch: debounce(onSearch, 10),
         onSearchValueSelected,
         language,
         data,

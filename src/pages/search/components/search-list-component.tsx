@@ -1,5 +1,6 @@
 import { Pagination, Stack } from "@mui/material";
 import { useState } from "react";
+import styled from "@emotion/styled";
 
 export interface SearchListProps {
   totalEstimatedMatches: number;
@@ -18,20 +19,20 @@ export default function Component({
   const handleChange = (_ev: any, value: number) => setPage(value);
 
   return (
-    <section>
+    <ExtraSection>
       <Stack spacing={2}>
         {data.map(({ url, snippet, name }, index) => (
           <div key={`index_${index}`}>
-            <div>
+            <NameDiv>
               <a href={url} target="_blank" rel="noreferrer">
                 {name}
               </a>
-            </div>
-            <div>
+            </NameDiv>
+            <UrlDiv>
               <a href={url} target="_blank" rel="noreferrer">
                 {url}
               </a>
-            </div>
+            </UrlDiv>
             <div>{snippet}</div>
           </div>
         ))}
@@ -46,7 +47,7 @@ export default function Component({
           onChange={handleChange}
         />
       </div>
-    </section>
+    </ExtraSection>
   );
 }
 
@@ -59,3 +60,17 @@ function showWindow(data: Array<any>, pageSize: number, pageNumber = 1) {
     );
   });
 }
+
+// Styled Components
+
+const ExtraSection = styled.section`
+  margin: 25px 0px;
+`;
+
+const NameDiv = styled.div`
+  color: #660066;
+`;
+
+const UrlDiv = styled.div`
+  color: green;
+`;
