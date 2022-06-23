@@ -8,6 +8,7 @@ import { Language } from "../../providers/context";
 import { ResultQuery } from "../../api";
 
 export interface HomeComponentProps {
+  q: string;
   counter: number;
   language?: Language;
   onSearch: (query: string) => void;
@@ -16,6 +17,7 @@ export interface HomeComponentProps {
 }
 
 export default function Component({
+  q,
   counter,
   onSearch,
   onSearchValueSelected,
@@ -36,7 +38,7 @@ export default function Component({
           &nbsp;
         </Grid>
         <Grid item xs={12} xl={6}>
-          <Components.SearchComponent {...{ counter, onSearch, onSearchValueSelected, language, data }} />
+          <Components.SearchComponent {...{ q, counter, onSearch, onSearchValueSelected, language, data }} />
         </Grid>
         <Grid item xl={3}>
           &nbsp;

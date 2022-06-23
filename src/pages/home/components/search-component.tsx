@@ -19,6 +19,7 @@ import { ResultQuery } from "../../../api";
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
   onSearchValueSelected: (query: string) => void;
+  q: string,
   counter: number;
   language?: Language;
   t: ITranslationFunc;
@@ -28,11 +29,12 @@ export interface SearchComponentProps {
 const Component = ({
   onSearch,
   onSearchValueSelected,
+  q,
   counter,
   t,
   data,
 }: SearchComponentProps) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(q || "");
 
   const imageProps = { width: 200, height: 0 };
   imageProps.height = imageProps.width * 0.7;
