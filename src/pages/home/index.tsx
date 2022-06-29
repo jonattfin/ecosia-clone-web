@@ -49,6 +49,7 @@ export default function Component() {
   return (
     <HomeComponent
       {...{
+        q: query,
         counter,
         onSearch: debounce(onSearch, 10),
         onSearchValueSelected,
