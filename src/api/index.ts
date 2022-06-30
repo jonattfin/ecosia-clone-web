@@ -1,16 +1,19 @@
+import { ReportData } from "../pages/blog/components/interfaces";
+import { Project } from "../shared-components";
+
 const environment = getEnvironment();
 
 export const httpBaseUrl = environment.httpBaseUrl;
 export const wssBaseUrl = environment.wssBaseUrl;
 
-export const fetchProjects = async () => {
+export const fetchProjects = async (): Promise<Project[]> => {
   const res = await fetch(`${httpBaseUrl}/projects`);
   return res.json();
 };
 
 export const fetchProjectById = async (
   projectId: string | string[] | undefined
-) => {
+): Promise<Project> => {
   const res = await fetch(`${httpBaseUrl}/projects/${projectId}`);
   return res.json();
 };
@@ -20,7 +23,7 @@ export const fetchTags = async () => {
   return res.json();
 };
 
-export const fetchReports = async () => {
+export const fetchReports = async (): Promise<ReportData[]> => {
   const res = await fetch(`${httpBaseUrl}/reports`);
   return res.json();
 };

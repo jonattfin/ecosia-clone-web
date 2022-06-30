@@ -5,6 +5,7 @@ export interface KeyValuePair {
 
 export interface ReportData {
   month: string;
+  year: number;
   investments: KeyValuePair[];
   countries: KeyValuePair[];
 }

@@ -12,7 +12,7 @@ import _ from "lodash";
 import { ITranslationFunc } from "../../../helpers";
 import { Grid } from "@mui/material";
 import { AppColor } from "../../../shared-components";
-import React from "react";
+import React, { Fragment } from "react";
 import { ReportData } from "./interfaces";
 
 const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
@@ -21,11 +21,10 @@ const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
 
 export interface ReportsProps {
   t: ITranslationFunc;
-  months: string[];
   reports: ReportData[];
 }
 
-export default function Component({ t, months, reports }: ReportsProps) {
+export default function Component({ t, reports }: ReportsProps) {
   const [month, setMonth] = React.useState(0);
 
   const handleMonthChange = (event: SelectChangeEvent) => {
@@ -59,10 +58,10 @@ export default function Component({ t, months, reports }: ReportsProps) {
           label="Month"
           onChange={handleMonthChange}
         >
-          {months.map((m, index) => {
+          {reports.map((report, index) => {
             return (
-              <MenuItem key={`month_${m}`} value={index}>
-                {m}
+              <MenuItem key={`month_year${report.month}`} value={index}>
+                {`${report.month} ${report.year}`}
               </MenuItem>
             );
           })}
@@ -76,7 +75,11 @@ export default function Component({ t, months, reports }: ReportsProps) {
         <Card variant="outlined">
           <CardContent>
             <CardDiv>
-              <h1>{_.sumBy(currentReport.investments, (i) => i.value)}</h1>
+              <h1>
+                {formatMoney(
+                  _.sumBy(currentReport.investments, (i) => i.value)
+                )}
+              </h1>
             </CardDiv>
           </CardContent>
           <CardDiv>{t("totalIncome")}</CardDiv>
@@ -85,9 +88,11 @@ export default function Component({ t, months, reports }: ReportsProps) {
         <CenteredContainerDiv>
           {currentReport.investments.map(({ name, value }) => {
             return (
-              <SubtitleParagraph
-                key={name}
-              >{`${name} ${value}`}</SubtitleParagraph>
+              <Fragment key={name}>
+                <SubtitleParagraph>
+                  {name} {formatMoney(value)}
+                </SubtitleParagraph>
+              </Fragment>
             );
           })}
         </CenteredContainerDiv>
@@ -97,11 +102,13 @@ export default function Component({ t, months, reports }: ReportsProps) {
           <CardContent>
             <CardDiv>
               <h1>
-                {_.sumBy(
-                  currentReport.investments.filter((i) =>
-                    i.name.includes("Trees")
-                  ),
-                  (i) => i.value
+                {formatMoney(
+                  _.sumBy(
+                    currentReport.investments.filter((i) =>
+                      i.name.toLowerCase().includes("trees")
+                    ),
+                    (i) => i.value
+                  )
                 )}
               </h1>
             </CardDiv>
@@ -112,21 +119,27 @@ export default function Component({ t, months, reports }: ReportsProps) {
           <PieComponent data={getPieData()} />
         </PieContainerDiv>
       </Grid>
-      <Grid item xs={4} xl={4}>
-        <CenteredContainerDiv>
-          Countries:
-          {currentReport.countries.map(({ name, value }) => {
-            return (
-              <ChipContainer key={name}>
-                <Chip label={name} />
-                {`  ${value}`}&euro;
-              </ChipContainer>
-            );
-          })}
-        </CenteredContainerDiv>
-      </Grid>
+      {currentReport.countries.length > 0 && (
+        <Grid item xs={4} xl={4}>
+          <CenteredContainerDiv>
+            Countries:
+            {currentReport.countries.map(({ name, value }) => {
+              return (
+                <ChipContainer key={name}>
+                  <Chip label={name} />
+                  {formatMoney(value)}
+                </ChipContainer>
+              );
+            })}
+          </CenteredContainerDiv>
+        </Grid>
+      )}
     </Grid>
   );
+}
+
+function formatMoney(money: number) {
+  return <Fragment>&euro;{money.toLocaleString()}</Fragment>;
 }
 
 // Styled Components

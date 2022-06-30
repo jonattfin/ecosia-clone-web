@@ -20,6 +20,7 @@ export default function Component({ data = getData() /* see data tab */ }) {
       padAngle={0.5}
       cornerRadius={5}
       enableArcLabels={false}
+      valueFormat={value => `€${value.toLocaleString()}`}
       arcLinkLabelsColor={{
         from: "color",
       }}

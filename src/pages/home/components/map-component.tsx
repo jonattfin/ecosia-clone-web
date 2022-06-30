@@ -42,7 +42,7 @@ const Component = ({ counter, t }: MapComponentProps) => {
         </Grid>
         <Grid item xs={12} xl={12}>
           <LinkDiv>
-            <Link href="/blog">
+            <Link href="/blog/projects">
               <a data-test="discover-projects">
                 {t("discover")} <ChevronRightIcon fontSize="small" />
               </a>

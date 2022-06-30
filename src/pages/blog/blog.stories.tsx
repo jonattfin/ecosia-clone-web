@@ -8,6 +8,7 @@ export default function Index() {
 }
 
 const props: BlogProps = {
+  id: 1,
   projects: [],
   reports: getReports(),
   language: "",
@@ -37,7 +38,8 @@ function getReports() {
 
   return months.map((month) => {
     return {
-      month: `${month} ${year}`,
+      month: `${month}`,
+      year,
       investments: investments.map((investment) => ({
         name: investment,
         value: _.random(100, 1000),

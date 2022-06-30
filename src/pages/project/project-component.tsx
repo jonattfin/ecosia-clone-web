@@ -40,7 +40,7 @@ export default function Component({ project }: ProjectProps) {
           <ProjectsHeaderDiv>
             <Breadcrumbs aria-label="breadcrumb">
               <Link href="/">Home</Link>
-              <Link href="/blog">Projects</Link>
+              <Link href="/blog/projects">Projects</Link>
               <Typography color="textPrimary">{project.name}</Typography>
             </Breadcrumbs>
           </ProjectsHeaderDiv>
@@ -50,18 +50,18 @@ export default function Component({ project }: ProjectProps) {
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} xl={4}>
                 <p>trees planted</p>
-                <TealParagraph>9000</TealParagraph>
+                <TealParagraph>{project.treesPlanted}</TealParagraph>
               </Grid>
               <Grid item xs={12} xl={4}>
                 <p>hectares restored</p>
-                <OrangeParagraph>updating</OrangeParagraph>
+                <OrangeParagraph>{project.hectaresRestored}</OrangeParagraph>
               </Grid>
               <Grid item xs={12} xl={4}>
                 <p>since</p>
-                <GreenParagraph>2001</GreenParagraph>
+                <GreenParagraph>{project.yearSince}</GreenParagraph>
               </Grid>
               <Grid item xs={12} xl={12}>
-                <h1>From monoculture to sustainable rubber farming</h1>
+                <h1>{project.title}</h1>
               </Grid>
               <Grid item xs={12} xl={6}>
                 <p>{project.desc}</p>

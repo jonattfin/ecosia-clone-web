@@ -16,7 +16,7 @@ interface ResultsState {
 
 export default function Component({ incrementTreeCount }: IndexSearchProps) {
   const router = useRouter();
-  const { pid } = router.query;
+  const { id } = router.query;
 
   const [resultsObject, setResultsObject] = useState<ResultsState>({
     totalEstimatedMatches: 0,
@@ -33,19 +33,19 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
   useEffect(() => {
     const fetchData = async () => {
       setProgress(true);
-      const data = await searchByQueryAsync(pid?.toString());
+      const data = await searchByQueryAsync(id?.toString());
       setResultsObject({ values: data, totalEstimatedMatches: data.length });
       setProgress(false);
     };
-    if (pid) {
+    if (id) {
       fetchData();
     }
 
     incrementTreeCount();
-  }, [pid]);
+  }, [id]);
 
   const props: SearchProps = {
-    query: (pid || "").toString(),
+    query: (id || "").toString(),
     resultsObject,
     doSearch: debounce(doSearch, 200),
     progress,

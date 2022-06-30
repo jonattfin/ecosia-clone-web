@@ -40,6 +40,10 @@ export interface Project {
   name: string;
   scope: string;
   desc: string;
+  title: string,
+  treesPlanted:string,
+  hectaresRestored: string,
+  yearSince: number,
   imageUrl: string;
   tags: Tag[];
 }

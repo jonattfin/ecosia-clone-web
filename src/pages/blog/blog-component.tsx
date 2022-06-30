@@ -10,19 +10,21 @@ import { Language } from "../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../helpers";
 import { ProjectsComponent, ReportsComponent } from "./components";
 import { ReportData } from "./components/interfaces";
+import Link from "next/link";
 
 export interface BlogProps {
   projects: Project[];
   reports: ReportData[];
   language: string;
+  id: number;
 }
 
 interface BlogPropsWithTranslation extends BlogProps {
   t: ITranslationFunc;
 }
 
-const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
-  const [value, setValue] = useState(0);
+const Component = ({ projects, t, reports, id }: BlogPropsWithTranslation) => {
+  const [value, setValue] = useState(id);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -40,7 +42,11 @@ const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
         <Grid item xs={12} xl={6}>
           <LogoHeaderDiv>
             <LogoImageDiv>
-              <Image src={Images.LogoImage} {...imageProps} />
+              <Link href={`/`}>
+                <a>
+                  <Image src={Images.LogoImage} {...imageProps} />
+                </a>
+              </Link>
             </LogoImageDiv>
             <TitleHeader>Blog</TitleHeader>
           </LogoHeaderDiv>
@@ -64,7 +70,6 @@ const Component = ({ projects, t, reports }: BlogPropsWithTranslation) => {
             <ReportsComponent
               {...{
                 t,
-                months: reports.map((r) => r.month),
                 reports,
               }}
             />

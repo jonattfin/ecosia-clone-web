@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { useQuery } from "react-query";
 
@@ -7,6 +8,9 @@ import { LanguageContext } from "../../providers/context";
 import BlogComponent, { BlogProps } from "./blog-component";
 
 export default function Component() {
+  const router = useRouter();
+  const { id } = router.query;
+
   const language = useContext(LanguageContext);
 
   const {
@@ -27,8 +31,9 @@ export default function Component() {
 
   const props: BlogProps = {
     projects,
-    reports,
+    reports: [...reports].reverse(),
     language,
+    id: id == "projects" ? 0 : 1,
   };
 
   return <BlogComponent {...props}></BlogComponent>;
