@@ -13,7 +13,7 @@ import { ITranslationFunc } from "../../../helpers";
 import { Grid } from "@mui/material";
 import { AppColor } from "../../../shared-components";
 import React, { Fragment } from "react";
-import { ReportData } from "./interfaces";
+import { ReportData } from "../../../api/interfaces";
 
 const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
   ssr: false,

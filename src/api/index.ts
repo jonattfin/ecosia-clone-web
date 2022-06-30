@@ -1,5 +1,4 @@
-import { ReportData } from "../pages/blog/components/interfaces";
-import { Project } from "../shared-components";
+import { Project, ReportData, ResultQuery } from "./interfaces";
 
 const environment = getEnvironment();
 
@@ -28,18 +27,19 @@ export const fetchReports = async (): Promise<ReportData[]> => {
   return res.json();
 };
 
+export const fetchReportById = async (
+  reportId: string | string[] | undefined
+): Promise<ReportData> => {
+  const res = await fetch(`${httpBaseUrl}/reports/${reportId}`);
+  return res.json();
+};
+
 export const searchByQueryAsync = async (
   query: string | undefined
 ): Promise<ResultQuery[]> => {
   const res = await fetch(`${httpBaseUrl}/search/${query}`);
   return res.json();
 };
-
-export interface ResultQuery {
-  url: string;
-  snippet: string;
-  name: string;
-}
 
 function getEnvironment(isDevelopment: boolean = false) {
   return isDevelopment ? getDevEnvironment() : getProdEnvironment();

@@ -11,12 +11,19 @@ import {
 } from "../../../shared-components";
 import { Language } from "../../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../../helpers";
+import { ReportData } from "../../../api/interfaces";
 
 const PieComponent = dynamic(() => import("../../../shared-components/pie"), {
   ssr: false,
 });
 
-const Component = ({ t }: { t: ITranslationFunc }) => {
+const Component = ({
+  t,
+  report,
+}: {
+  t: ITranslationFunc;
+  report: ReportData;
+}) => {
   return (
     <MainSection>
       <Grid container spacing={2}>
@@ -24,7 +31,12 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
           <MainTitleDiv data-test="reports-title">
             {t("monthlyReports")}
           </MainTitleDiv>
-          <MainSubtitleDiv>{t("ourRevenue")}</MainSubtitleDiv>
+          <MainSubtitleDiv>
+            {t("ourRevenue").replace(
+              "[month]",
+              `${report.month} ${report.year}`
+            )}
+          </MainSubtitleDiv>
           <ContentDiv>{t("reportsDescription")}</ContentDiv>
         </Grid>
         <Grid item xs={0} xl={2}>
@@ -32,7 +44,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
         </Grid>
         <Grid item xs={6} xl={4}>
           <PieContainerDiv>
-            <PieComponent />
+            <PieComponent data={getPieData(report)} />
           </PieContainerDiv>
         </Grid>
         <Grid item xs={12} xl={12}>
@@ -48,6 +60,16 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
       </Grid>
     </MainSection>
   );
+};
+
+const getPieData = (report: ReportData) => {
+  return report.investments.map(({ name, value }) => {
+    return {
+      id: name,
+      label: name,
+      value,
+    };
+  });
 };
 
 // Styled Components
@@ -75,14 +97,14 @@ const PieContainerDiv = styled.div`
 const translations = {
   [Language.English]: {
     monthlyReports: "Monthly financial reports",
-    ourRevenue: "Our revenue in January 2022",
+    ourRevenue: "Our revenue in [month]",
     reportsDescription:
       "Our monthly reports show how much ad revenue we made from your searches, how we spent it, and how many trees this helped us plant.",
     exploreReports: "Explore our financial reports ",
   },
   [Language.French]: {
     monthlyReports: "Rapports financiers mensuels",
-    ourRevenue: "Notre chiffre d'affaires en janvier 2022",
+    ourRevenue: "Notre chiffre d'affaires en [month]",
     reportsDescription:
       "Nos rapports mensuels montrent combien de revenus publicitaires nous avons tirés de vos recherches, comment nous les avons dépensés et combien d'arbres cela nous a aidés à planter.",
     exploreReports: "Explorez nos rapports financiers",

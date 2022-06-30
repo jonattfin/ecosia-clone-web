@@ -1,8 +1,8 @@
 import { ComponentStory } from "@storybook/react";
 import _ from 'lodash';
 import { loremIpsum } from "lorem-ipsum";
+import { Project } from "../../api/interfaces";
 
-import { Project } from "../../shared-components";
 import ProjectComponent from "./project-component";
 
 export default function Index() {

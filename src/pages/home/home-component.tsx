@@ -5,7 +5,7 @@ import Head from "next/head";
 import * as Components from "./components";
 import { AppColor } from "../../shared-components";
 import { Language } from "../../providers/context";
-import { ResultQuery } from "../../api";
+import { ResultQuery } from "../../api/interfaces";
 
 export interface HomeComponentProps {
   q: string;
@@ -74,7 +74,7 @@ export default function Component({
           &nbsp;
         </BlueGrid>
         <BlueGrid item xl={6}>
-          <Components.FinancialComponent {...{ language }} />
+          <Components.FinancialContainer {...{ language }} />
         </BlueGrid>
         <BlueGrid item xl={3}>
           &nbsp;
