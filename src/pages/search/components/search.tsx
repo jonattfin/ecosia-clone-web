@@ -25,25 +25,31 @@ export default function Component(props: SearchProps) {
             <Image
               src={Images.LogoImage}
               alt="logo"
-              width={"60px"}
-              height={"50px"}
+              width={"100px"}
+              height={"100px"}
             />
           </a>
         </Link>
-        <FormControl size="small" variant="outlined">
-          <OutlinedInput
-            value={query}
-            onChange={(ev) => {
-              setQuery(ev.target.value);
-            }}
-            endAdornment={<SearchIcon />}
-          />
-        </FormControl>
+        <ExtraPadding>
+          <FormControl size="small" variant="outlined">
+            <OutlinedInput
+              value={query}
+              onChange={(ev) => {
+                setQuery(ev.target.value);
+              }}
+              endAdornment={<SearchIcon />}
+            />
+          </FormControl>
+        </ExtraPadding>
       </Stack>
     </MainSection>
   );
 }
 
 const MainSection = styled.section`
-  padding-top: 100px;
+  padding-top: 60px;
+`;
+
+const ExtraPadding = styled.div`
+  padding-top: 30px;
 `;

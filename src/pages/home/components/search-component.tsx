@@ -37,7 +37,7 @@ const Component = ({
   const [query, setQuery] = useState(q || "");
 
   const imageProps = { width: 200, height: 0 };
-  imageProps.height = imageProps.width * 0.7;
+  imageProps.height = imageProps.width;
 
   const handleChange = (ev: any) => setQuery(ev.target.value);
 
