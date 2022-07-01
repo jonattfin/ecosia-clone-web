@@ -43,7 +43,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
     }
 
     incrementTreeCount();
-  }, [id, incrementTreeCount]);
+  }, [id]);
 
   const props: SearchProps = {
     query: (id || "").toString(),

@@ -7,7 +7,7 @@ import { AppColor } from "../../shared-components";
 import { Language } from "../../providers/context";
 
 export default function Component({ language }: { language?: Language }) {
-  const title = "About Ecosia and the team";
+  const title = "About forrest and the team";
 
   return (
     <section>

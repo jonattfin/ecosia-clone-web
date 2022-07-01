@@ -18,7 +18,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} xl={12}>
           <ContainerDiv>
-            <MainTitleDiv>{t("ecosiaForMobile")}</MainTitleDiv>
+            <MainTitleDiv>{t("forrestForMobile")}</MainTitleDiv>
             <MainSubtitleDiv>
               {t("plantTreesWhileSearching")} <br /> {t("withMobile")}
             </MainSubtitleDiv>
@@ -49,12 +49,12 @@ const ContainerDiv = styled.div`
 
 const translations = {
   [Language.English]: {
-    ecosiaForMobile: "Ecosia for Mobile",
+    forrestForMobile: "forrest for Mobile",
     plantTreesWhileSearching: "Plant trees while searching the web",
     withMobile: "with your mobile phone or tablet.",
   },
   [Language.French]: {
-    ecosiaForMobile: "Ecosia pour Mobile",
+    forrestForMobile: "forrest pour Mobile",
     plantTreesWhileSearching: "Plantez des arbres en effectuant une recherche sur le Web",
     withMobile: "avec votre téléphone portable ou votre tablette.",
   },

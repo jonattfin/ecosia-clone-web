@@ -5,7 +5,7 @@ import { LanguageContext } from "../../providers/context";
 import * as Components from "./components";
 
 export default function Component() {
-  const title = "Ecosia for mobile";
+  const title = "forrest for mobile";
   const language = useContext(LanguageContext);
   return (
     <section>

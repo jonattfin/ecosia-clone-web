@@ -75,13 +75,13 @@ const ExtraTextField = styled(TextField)`
 const translations = {
   [Language.English]: {
     contactUs: "Contact us",
-    faqSummary: "For questions about Ecosia check our FAQ first.",
+    faqSummary: "For questions about forrest check our FAQ first.",
     faqDescription:
       "If you don't see what you are looking for, drop us a line!",
   },
   [Language.French]: {
     contactUs: "Contactez-nous",
-    faqSummary: "Pour toute question sur Ecosia, consultez d'abord notre FAQ.",
+    faqSummary: "Pour toute question sur forrest, consultez d'abord notre FAQ.",
     faqDescription: "Si vous ne voyez pas ce que vous cherchez, écrivez-nous!",
   },
 };

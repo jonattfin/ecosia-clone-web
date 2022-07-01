@@ -7,14 +7,14 @@ Given('The user opens the about us page', () => {
 })
 
 describe("The banner section is shown", () => {
-  Then('The banner section title and add ecosia button are shown', () => {
+  Then('The banner section title and add forrest button are shown', () => {
 
     cy.getBySel('banner-title')
       .should('be.visible')
       .should('have.text', "We believe in everyone's power to do good")
 
-    cy.getBySel('add-ecosia-button')
+    cy.getBySel('add-forrest-button')
       .should('be.visible')
-      .should('have.text', 'Add Ecosia to Firefox')
+      .should('have.text', 'Add forrest to Firefox')
   });
 });

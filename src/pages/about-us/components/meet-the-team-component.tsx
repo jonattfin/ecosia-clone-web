@@ -33,7 +33,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
               <>
                 <MovieVideo controls autoPlay={true}>
                   <source
-                    src="https://d3fme2ivr1xlgj.cloudfront.net/240719_Ecosia_hiringvideo_subbed_titled.mp4"
+                    src="https://d3fme2ivr1xlgj.cloudfront.net/240719_forrest_hiringvideo_subbed_titled.mp4"
                     type="video/mp4"
                   />
                 </MovieVideo>
@@ -66,12 +66,12 @@ const translations = {
   [Language.English]: {
     stepInside: "Step inside!",
     meetTheHumans:
-      "Meet the humans who make Ecosia and learn what it's like to work here.",
+      "Meet the humans who make forrest and learn what it's like to work here.",
   },
   [Language.French]: {
     stepInside: "Entrez à l'intérieur!",
     meetTheHumans:
-      "Rencontrez les humains qui fabriquent Ecosia et découvrez ce que c'est que de travailler ici.",
+      "Rencontrez les humains qui fabriquent forrest et découvrez ce que c'est que de travailler ici.",
   },
 };
 

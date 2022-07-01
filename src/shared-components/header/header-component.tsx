@@ -131,14 +131,14 @@ const getPages = () => {
 const translations = {
   [Language.English]: {
     home: "Home",
-    howItWorks: "How Ecosia works",
+    howItWorks: "How forrest works",
     aboutUs: "About us",
     mobileApp: "Mobile app",
     privacy: "Privacy",
   },
   [Language.French]: {
     home: "Home",
-    howItWorks: "Comment fonctionne Ecosia",
+    howItWorks: "Comment fonctionne forrest",
     aboutUs: "Qui sommes-nous",
     mobileApp: "Application mobile",
     privacy: "Vie privée",

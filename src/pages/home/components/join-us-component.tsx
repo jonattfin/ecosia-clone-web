@@ -11,7 +11,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
       <MainSubtitleDiv data-test="join-us-title">{t("joinUs")}</MainSubtitleDiv>
       <div>&nbsp;</div>
       <div>
-        <Button color="primary" variant="contained" data-test="share-ecosia">
+        <Button color="primary" variant="contained" data-test="share-forrest">
           {t("shareUs")}
         </Button>
       </div>
@@ -34,12 +34,12 @@ const MainSection = styled.section`
 
 const translations = {
   [Language.English]: {
-    joinUs: "Join 15 million people who already use Ecosia",
-    shareUs: "Share Ecosia",
+    joinUs: "Join 15 million people who already use forrest",
+    shareUs: "Share forrest",
   },
   [Language.French]: {
-    joinUs: "Rejoignez 15 millions de personnes qui utilisent déjà Ecosia",
-    shareUs: "Partager Ecosia",
+    joinUs: "Rejoignez 15 millions de personnes qui utilisent déjà forrest",
+    shareUs: "Partager forrest",
   },
 };
 

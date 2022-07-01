@@ -95,12 +95,12 @@ const TitleDiv = styled.div`
 
 const translations = {
   [Language.English]: {
-    why: "Why choose Ecosia?",
+    why: "Why choose forrest?",
     wePutPeople: "We put people and planet before profit",
     notForProfit: "We’re a not-for-profit business",
     weDedicate:
       "We dedicate 100% of our profits to climate action, with at least 80% financing tree-planting projects.",
-    isPoweredByRenewable: "Ecosia is powered by 200% renewable energy",
+    isPoweredByRenewable: "forrest is powered by 200% renewable energy",
     ourSolarPanels:
       "Our solar panels produce twice the amount of energy needed to power all searches with renewables.",
     privacyFirst: "We always put your privacy first",
@@ -112,13 +112,13 @@ const translations = {
     otherReasons: "Other reasons",
   },
   [Language.French]: {
-    why: "Pourquoi choisir Ecosia?",
+    why: "Pourquoi choisir forrest?",
     wePutPeople: "Nous plaçons les gens et la planète avant le profit",
     notForProfit: "Nous sommes une entreprise à but non lucratif",
     weDedicate:
       "Nous consacrons 100% de nos bénéfices à l'action climatique, avec au moins 80% de financement de projets de plantation d'arbres.",
     isPoweredByRenewable:
-      "Ecosia est alimenté à 200% par de l'énergie renouvelable",
+      "forrest est alimenté à 200% par de l'énergie renouvelable",
     ourSolarPanels:
       "Nos panneaux solaires produisent deux fois plus d'énergie que nécessaire pour alimenter toutes les recherches avec des énergies renouvelables.",
     privacyFirst: "Nous accordons toujours la priorité à votre vie privée",

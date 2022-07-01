@@ -126,12 +126,12 @@ const translations = {
   [Language.English]: {
     searchTheWeb: "Search the web to plant trees...",
     searchEngine: "The search engine that plants trees.",
-    numberOfTrees: "Trees planted by Ecosia users.",
+    numberOfTrees: "Trees planted by forrest users.",
   },
   [Language.French]: {
     searchTheWeb: "Rechercher sur le Web pour planter des arbres...",
     searchEngine: "Le moteur de recherche qui plante des arbres.",
-    numberOfTrees: "Arbres plantés par les utilisateurs d'Ecosia",
+    numberOfTrees: "Arbres plantés par les utilisateurs d'forrest",
   },
 };
 

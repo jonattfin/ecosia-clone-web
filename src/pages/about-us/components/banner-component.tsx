@@ -16,8 +16,8 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
             </MainTitleDiv>
             <div>&nbsp;</div>
             <div>
-              <Button variant="contained" data-test="add-ecosia-button">
-                {t("addEcosiaToFirefox")}
+              <Button variant="contained" data-test="add-forrest-button">
+                {t("addforrestToFirefox")}
               </Button>
             </div>
           </ContainerDiv>
@@ -42,11 +42,11 @@ const ContainerDiv = styled.div`
 const translations = {
   [Language.English]: {
     weBelive: "We believe in everyone's power to do good",
-    addEcosiaToFirefox: "Add Ecosia to Firefox",
+    addforrestToFirefox: "Add forrest to Firefox",
   },
   [Language.French]: {
     weBelive: "Nous croyons au pouvoir de chacun de faire le bien",
-    addEcosiaToFirefox: "Ajouter Ecosia à Firefox",
+    addforrestToFirefox: "Ajouter forrest à Firefox",
   },
 };
 

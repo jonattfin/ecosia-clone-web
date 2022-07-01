@@ -26,7 +26,7 @@ const Component = ({ counter, t }: MapComponentProps) => {
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>15 Million</TitleDiv>
-          <ContentDiv>{t("peopleUsingEcosia")}</ContentDiv>
+          <ContentDiv>{t("peopleUsingforrest")}</ContentDiv>
         </Grid>
         <Grid item xs={12} xl={3}>
           <TitleDiv>500+</TitleDiv>
@@ -74,16 +74,16 @@ const ContentDiv = styled.div`
 
 const translations = {
   [Language.English]: {
-    treesPlanted: "Trees planted by ecosia users",
-    peopleUsingEcosia: "People using Ecosia",
+    treesPlanted: "Trees planted by forrest users",
+    peopleUsingforrest: "People using forrest",
     nativeSpecies: "Native species",
     countries: "Countries",
     activeProjects: "Active projects",
     discover: "Discover our projects",
   },
   [Language.French]: {
-    treesPlanted: "Arbres plantés par les utilisateurs d'ecosia",
-    peopleUsingEcosia: "Personnes utilisant Ecosia",
+    treesPlanted: "Arbres plantés par les utilisateurs d'forrest",
+    peopleUsingforrest: "Personnes utilisant forrest",
     nativeSpecies: "Espèces indigènes",
     countries: "Pays",
     activeProjects: "Projets actifs",

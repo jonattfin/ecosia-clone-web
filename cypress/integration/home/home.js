@@ -38,7 +38,7 @@ describe("The map section is shown", () => {
   Then('The map section title and discover our project link are shown', () => {
     cy.getBySel('map-title')
       .should('be.visible')
-      .should('have.text', 'Trees planted by ecosia users')
+      .should('have.text', 'Trees planted by forrest users')
 
     cy.getBySel('discover-projects')
       .should('be.visible')
@@ -60,13 +60,13 @@ describe("The financial section is shown", () => {
 });
 
 describe("The join section is shown", () => {
-  Then('The join section title and share ecosia button are shown', () => {
+  Then('The join section title and share forrest button are shown', () => {
 
     cy.getBySel('join-us-title')
       .should('be.visible')
-      .should('have.text', 'Join 15 million people who already use Ecosia')
+      .should('have.text', 'Join 15 million people who already use forrest')
 
-    cy.getBySel('share-ecosia')
+    cy.getBySel('share-forrest')
       .should('be.visible')
   });
 });

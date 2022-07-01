@@ -24,7 +24,7 @@ export default function Links() {
                 <a href="#id">News</a>
               </div>
               <div>
-                <a href="#id">How Ecosia works</a>
+                <a href="#id">How forrest works</a>
               </div>
               <div>
                 <a href="#id">About us</a>
@@ -45,7 +45,7 @@ export default function Links() {
                 <a href="#id">FAQ</a>
               </div>
               <div>
-                <a href="#id">Advertise on Ecosia</a>
+                <a href="#id">Advertise on forrest</a>
               </div>
               <div>
                 <a href="#id">Financial reports</a>
@@ -66,11 +66,9 @@ export default function Links() {
             <div>
               <TitleDiv>Imprint</TitleDiv>
               <div>
-                Ecosia GmbH Schinkestraße 9
                 <br />
-                12047 Berlin, Germany
+                Cluj-Napoca, Romania
                 <br />
-                Chairman Christian Kroll
               </div>
             </div>
           </ContainerDiv>

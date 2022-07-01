@@ -27,7 +27,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
               </ImageContainerDiv>
               <ImageContainerDiv>
                 <LogoImage
-                  src={Images.EcosiaImage}
+                  src={Images.ForrestLogo}
                   alt="tdlr"
                   {...imageProps}
                 ></LogoImage>
@@ -83,15 +83,15 @@ const ContentDiv = styled.div`
 
 const translations = {
   [Language.English]: {
-    searchAdds: "Search ads generate income for Ecosia.",
-    incomeUse: "Ecosia uses this income to plant trees",
-    webSearch: "You search the web with Ecosia.",
+    searchAdds: "Search ads generate income for forrest.",
+    incomeUse: "forrest uses this income to plant trees",
+    webSearch: "You search the web with forrest.",
     howItWorks: "How it works",
   },
   [Language.French]: {
-    searchAdds: "Les annonces de recherche génèrent des revenus pour Ecosia.",
-    incomeUse: "Ecosia utilise ce revenu pour planter des arbres",
-    webSearch: "Vous effectuez des recherches sur le Web avec Ecosia.",
+    searchAdds: "Les annonces de recherche génèrent des revenus pour forrest.",
+    incomeUse: "forrest utilise ce revenu pour planter des arbres",
+    webSearch: "Vous effectuez des recherches sur le Web avec forrest.",
     howItWorks: "Comment ça marche",
   },
 };

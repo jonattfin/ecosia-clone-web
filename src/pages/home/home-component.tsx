@@ -24,7 +24,7 @@ export default function Component({
   language,
   data
 }: HomeComponentProps) {
-  const title = "Ecosia - The search engine that plants trees";
+  const title = "Forrest - The search engine that plants trees";
 
   return (
     <section>
