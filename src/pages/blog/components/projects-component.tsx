@@ -6,8 +6,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 
 import { ITranslationFunc } from "../../../helpers";
-import { Project } from "../../../shared-components";
 import { useState } from "react";
+import { Project } from "../../../api/interfaces";
 
 export interface ProjectsProps {
   projects: Project[];

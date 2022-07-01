@@ -14,8 +14,8 @@ export default function Component({
     error: reportError,
   } = useQuery(["report", 5], () => fetchReportById("5"));
 
-  if (reportIsLoading) return <Fragment>"Loading..."</Fragment>;
-  if (reportError || !report) <Fragment>return "An error has occurred: "</Fragment>;
+  if (reportIsLoading) return <Fragment>Loading...</Fragment>;
+  if (reportError || !report) <Fragment>An error has occurred</Fragment>;
 
   return <FinancialComponent {...{ report, language }} />;
 }

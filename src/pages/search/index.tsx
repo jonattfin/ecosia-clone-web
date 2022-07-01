@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { debounce } from "lodash";
 
 import SearchComponent, { SearchProps } from "./search-component";
-import { ResultQuery, searchByQueryAsync } from "../../api";
+import { searchByQueryAsync } from "../../api";
+import { ResultQuery } from "../../api/interfaces";
 
 interface IndexSearchProps {
   incrementTreeCount: () => void;
@@ -42,7 +43,7 @@ export default function Component({ incrementTreeCount }: IndexSearchProps) {
     }
 
     incrementTreeCount();
-  }, [id]);
+  }, [id, incrementTreeCount]);
 
   const props: SearchProps = {
     query: (id || "").toString(),

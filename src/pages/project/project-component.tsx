@@ -6,8 +6,9 @@ import Link from "next/link";
 import _ from "lodash";
 import styled from "@emotion/styled";
 
-import { AppColor, Image, Project, Tag } from "../../shared-components";
+import { AppColor, Image } from "../../shared-components";
 import * as Images from "./images";
+import { Project, Tag } from "../../api/interfaces";
 
 export interface ProjectProps {
   project: Project;

@@ -14,7 +14,7 @@ import * as Images from "./images";
 import { Image, AppColor } from "../../../shared-components";
 import { Language } from "../../../providers/context";
 import { ITranslationFunc, withTranslations } from "../../../helpers";
-import { ResultQuery } from "../../../api";
+import { ResultQuery } from "../../../api/interfaces";
 
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
