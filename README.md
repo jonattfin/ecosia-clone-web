@@ -24,7 +24,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 - pages are split by "features", and all the components / images / styles stay within that feature folder "page" for better coupling.
 - Typescript is used for clarity & to catch errors at compiletime.
-- The api is built with NestJS and hosted in Heroku. The database used is MySQL, also on Heroku. This is the url: https://ecosia-clone.herokuapp.com/api/
+- The api is built with NestJS and hosted in Heroku. (It has both rest & websocket endpoints). The database used is MySQL, also hosted on Heroku.
 - the components are split by the "smart/not smart" rule, and usually per page there's only one smart component which does the api calls, all the others just render what they receive as props.
 - Storybook is used to render components "out of the box" and to build them in isolation. Also those components are snapshot tested.
 - For the integration tests we're using cypress.js with cucumber.js and the features/scenarios are written in Gerkin.
