@@ -15,7 +15,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
         <DivContainer>
           <AboveTitle>{t("weProtectYourPrivacy")}</AboveTitle>
           <Subtitle>
-            {t("forrestNeedsProtection")} <br /> {t("doBoth")}
+            {t("needsProtection")} <br /> {t("doBoth")}
           </Subtitle>
           <div>
             <a href="#statements">
@@ -119,7 +119,7 @@ const DivTitle = styled.div`
 const translations = {
   [Language.English]: {
     weProtectYourPrivacy: "We protect your privacy",
-    forrestNeedsProtection: "Forests need protecting and so does your privacy.",
+    needsProtection: "Forests need protecting and so does your privacy.",
     doBoth: "We make sure to do both.",
     weDontStoreTitle: "We don’t store your searches permanently",
     weDontStoreDesc:
@@ -139,7 +139,7 @@ const translations = {
   },
   [Language.French]: {
     weProtectYourPrivacy: "Nous protégeons votre vie privée",
-    forrestNeedsProtection:
+    needsProtection:
       "Les forêts ont besoin d'être protégées, tout comme votre vie privée.",
     doBoth: "Nous nous assurons de faire les deux.",
     weDontStoreTitle:

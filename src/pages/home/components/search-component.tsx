@@ -19,7 +19,7 @@ import { ResultQuery } from "../../../api/interfaces";
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
   onSearchValueSelected: (query: string) => void;
-  q: string,
+  q: string;
   counter: number;
   language?: Language;
   t: ITranslationFunc;
@@ -36,8 +36,7 @@ const Component = ({
 }: SearchComponentProps) => {
   const [query, setQuery] = useState(q || "");
 
-  const imageProps = { width: 200, height: 0 };
-  imageProps.height = imageProps.width;
+  const imageProps = getImageProps(50);
 
   const handleChange = (ev: any) => setQuery(ev.target.value);
 
@@ -60,7 +59,7 @@ const Component = ({
             />
           </SearchFormControl>
           {query && (
-            <SearchList>
+            <SearchList data-test="searchList">
               {data.map((item, index) => (
                 <ListItem key={`d_${index}`} disablePadding>
                   <ListItemButton
@@ -86,6 +85,11 @@ const Component = ({
     </MainSection>
   );
 };
+
+function getImageProps(percentage: number = 100) {
+  const scale = percentage / 100;
+  return { width: 298 * scale, height: 214 * scale };
+}
 
 // Styled Components
 
@@ -126,12 +130,12 @@ const translations = {
   [Language.English]: {
     searchTheWeb: "Search the web to plant trees...",
     searchEngine: "The search engine that plants trees.",
-    numberOfTrees: "Trees planted by forrest users.",
+    numberOfTrees: "Trees planted by Ecosia users.",
   },
   [Language.French]: {
     searchTheWeb: "Rechercher sur le Web pour planter des arbres...",
     searchEngine: "Le moteur de recherche qui plante des arbres.",
-    numberOfTrees: "Arbres plantés par les utilisateurs d'forrest",
+    numberOfTrees: "Arbres plantés par les utilisateurs d'Ecosia",
   },
 };
 

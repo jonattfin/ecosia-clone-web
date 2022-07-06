@@ -1,11 +1,11 @@
 import { FormControl, OutlinedInput, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "@emotion/styled";
 
-import * as Images from "../images";
+import * as Images from "./images";
 
 export interface SearchProps {
   query: string;
@@ -22,11 +22,12 @@ export default function Component(props: SearchProps) {
       <Stack direction="row" spacing={2}>
         <Link href="/">
           <a>
+            <ExtraDiv />
             <Image
               src={Images.LogoImage}
               alt="logo"
-              width={"100px"}
-              height={"100px"}
+              width={"75px"}
+              height={"60px"}
             />
           </a>
         </Link>
@@ -52,4 +53,8 @@ const MainSection = styled.section`
 
 const ExtraPadding = styled.div`
   padding-top: 30px;
+`;
+
+const ExtraDiv = styled.div`
+  padding: 5px;
 `;

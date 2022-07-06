@@ -8,7 +8,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
   return (
     <section>
       <ParentDiv>
-        <MainTitleDiv>{t("forrestDescription")}</MainTitleDiv>
+        <MainTitleDiv>{t("ecosiaDescription")}</MainTitleDiv>
         <ChildDiv>
           {getTimePeriods().map((period, index) => (
             <div key={`period_${index}`}>
@@ -29,8 +29,8 @@ function getTimePeriods() {
   return [
     {
       time: "December 2009",
-      title: "forrest is born",
-      content: "forrestIsBornContent",
+      title: "ecosia is born",
+      content: "ecosiaIsBornContent",
     },
     {
       time: "2009 - 2011",
@@ -84,28 +84,28 @@ const ContentDiv = styled.div`
 
 const translations = {
   [Language.English]: {
-    forrestDescription:
-      "forrest is a social business founded in 2009 after a trip around the world",
-    forrestIsBornContent:
-      "Christian founded forrest.org after a trip around the world helped him understand the problems of deforestation.",
+    ecosiaDescription:
+      "Ecosia is a social business founded in 2009 after a trip around the world",
+    ecosiaIsBornContent:
+      "Christian founded Ecosia.org after a trip around the world helped him understand the problems of deforestation.",
     peopleChoiceContent:
-      "forrest won several awards for its clever concept and speedy growth in Europe and beyond.",
+      "ecosia won several awards for its clever concept and speedy growth in Europe and beyond.",
     firstGermanBContent:
-      "forrest was the first German company to become a B Corporation thanks to its social business model.",
+      "Ecosia was the first German company to become a B Corporation thanks to its social business model.",
     plantingMilestoneContent:
-      "A planting milestone! That same year, forrest also builds its own solar energy plant to power every search.",
+      "A planting milestone! That same year, Ecosia also builds its own solar energy plant to power every search.",
   },
   [Language.French]: {
-    forrestDescription:
-      "forrest est une entreprise sociale fondée en 2009 après un voyage autour du monde",
-    forrestIsBornContent:
-      "Christian a fondé forrest.org après un voyage autour du monde qui l'a aidé à comprendre les problèmes de la déforestation.",
+    ecosiaDescription:
+      "Ecosia est une entreprise sociale fondée en 2009 après un voyage autour du monde",
+    ecosiaIsBornContent:
+      "Christian a fondé Ecosia.org après un voyage autour du monde qui l'a aidé à comprendre les problèmes de la déforestation.",
     peopleChoiceContent:
-      "forrest a remporté plusieurs prix pour son concept intelligent et sa croissance rapide en Europe et au-delà.",
+      "Ecosia a remporté plusieurs prix pour son concept intelligent et sa croissance rapide en Europe et au-delà.",
     firstGermanBContent:
-      "forrest a été la première entreprise allemande à devenir une B Corporation grâce à son modèle d'entreprise sociale.",
+      "Ecosia a été la première entreprise allemande à devenir une B Corporation grâce à son modèle d'entreprise sociale.",
     plantingMilestoneContent:
-      "Une étape importante dans la plantation! La même année, forrest construit également sa propre centrale solaire pour alimenter toutes les recherches.",
+      "Une étape importante dans la plantation! La même année, Ecosia construit également sa propre centrale solaire pour alimenter toutes les recherches.",
   },
 };
 

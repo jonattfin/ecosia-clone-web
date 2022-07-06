@@ -16,4 +16,4 @@ Feature: Home
     Then The financial section title and explore financial reports are shown
 
   Scenario: The join section is shown
-    Then The join section title and share forrest button are shown
+    Then The join section title and share ecosia button are shown

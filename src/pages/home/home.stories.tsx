@@ -49,19 +49,3 @@ export const WhyChooseUsComponent = withLanguageControls(
 );
 
 export const JoinUsComponent = withLanguageControls(Components.JoinUsComponent);
-
-export const HomePageIndex = withLanguageControls(HomeComponent, {
-  q: "hello",
-  counter: 100,
-  onSearch: action("onSearch"),
-  onSearchValueSelected: action("onSearchValueSelected"),
-  data: getData("hello"),
-});
-
-function getData(query: string) {
-  return range(1, 10).map((element) => ({
-    url: `url ${element}`,
-    snippet: `snippet ${element} ${query}`,
-    name: `name ${element}`,
-  }));
-}

@@ -131,14 +131,14 @@ const SeparatorDiv = styled.div`
 const translations = {
   [Language.English]: {
     title: `Let's be clear about the numbers`,
-    treePlanting: `Tree planting At forrest, we plant trees where they're needed
+    treePlanting: `Tree planting at Ecosia, we plant trees where they're needed
     most. Browse through our tree-planting portfolio to learn where the
     trees stand, which species we plant, and what their impact is. And
     much more!`,
     aboutTransparency: `We're all about transparency. That's why we publish monthly financial
     reports. They keep you in the loop about our latest tree-planting
     projects, how much money we made from your searches, and how we spent
-    it. forrest is a not-for-profit business. We don't pay out dividends
+    it. Ecosia is a not-for-profit business. We don't pay out dividends
     and cannot be bought. That way, we're able to use 100% of our profits
     for the planet. Keep in mind that it takes six weeks to process the
     month's payments.`,

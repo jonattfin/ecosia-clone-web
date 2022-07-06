@@ -7,7 +7,7 @@ import { AppColor } from "../../shared-components";
 import { Language } from "../../providers/context";
 
 export default function Component({ language }: { language?: Language }) {
-  const title = "What is Forrest? - The search engine that plants trees";
+  const title = "What is Ecosia? - The search engine that plants trees";
 
   return (
     <section>

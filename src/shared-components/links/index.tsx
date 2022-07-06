@@ -24,7 +24,7 @@ export default function Links() {
                 <a href="#id">News</a>
               </div>
               <div>
-                <a href="#id">How forrest works</a>
+                <a href="#id">How Ecosia works</a>
               </div>
               <div>
                 <a href="#id">About us</a>
@@ -45,7 +45,7 @@ export default function Links() {
                 <a href="#id">FAQ</a>
               </div>
               <div>
-                <a href="#id">Advertise on forrest</a>
+                <a href="#id">Advertise on Ecosia</a>
               </div>
               <div>
                 <a href="#id">Financial reports</a>
@@ -64,11 +64,17 @@ export default function Links() {
               </div>
             </div>
             <div>
-              <TitleDiv>Imprint</TitleDiv>
+              <TitleDiv>Legal</TitleDiv>
               <div>
-                <br />
-                Cluj-Napoca, Romania
-                <br />
+                <div>
+                  <a href="#id">Privacy policy</a>
+                </div>
+                <div>
+                  <a href="#id">Terms of service</a>
+                </div>
+                <div>
+                  <a href="#id">Imprint</a>
+                </div>
               </div>
             </div>
           </ContainerDiv>

@@ -22,7 +22,7 @@ export default function Component() {
         </Grid>
         <Grid item xs={12} xl={12}>
           <ExplanationDiv>
-            forrest GmbH does not assume responsibility for the content of sites
+            Ecosia GmbH does not assume responsibility for the content of sites
             to which it links and the way in which search results are displayed.
             To learn more please read our privacy policy and our terms of
             service.

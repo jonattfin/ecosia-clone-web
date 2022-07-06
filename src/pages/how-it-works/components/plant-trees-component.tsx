@@ -17,7 +17,7 @@ const Component = ({ t }: { t: ITranslationFunc }) => {
             <div>{t("getTheFreeExtension")}</div>
             <SeparatorDiv />
             <div>
-              <Button variant="contained">{t("addforrestToBrowser")}</Button>
+              <Button variant="contained">{t("addToBrowser")}</Button>
             </div>
           </ContainerDiv>
         </Grid>
@@ -49,7 +49,7 @@ const translations = {
       "We use the profit we make from your searches to plant trees where they are needed most.",
     getTheFreeExtension:
       "Get the free browser extension and plant trees with every search.",
-    addforrestToBrowser: "Add forrest to Firefox",
+    addToBrowser: "Add Ecosia to Firefox",
   },
   [Language.French]: {
     plantTrees:
@@ -58,7 +58,7 @@ const translations = {
       "Nous utilisons le profit que nous tirons de vos recherches pour planter des arbres là où ils sont le plus nécessaires.",
     getTheFreeExtension:
       "Obtenez l'extension de navigateur gratuite et plantez des arbres à chaque recherche.",
-    addforrestToBrowser: "Ajouter forrest à Firefox",
+    addToBrowser: "Ajouter Ecosia à Firefox",
   },
 };
 
