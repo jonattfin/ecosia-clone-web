@@ -55,7 +55,7 @@ function getEnvironment(isDevelopment: boolean = false) {
   }
 
   function getProdEnvironment() {
-    const baseUrl = "forrestsearch.herokuapp.com";
+    const baseUrl = "ecosia-clone.herokuapp.com";
 
     return {
       baseUrl,
