@@ -1,8 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=jonattfin_forrest-clone2)](https://sonarcloud.io/summary/new_code?id=jonattfin_forrest-clone2)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jonattfin_ecosia-clone2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone2)
 
-The building blocks for this app can be seen in storybook at this url: https://629e38adc84b50004a0c06fc-ciypykolfj.chromatic.com/?path=/story/pages-about-us--banner-component
+The building blocks for this app can be seen in storybook at this url: https://629e38adc84b50004a0c06fc-ciypykolfj.chromatic.com
 
 ## Getting Started
 
@@ -24,8 +24,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 - pages are split by "features", and all the components / images / styles stay within that feature folder "page" for better coupling.
 - Typescript is used for clarity & to catch errors at compiletime.
-- Prisma is used for the ORM and Postgresql is used for data storage (right now just for projects). The Postgresql database is hosted in Heroku.
-- pages are loaded in a lazy fashion "by demand" to minimize the loading time.
+- The api is built with NestJS and hosted in Heroku. The database used is MySQL, also on Heroku. This is the url: https://ecosia-clone.herokuapp.com/api/
 - the components are split by the "smart/not smart" rule, and usually per page there's only one smart component which does the api calls, all the others just render what they receive as props.
 - Storybook is used to render components "out of the box" and to build them in isolation. Also those components are snapshot tested.
 - For the integration tests we're using cypress.js with cucumber.js and the features/scenarios are written in Gerkin.
