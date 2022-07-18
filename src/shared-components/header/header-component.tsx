@@ -5,8 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { MenuItem, Menu, Divider, Badge } from "@mui/material";
+import { MenuItem, Menu, Divider, Badge, Stack } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 import { useRouter } from "next/router";
 
@@ -17,6 +18,7 @@ import {
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
 } from "@mui/icons-material";
 import { withTranslations } from "../../helpers";
+import styled from "@emotion/styled";
 
 const darkTheme = createTheme({
   palette: {
@@ -58,14 +60,34 @@ const Component = ({ changeLanguage, t, language }: any) => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {/* Photos */}
             </Typography>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton size="large" aria-label="" color="inherit">
+            <Box
+              sx={{ display: { xs: "none", md: "flex" } }}
+              alignContent="center"
+              justifyContent="center"
+            >
+              <Stack padding={2} direction="row">
+                <PaddingLink
+                  href="https://github.com/jonattfin/ecosia-clone-web"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GitHubIcon fontSize="small"></GitHubIcon>
+                </PaddingLink>
+                <PaddingLink
+                  href="https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src="https://sonarcloud.io/api/project_badges/measure?project=jonattfin_ecosia-clone2&metric=alert_status" />
+                </PaddingLink>
+              </Stack>
+
+              <IconButton size="small" aria-label="" color="inherit">
                 <Badge badgeContent={numberOfTrees} color="success">
                   <ForestOutlinedIcon color="info" />
                 </Badge>
               </IconButton>
-              <IconButton size="large" aria-label="" color="inherit">
+              <IconButton size="small" aria-label="" color="inherit">
                 <Badge color="default">
                   <NotificationsNoneOutlinedIcon color="disabled" />
                 </Badge>
@@ -125,6 +147,12 @@ const getPages = () => {
     { url: "/privacy", slug: "privacy", icon: "shield" },
   ];
 };
+
+// Styled Components
+
+const PaddingLink = styled.a`
+  padding: 0px 5px;
+`
 
 // translations
 
