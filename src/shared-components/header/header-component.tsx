@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { MenuItem, Menu, Divider, Badge, Stack } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
 import { useRouter } from "next/router";
 
@@ -72,6 +73,13 @@ const Component = ({ changeLanguage, t, language }: any) => {
                   rel="noreferrer"
                 >
                   <GitHubIcon fontSize="small"></GitHubIcon>
+                </PaddingLink>
+                <PaddingLink
+                  href="https://www.chromatic.com/builds?appId=629e38adc84b50004a0c06fc"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <AutoStoriesIcon fontSize="small" color="secondary"></AutoStoriesIcon>
                 </PaddingLink>
                 <PaddingLink
                   href="https://sonarcloud.io/summary/new_code?id=jonattfin_ecosia-clone2"
@@ -152,7 +160,7 @@ const getPages = () => {
 
 const PaddingLink = styled.a`
   padding: 0px 5px;
-`
+`;
 
 // translations
 
